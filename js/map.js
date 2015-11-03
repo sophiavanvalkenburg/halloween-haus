@@ -1,6 +1,6 @@
-var Map = function(tiles){
+var Map = function(tiles, characters){
   this.tiles = tiles;
-  this.grid = [];
+  this.tile_grid = [];
   this.size = tiles.length;
   var res = this.mapTilesToGrid();
   this.max_x = res[0];
@@ -20,10 +20,10 @@ Map.prototype.mapTilesToGrid = function(){
       max_y = y;
     }
     // y is row, x is column
-    if (this.grid[y] === undefined){
-      this.grid[y] = [];
+    if (this.tile_grid[y] === undefined){
+      this.tile_grid[y] = [];
     }
-    this.grid[y][x] = tile;
+    this.tile_grid[y][x] = tile;
   }
   return [max_x, max_y];
 };
@@ -31,7 +31,7 @@ Map.prototype.getTile = function(x, y){
   if (y > this.max_y){
     return;
   }
-  return this.grid[y][x];
+  return this.tile_grid[y][x];
 };
 Map.prototype.getMaxY = function(){
   return this.max_y;
