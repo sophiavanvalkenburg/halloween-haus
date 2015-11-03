@@ -1,13 +1,11 @@
-#haus-map table, td {
+#haus-map table {
     border: 2px solid black;
+    border-collapse: collapse;
 }
 
 #haus-map td {
     padding: 0px;
-}
-
-#haus-map table {
-    border-collapse: collapse;
+    border: 1px solid gray;
 }
 
 #haus-map .tile {
