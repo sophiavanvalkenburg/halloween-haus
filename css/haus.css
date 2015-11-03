@@ -1,0 +1,17 @@
+#haus-map table, td {
+    border: 2px solid black;
+}
+
+#haus-map td {
+    padding: 0px;
+}
+
+#haus-map table {
+    border-collapse: collapse;
+}
+
+#haus-map .tile {
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+}
