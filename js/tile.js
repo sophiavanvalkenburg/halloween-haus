@@ -22,7 +22,7 @@ var InteractiveTile = function(x, y, is_accessible, graphic, messages){
   Tile.call(this, x, y, is_accessible, graphic);
   this.messages = messages;
 };
-InteractiveTile.prototype = Tile.prototype;
+InteractiveTile.prototype = new Tile();
 InteractiveTile.prototype.getMessages = function(){
   return this.messages;
 }
@@ -31,7 +31,7 @@ var PortalTile = function(x, y, next_tile, graphic){
   Tile.call(this, x, y, true, graphic);
   this.next_tile = next_tile;
 };
-PortalTile.prototype = Tile.prototype;
+PortalTile.prototype = new Tile();
 PortalTile.prototype.getNextTile = function(){
   return this.next_tile;
 };

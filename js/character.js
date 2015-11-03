@@ -39,7 +39,7 @@ var NonPlayerCharacter = function(name, x, y, messages){
   this.setY(y);
   this.messages = messages;
 };
-NonPlayerCharacter.prototype = Character.prototype;
+NonPlayerCharacter.prototype = new Character();
 NonPlayerCharacter.prototype.getMessages = function(){
   return this.messages
 };
@@ -47,4 +47,4 @@ NonPlayerCharacter.prototype.getMessages = function(){
 var PlayerCharacter = function(name){
   Character.call(this, name);
 };
-PlayerCharacter.prototype = Character.prototype;
+PlayerCharacter.prototype = new Character();
