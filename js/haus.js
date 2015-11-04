@@ -25,6 +25,12 @@ Haus.prototype.executeInteractHandler = function(){
     this.interacting_obj.interactAction(this);
   }
 }
+Haus.prototype.executeMovementHandler = function(x, y, canvas){
+  if (this.interacting_obj === undefined){
+    this.player.moveTo(this.map, x, y);
+    canvas.updateCharacter(this.player);
+  }
+}
 Haus.prototype.setInteractingObject = function(new_obj){
   this.interacting_obj = new_obj;
 }
@@ -36,20 +42,16 @@ function setUpEventListeners(haus, canvas){
   window.addEventListener("keydown", function(e){
     switch(e.which){
       case 37:
-        haus.player.moveTo(haus.map, haus.player.X() - 1, haus.player.Y());
-        canvas.updateCharacter(haus.player);
+        haus.executeMovementHandler(haus.player.X() - 1, haus.player.Y(), canvas);
         break;
       case 38:
-        haus.player.moveTo(haus.map, haus.player.X(), haus.player.Y() - 1);
-        canvas.updateCharacter(haus.player);
+        haus.executeMovementHandler(haus.player.X(), haus.player.Y() - 1, canvas);
         break;
       case 39:
-        haus.player.moveTo(haus.map, haus.player.X() + 1, haus.player.Y());
-        canvas.updateCharacter(haus.player);
+        haus.executeMovementHandler(haus.player.X() + 1, haus.player.Y(), canvas);
         break;
       case 40:
-        haus.player.moveTo(haus.map, haus.player.X(), haus.player.Y() + 1);
-        canvas.updateCharacter(haus.player);
+        haus.executeMovementHandler(haus.player.X(), haus.player.Y() + 1, canvas);
         break;
       case 88:
         console.log(haus.player.name, "X button");
