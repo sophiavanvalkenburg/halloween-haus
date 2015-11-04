@@ -1,5 +1,7 @@
 var Map = function(tiles, characters){
   this.tiles = tiles;
+  this.characters = characters;
+  this.num_characters = characters.length;
   this.tile_grid = [];
   this.size = tiles.length;
   var res = this.mapTilesToGrid();
@@ -28,11 +30,20 @@ Map.prototype.mapTilesToGrid = function(){
   return [max_x, max_y];
 };
 Map.prototype.getTile = function(x, y){ 
-  if (y > this.max_y){
+  if (y > this.max_y || y < 0 || x > this.max_x || x < 0){
     return;
   }
   return this.tile_grid[y][x];
 };
+Map.prototype.getCharacter = function(x, y){
+  // don't store a character grid because it's very sparse
+  for (var i=0; i<this.num_characters; i++){
+    var ch = this.characters[i];
+    if (ch.X() === x && ch.Y() === y){
+      return ch;
+    }
+  }
+}
 Map.prototype.getMaxY = function(){
   return this.max_y;
 };

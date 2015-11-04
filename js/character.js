@@ -1,19 +1,55 @@
-var Character = function(name){
+var Character = function(name, graphic, x, y){
   this.name = name;
-  this.x = 0;
-  this.y = 0;
+  this.x = x;
+  this.y = y;
+  this.graphic = graphic;
   this.inventory = [];
+  this.orientation; 
 };
+Character.UP = "up";
+Character.DOWN = "down";
+Character.LEFT = "left";
+Character.RIGHT = "right";
+Character.prototype.X = function(){
+  return this.x;
+}
+Character.prototype.Y = function(){
+  return this.y;
+}
 Character.prototype.setX = function(x){
   this.x = x;
 };
 Character.prototype.setY = function(y){
   this.y = y;
 };
-Character.prototype.moveTo = function(tile){
-  if (tile.isAccessible()){
-    this.setX(tile.X());
-    this.setY(tile.Y());
+Character.prototype.getGraphic = function(){
+  return this.graphic;
+};
+Character.prototype.setOrientation = function(orientation){
+  this.orientation = orientation;
+};
+Character.prototype.getOrientationTowardsMe = function(x, y){
+  if (x > this.x){
+    return Character.RIGHT;
+  }
+  if (x < this.x){
+    return Character.LEFT;
+  }
+  if (y > this.y){
+    return Character.DOWN;
+  }
+  if (y < this.y){
+    return Character.UP;
+  }
+  return Character.DOWN;
+};
+Character.prototype.moveTo = function(map, x, y){
+  this.setOrientation(this.getOrientationTowardsMe(x, y));
+  console.log(this.orientation);
+  var tile = map.getTile(x, y);
+  if (tile !== undefined && tile.isAccessible()){
+    this.setX(x);
+    this.setY(y);
     return true;
   }
   return false;
@@ -33,10 +69,8 @@ Character.prototype.hasItem = function(item){
   return this.inventory.indexOf(item) >= 0;
 };
 
-var NonPlayerCharacter = function(name, x, y, messages){
-  Character.call(this, name);
-  this.setX(x);
-  this.setY(y);
+var NonPlayerCharacter = function(name, graphic, x, y, messages){
+  Character.call(this, name, graphic, x, y);
   this.messages = messages;
 };
 NonPlayerCharacter.prototype = new Character();
@@ -44,7 +78,7 @@ NonPlayerCharacter.prototype.getMessages = function(){
   return this.messages
 };
 
-var PlayerCharacter = function(name){
-  Character.call(this, name);
+var PlayerCharacter = function(name, graphic){
+  Character.call(this, name, graphic, 0, 0);
 };
 PlayerCharacter.prototype = new Character();

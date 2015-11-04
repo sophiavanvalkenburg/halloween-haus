@@ -6,10 +6,23 @@
 #haus-map td {
     padding: 0px;
     border: 1px solid gray;
+    position: relative;
 }
 
 #haus-map .tile {
     width: 25px;
     height: 25px;
     padding: 0px;
+    z-index: -1;
+    background-color: lightgray;
+}
+
+#haus-map .character {
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
 }
