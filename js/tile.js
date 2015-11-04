@@ -26,6 +26,11 @@ InteractiveTile.prototype = new Tile();
 InteractiveTile.prototype.getMessages = function(){
   return this.messages;
 }
+InteractiveTile.prototype.interactAction = function(the_haus){
+  the_haus.dialog.setMessages(this.messages);
+  the_haus.dialog.start();
+  the_haus.setInteractingObject(the_haus.dialog);
+}
 
 var PortalTile = function(x, y, next_tile, graphic){
   Tile.call(this, x, y, true, graphic);
