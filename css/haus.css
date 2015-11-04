@@ -26,3 +26,19 @@
     left: 0px;
     z-index: 0;
 }
+
+#haus-main-dialog {
+    width: 250px;
+    height: 25px;
+    margin-top: 10px;
+}
+
+.dialog {
+    border: 2px solid black;
+    display: none;
+}
+
+.dialog-text{
+    font-family: monospace;
+    padding: 5px;
+}

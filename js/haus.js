@@ -56,7 +56,7 @@ function setUpEventListeners(haus, canvas){
         break;
       case 90:
         haus.executeInteractHandler();
-        console.log(haus.player.name, "Z button");
+        canvas.updateMainDialog();
         break;
       default:
         console.log(haus.player.name, "do nothing");
@@ -66,7 +66,7 @@ function setUpEventListeners(haus, canvas){
 
 $(function(){
   var the_haus = new Haus();
-  var canvas = new Canvas(the_haus.map, $("#haus-map"));
+  var canvas = new Canvas(the_haus);
   setUpEventListeners(the_haus, canvas);
-  canvas.drawMap(the_haus.map, $("#haus-map"));
+  canvas.drawMap();
 });
