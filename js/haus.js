@@ -11,7 +11,7 @@ var Haus = function(){
   ];
   this.map = new Map(this.tiles, this.characters);
   this.interacting_obj;
-  this.dialog = new Dialog();
+  this.dialog = new DialogText();
 }
 Haus.prototype.executeInteractHandler = function(){
   if (this.interacting_obj === undefined){
