@@ -3,9 +3,9 @@ var Haus = function(){
     new Tile(0, 0, true, ""),
     new Tile(0, 1, true, ""),
     new Tile(1, 0, true, ""),
-    new InteractiveTile(1, 1, false, "X", ["This is an interactive tile.", "This is the next message."])
+    new InteractiveTile(1, 1, false, "resources/images/tiles/tile-black.png", ["This is an interactive tile.", "This is the next message."])
   ];
-  this.player = new PlayerCharacter("Sophia", "S")
+  this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png")
   this.characters = [
     this.player
   ];

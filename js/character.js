@@ -44,7 +44,6 @@ Character.prototype.getOrientationTowardsMe = function(x, y){
 };
 Character.prototype.moveTo = function(map, x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
-  console.log(this.orientation);
   var tile = map.getTile(x, y);
   if (tile !== undefined && tile.isAccessible()){
     this.setX(x);

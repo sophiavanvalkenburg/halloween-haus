@@ -42,3 +42,28 @@
     font-family: monospace;
     padding: 5px;
 }
+
+.orientation-up{
+    -ms-transform: rotate(180deg); /* ie 9 */
+    -webkit-transform: rotate(180deg); /* chrome, safari, opera */
+    transform: rotate(180deg);
+}
+
+.orientation-down{
+    -ms-transform: rotate(0deg); /* ie 9 */
+    -webkit-transform: rotate(0deg); /* chrome, safari, opera */
+    transform: rotate(0deg);
+}
+
+.orientation-left{
+    -ms-transform: rotate(90deg); /* ie 9 */
+    -webkit-transform: rotate(90deg); /* chrome, safari, opera */
+    transform: rotate(90deg);
+
+}
+
+.orientation-right{
+    -ms-transform: rotate(-90deg); /* ie 9 */
+    -webkit-transform: rotate(-90deg); /* chrome, safari, opera */
+    transform: rotate(-90deg);
+}
