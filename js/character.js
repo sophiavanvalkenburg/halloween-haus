@@ -6,10 +6,6 @@ var Character = function(name, graphic, x, y){
   this.inventory = [];
   this.orientation; 
 };
-Character.UP = "up";
-Character.DOWN = "down";
-Character.LEFT = "left";
-Character.RIGHT = "right";
 Character.prototype.X = function(){
   return this.x;
 }
@@ -28,20 +24,23 @@ Character.prototype.getGraphic = function(){
 Character.prototype.setOrientation = function(orientation){
   this.orientation = orientation;
 };
+Character.prototype.getOrientation = function(){
+  return this.orientation;
+}
 Character.prototype.getOrientationTowardsMe = function(x, y){
   if (x > this.x){
-    return Character.RIGHT;
+    return Map.RIGHT;
   }
   if (x < this.x){
-    return Character.LEFT;
+    return Map.LEFT;
   }
   if (y > this.y){
-    return Character.DOWN;
+    return Map.DOWN;
   }
   if (y < this.y){
-    return Character.UP;
+    return Map.UP;
   }
-  return Character.DOWN;
+  return Map.DOWN;
 };
 Character.prototype.moveTo = function(map, x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));

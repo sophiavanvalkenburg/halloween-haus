@@ -14,10 +14,10 @@ var Haus = function(){
   this.dialog = new Dialog();
 }
 Haus.prototype.executeInteractHandler = function(){
-  var end_state;
   if (this.interacting_obj === undefined){
-    var facing_obj = haus.map.getFacingObject(haus.player);
-    if (facing_obj.enterInteractiveState !== undefined){
+    var facing_obj = this.map.getFacingObject(this.player);
+    if (facing_obj !== undefined && 
+        facing_obj.interactAction !== undefined){
       this.interacting_obj = facing_obj;
       this.interacting_obj.interactAction(this);
     }
@@ -55,7 +55,7 @@ function setUpEventListeners(haus, canvas){
         console.log(haus.player.name, "X button");
         break;
       case 90:
-        haus.excecuteInteractHandler();
+        haus.executeInteractHandler();
         console.log(haus.player.name, "Z button");
         break;
       default:

@@ -11,10 +11,11 @@ Dialog.prototype.start = function(){
 Dialog.prototype.end = function(){
   this.activated = false;
 }
-Dialog.prototyp.goToNextMessage = function(){
-  this.setMessages(this.messages.slice(1, this.messages.length - 1))
+Dialog.prototype.goToNextMessage = function(){
+  this.setMessages(this.messages.slice(1, this.messages.length))
 }
 Dialog.prototype.interactAction = function(the_haus){
+  console.log(this.messages);
   this.goToNextMessage();
   if (this.messages.length === 0){
     this.end();
