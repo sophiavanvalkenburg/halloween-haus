@@ -3,7 +3,25 @@ var Haus = function(){
     new Tile(0, 0, true, ""),
     new Tile(0, 1, true, ""),
     new Tile(1, 0, true, ""),
-    new InteractiveTile(1, 1, false, "resources/images/tiles/tile-black.png", ["This is an interactive tile.", "This is the next message."])
+    new Tile(2, 0, true, ""),
+    new Tile(2, 1, false, "resources/images/tiles/fuschia-flower.png"),
+    new Tile(3, 0, true, ""),
+    new Tile(3, 1, true, ""),
+    new Tile(4, 1, true, ""),
+    new Tile(4, 2, true, ""),
+    new Tile(5, 2, true, ""),
+    new Tile(6, 2, true, ""),
+    new Tile(7, 2, true, ""),
+    new Tile(0, 2, true, ""),
+    new InteractiveTile(8, 2, false, "resources/images/tiles/tile-red.png", ["This is an interactive tile.", "This is the next message."]),
+    new Tile(0, 3, true, ""),
+    new Tile(1, 3, true, ""),
+    new Tile(2, 3, true, ""),
+    new Tile(2, 4, true, ""),
+    new Tile(3, 4, true, ""),
+    new Tile(4, 4, true, ""),
+    new Tile(5, 4, true, ""),
+    new InteractiveTile(6, 4, false, "resources/images/tiles/tile-blue.png", ["I'm also an interactive tile."])
   ];
   this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png")
   this.characters = [
