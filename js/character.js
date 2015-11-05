@@ -4,14 +4,14 @@ var Character = function(name, graphic, x, y){
   this.y = y;
   this.graphic = graphic;
   this.inventory = [];
-  this.orientation; 
+  this.orientation = undefined; 
 };
 Character.prototype.X = function(){
   return this.x;
-}
+};
 Character.prototype.Y = function(){
   return this.y;
-}
+};
 Character.prototype.setX = function(x){
   this.x = x;
 };
@@ -26,21 +26,21 @@ Character.prototype.setOrientation = function(orientation){
 };
 Character.prototype.getOrientation = function(){
   return this.orientation;
-}
+};
 Character.prototype.getOrientationTowardsMe = function(x, y){
   if (x > this.x){
-    return Map.RIGHT;
+    return MapState.RIGHT;
   }
   if (x < this.x){
-    return Map.LEFT;
+    return MapState.LEFT;
   }
   if (y > this.y){
-    return Map.DOWN;
+    return MapState.DOWN;
   }
   if (y < this.y){
-    return Map.UP;
+    return MapState.UP;
   }
-  return Map.DOWN;
+  return MapState.DOWN;
 };
 Character.prototype.moveTo = function(map, x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
@@ -73,7 +73,7 @@ var NonPlayerCharacter = function(name, graphic, x, y, messages){
 };
 NonPlayerCharacter.prototype = new Character();
 NonPlayerCharacter.prototype.getMessages = function(){
-  return this.messages
+  return this.messages;
 };
 
 var PlayerCharacter = function(name, graphic){

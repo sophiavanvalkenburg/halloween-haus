@@ -23,14 +23,14 @@ var Haus = function(){
     new Tile(5, 4, true, ""),
     new InteractiveTile(6, 4, false, "resources/images/tiles/tile-blue.png", ["I'm also an interactive tile."])
   ];
-  this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png")
+  this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png");
   this.characters = [
     this.player
   ];
-  this.map = new Map(this.tiles, this.characters);
-  this.interacting_obj;
+  this.map = new MapState(this.tiles, this.characters);
+  this.interacting_obj = undefined;
   this.dialog = new DialogText();
-}
+};
 Haus.prototype.executeInteractHandler = function(){
   if (this.interacting_obj === undefined){
     var facing_obj = this.map.getFacingObject(this.player);
@@ -42,19 +42,19 @@ Haus.prototype.executeInteractHandler = function(){
   }else{
     this.interacting_obj.interactAction(this);
   }
-}
+};
 Haus.prototype.executeMovementHandler = function(x, y, canvas){
   if (this.interacting_obj === undefined){
     this.player.moveTo(this.map, x, y);
     canvas.updateCharacter(this.player);
   }
-}
+};
 Haus.prototype.setInteractingObject = function(new_obj){
   this.interacting_obj = new_obj;
-}
+};
 Haus.prototype.unsetInteractingObject = function(){
   this.interacting_obj = undefined;
-}
+};
 
 function setUpEventListeners(haus, canvas){
   window.addEventListener("keydown", function(e){
