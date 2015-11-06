@@ -28,6 +28,7 @@ var InteractiveTile = function(x, y, is_accessible, graphic, messages){
   this.messages = messages;
 };
 InteractiveTile.prototype = new Tile();
+InteractiveTile.prototype.constructor = InteractiveTile;
 InteractiveTile.prototype.getMessages = function(){
   return this.messages;
 };
@@ -38,11 +39,30 @@ InteractiveTile.prototype.interactAction = function(controller){
   controller.haus.setInteractingObject(dialog);
 };
 
+
+var ChoiceTile = function(x, y, is_accessible, graphic, messages, choices){
+  InteractiveTile.call(this, x, y, is_accessible, graphic, messages);
+  this.choices = choices;
+}
+ChoiceTile.prototype = new InteractiveTile();
+ChoiceTile.prototype.constructor = InteractiveTile();
+ChoiceTile.prototype.getChoices = function(){
+  return this.choices;
+}
+ChoiceTile.prototype.interactAction = function(controller){
+  if (this.messages !== undefined && this.messages.length > 0){
+    InteractiveTile.prototype.interactAction.call(this, controller);
+    // ....
+  } 
+}
+
+
 var PortalTile = function(x, y, next_location, graphic){
   Tile.call(this, x, y, true, graphic);
   this.next_location = next_location;
 };
 PortalTile.prototype = new Tile();
+PortalTile.prototype.constructor = PortalTile;
 PortalTile.prototype.getNextMapIndex = function(){
   return this.next_location.mapIndex(); 
 };

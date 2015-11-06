@@ -43,9 +43,16 @@ var Haus = function(){
     new MapState(1, map1_tiles)
   ];
   this.interacting_obj = undefined;
+  this.selection_result = undefined;
   this.main_dialog = new DialogText();
   this.current_map = 0;
 };
+Haus.prototype.setSelectionResult = function(result){
+  this.selection_result = result;
+}
+Haus.prototype.unsetSelectionResult = function(){
+  this.selection_result = undefined;
+}
 Haus.prototype.getCurrentMap = function(){
   return this.getMap(this.current_map);
 };
