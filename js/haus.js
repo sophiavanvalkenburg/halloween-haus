@@ -37,9 +37,10 @@ var Haus = function(){
   ];
   this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png", 0);
   this.characters = [ this.player ];
+  this.num_characters = this.characters.length;
   this.maps = [
-    new MapState(0, map0_tiles, this.characters),
-    new MapState(1, map1_tiles, [])
+    new MapState(0, map0_tiles),
+    new MapState(1, map1_tiles)
   ];
   this.interacting_obj = undefined;
   this.main_dialog = new DialogText();
@@ -68,4 +69,25 @@ Haus.prototype.setInteractingObject = function(obj){
 };
 Haus.prototype.unsetInteractingObject = function(){
   this.interacting_obj = undefined;
+};
+Haus.prototype.getCharacterOnMap = function(map_loc){
+  // don't store a character grid because it's very sparse
+  for (var i=0; i<this.num_characters; i++){
+    var ch = this.characters[i];
+    if (ch.mapIndex() == map_loc.mapIndex() && 
+        ch.X() === map_loc.X() && ch.Y() === map_loc.Y()){
+      return ch;
+    }
+  }
+};
+Haus.prototype.getFacingObjectOnMap = function(map, character){
+  if (map.getId() !== character.mapIndex()){
+    return undefined;
+  }
+  var facing_loc = character.getFacingLocation();
+  var facing_obj = this.getCharacterOnMap(facing_loc);
+  if (facing_obj === undefined){    
+    facing_obj = map.getTile(facing_loc.X(), facing_loc.Y());
+  }
+  return facing_obj;
 };

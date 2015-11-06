@@ -4,12 +4,13 @@ var Controller = function(haus, canvas){
 };
 Controller.prototype.setup = function(){
   this.setUpEventListeners();
-  this.canvas.drawMap(this.haus.getCurrentMap());
+  this.canvas.drawMap(this.haus);
 };
 Controller.prototype.interactionHandler = function(){
   var map = this.haus.getCurrentMap();
+  var player = this.haus.getPlayer();
   if (this.haus.getInteractingObject() === undefined){
-    var facing_obj = map.getFacingObject(this.haus.getPlayer());
+    var facing_obj = this.haus.getFacingObjectOnMap(map, player);
     if (facing_obj !== undefined && 
         facing_obj.interactAction !== undefined){
       this.haus.setInteractingObject(facing_obj);

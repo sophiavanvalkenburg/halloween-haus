@@ -19,10 +19,9 @@ Tile.prototype.getGraphic = function(){
 Tile.prototype.interactAction = function(controller){
   var map = controller.haus.getCurrentMap();
   var player = controller.haus.getPlayer();
-  player.moveTo(map, this.x, this.y);
+  player.moveTo(map, new MapLocation(map.getId(), this.x, this.y));
   controller.canvas.updateCharacter(player);
 }
-
 
 var InteractiveTile = function(x, y, is_accessible, graphic, messages){
   Tile.call(this, x, y, is_accessible, graphic);
@@ -59,6 +58,6 @@ PortalTile.prototype.interactAction = function(controller){
   var x = this.getNextX();
   var y = this.getNextY();
   controller.haus.setCurrentMap(map_index);
-  controller.haus.getPlayer().moveTo(map, x, y);
-  controller.canvas.drawMap(map);
+  controller.haus.getPlayer().moveTo(map, new MapLocation(map_index, x, y));
+  controller.canvas.drawMap(controller.haus);
 }

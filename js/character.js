@@ -49,18 +49,43 @@ Character.prototype.getOrientationTowardsMe = function(x, y){
   }
   return MapState.DOWN;
 };
-Character.prototype.setLocation = function(map, x, y){
-  if (map.getId() !== this.mapIndex()){
-    map.addCharacter(this);
-  }  
+Character.prototype.getFacingLocation = function(){
+  var facing_x;
+  var facing_y;
+  switch(this.orientation){
+    case(MapState.UP):
+      facing_x = this.x;
+      facing_y = this.y - 1;
+      break;
+    case(MapState.DOWN):
+      facing_x = this.x;
+      facing_y = this.y + 1;
+      break;
+    case(MapState.LEFT):
+      facing_x = this.x - 1;
+      facing_y = this.y;
+      break;
+    case(MapState.RIGHT):
+      facing_x = this.x + 1;
+      facing_y = this.y;
+      break;
+    default:
+      break;
+  }
+  return new MapLocation(this.mapIndex, facing_x, facing_y);
+}
+Character.prototype.setLocation = function(map_index, x, y){
   this.setX(x);
   this.setY(y);
+  this.setMapIndex(map_index);
 }
-Character.prototype.moveTo = function(map, x, y){
+Character.prototype.moveTo = function(map, map_loc){
+  var x = map_loc.X();
+  var y = map_loc.Y();
+  var map_index = map_loc.mapIndex()
   this.setOrientation(this.getOrientationTowardsMe(x, y));
-  var tile = map.getTile(x, y);
-  if (tile !== undefined && tile.isAccessible()){
-    this.setLocation(map, x, y);
+  if (map.locationIsAccessible(x, y)){
+    this.setLocation(map_index, x, y);
     return true;
   }
   return false;

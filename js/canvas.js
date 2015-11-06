@@ -4,10 +4,12 @@ var Canvas = function(){
   this.$main_dialog_text = $("#haus-main-dialog .dialog-text");
   this.$map = $("#haus-map");
 };
-Canvas.prototype.drawMapCell = function(map, x, y){
+Canvas.prototype.drawMapCell = function(haus, map, map_loc){
+  var x = map_loc.X();
+  var y = map_loc.Y();
   var $cell = $("<td data-x='"+x+"' data-y='"+y+"'>");
   var tile = map.getTile(x, y);
-  var ch = map.getCharacter(x, y);
+  var ch = haus.getCharacterOnMap(map_loc);
   $cell.append(this.drawTile(tile));
   $cell.append(this.drawCharacter(ch));
   return $cell;
@@ -15,13 +17,15 @@ Canvas.prototype.drawMapCell = function(map, x, y){
 Canvas.prototype.clearMap = function(){
   this.$map.html("");
 }
-Canvas.prototype.drawMap = function(map){
+Canvas.prototype.drawMap = function(haus){
+  var map = haus.getCurrentMap();
   this.clearMap();
   var $table = $("<table>");
   for (var y=0; y<=map.getMaxY(); y++){
     var $row = $("<tr>");
     for (var x=0; x<=map.getMaxX(); x++){
-       $cell = this.drawMapCell(map, x, y);
+       var map_loc = new MapLocation(map.getId(), x, y)
+       $cell = this.drawMapCell(haus, map, map_loc);
        $row.append($cell);
     }
     $table.append($row);
