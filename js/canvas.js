@@ -1,14 +1,13 @@
-var Canvas = function(haus){
+var Canvas = function(){
   this.$container = $("#haus-container");
   this.$main_dialog = $("#haus-main-dialog");
   this.$main_dialog_text = $("#haus-main-dialog .dialog-text");
   this.$map = $("#haus-map");
-  this.haus = haus;
 };
-Canvas.prototype.drawMapCell = function(x, y){
+Canvas.prototype.drawMapCell = function(map, x, y){
   var $cell = $("<td data-x='"+x+"' data-y='"+y+"'>");
-  var tile = this.haus.map.getTile(x, y);
-  var ch = this.haus.map.getCharacter(x, y);
+  var tile = map.getTile(x, y);
+  var ch = map.getCharacter(x, y);
   $cell.append(this.drawTile(tile));
   $cell.append(this.drawCharacter(ch));
   return $cell;
@@ -16,13 +15,13 @@ Canvas.prototype.drawMapCell = function(x, y){
 Canvas.prototype.clearMap = function(){
   this.$map.html("");
 }
-Canvas.prototype.drawMap = function(){
+Canvas.prototype.drawMap = function(map){
   this.clearMap();
   var $table = $("<table>");
-  for (var y=0; y<=this.haus.map.getMaxY(); y++){
+  for (var y=0; y<=map.getMaxY(); y++){
     var $row = $("<tr>");
-    for (var x=0; x<=this.haus.map.getMaxX(); x++){
-       $cell = this.drawMapCell(x, y);
+    for (var x=0; x<=map.getMaxX(); x++){
+       $cell = this.drawMapCell(map, x, y);
        $row.append($cell);
     }
     $table.append($row);
@@ -80,8 +79,7 @@ Canvas.prototype.updateCharacter = function(character){
   $new_td.append($div);
   this.orientObject(character, $div);
 };
-Canvas.prototype.updateMainDialog = function(){
-  var dialog_text = this.haus.dialog;
+Canvas.prototype.updateMainDialog = function(dialog_text){
   if (dialog_text.isActivated()){    
     this.$main_dialog.show();
     this.$main_dialog_text.text(dialog_text.getCurrentMessage());

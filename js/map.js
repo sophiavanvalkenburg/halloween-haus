@@ -12,15 +12,6 @@ MapLocation.prototype.X = function(){
 MapLocation.prototype.Y = function(){
   return this.y;
 };
-MapLocation.prototype.setX = function(x){
-  this.x = x;
-};
-MapLocation.prototype.setY = function(y){
-  this.y = y;
-};
-MapLocation.prototype.setMap = function(map_index){
-  this.map_index = map_index;
-}
 
 var MapState = function(tiles, characters){
   this.tiles = tiles;

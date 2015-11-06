@@ -23,10 +23,10 @@ DialogText.prototype.getCurrentMessage = function(){
 DialogText.prototype.goToNextMessage = function(){
   this.setMessages(this.messages.slice(1, this.messages.length));
 };
-DialogText.prototype.interactAction = function(the_haus){
+DialogText.prototype.interactAction = function(controller){
   this.goToNextMessage();
   if (this.messages.length === 0){
     this.end();
-    the_haus.unsetInteractingObject();
+    controller.haus.unsetInteractingObject();
   }
 };

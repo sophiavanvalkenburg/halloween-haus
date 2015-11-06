@@ -26,17 +26,24 @@ InteractiveTile.prototype = new Tile();
 InteractiveTile.prototype.getMessages = function(){
   return this.messages;
 };
-InteractiveTile.prototype.interactAction = function(the_haus){
-  the_haus.dialog.setMessages(this.messages);
-  the_haus.dialog.start();
-  the_haus.setInteractingObject(the_haus.dialog);
+InteractiveTile.prototype.interactAction = function(controller){
+  var dialog = controller.haus.getMainDialog();
+  dialog.setMessages(this.messages);
+  dialog.start();
+  controller.haus.setInteractingObject(dialog);
 };
 
-var PortalTile = function(x, y, next_tile, graphic){
+var PortalTile = function(x, y, next_location, graphic){
   Tile.call(this, x, y, true, graphic);
-  this.next_tile = next_tile;
+  this.next_location = next_location;
 };
 PortalTile.prototype = new Tile();
-PortalTile.prototype.getNextTile = function(){
-  return this.next_tile;
+PortalTile.prototype.getNextMap = function(){
+  return this.next_location.getMap(); 
 };
+PortalTile.prototype.getNextX = function(){
+  return this.next_location.X();
+}
+PortalTile.prototype.getNextY = function(){
+  return this.next_location.Y();
+}
