@@ -1,10 +1,13 @@
 var Haus = function(){
-  this.tiles = [
+  this.map1_tiles = [
     new Tile(0, 0, true, ""),
     new Tile(0, 1, true, ""),
     new Tile(1, 0, true, ""),
     new Tile(2, 0, true, ""),
     new Tile(2, 1, false, "resources/images/tiles/fuschia-flower.png"),
+    new Tile(2, 5, true, ""),
+    new Tile(2, 6, true, ""),
+    new PortalTile(2, 7, undefined, "resources/images/tiles/portal.png"),
     new Tile(3, 0, true, ""),
     new Tile(3, 1, true, ""),
     new Tile(4, 1, true, ""),
@@ -25,11 +28,18 @@ var Haus = function(){
     new Tile(11, 0, false, "resources/images/tiles/tile-black.png"),
     new InteractiveTile(6, 4, false, "resources/images/tiles/tile-blue.png", ["I'm also an interactive tile."])
   ];
+  this.map2_tiles = [
+    new Tile(0, 7, false, "resources/images/tiles/tile-black.png"),
+    new Tile(11, 0, false, "resources/images/tiles/tile-black.png"),
+    new PortalTile(5, 3, undefined, "resources/images/tiles/tile-portal.png"),
+    new Tile(5, 4, true, "")
+  ];
   this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png");
-  this.characters = [
+  this.map1_characters = [
     this.player
   ];
-  this.map = new MapState(this.tiles, this.characters);
+  this.map = new MapState(this.map1_tiles, this.map1_characters);
+  this.map2 = new MapState(this.map2_tiles, []);
   this.interacting_obj = undefined;
   this.dialog = new DialogText();
 };
