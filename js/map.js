@@ -1,3 +1,18 @@
+var MapLocation = function(map_index, x, y){
+  this.map_index = map_index;
+  this.x = x;
+  this.y = y;
+};
+MapLocation.prototype.mapIndex = function(){
+  return this.map_index;
+};
+MapLocation.prototype.X() = function(){
+  return this.x;
+};
+MapLocation.prototype.Y() = function(){
+  return this.y;
+};
+
 var MapState = function(tiles, characters){
   this.tiles = tiles;
   this.characters = characters;
