@@ -22,10 +22,10 @@ Controller.prototype.interactionHandler = function(){
 };
 Controller.prototype.movementHandler = function(x, y){
   if (this.haus.getInteractingObject() === undefined){
-    var map = this.haus.getCurrentMap();
-    var player = this.haus.getPlayer();
-    player.moveTo(map, x, y);
-    this.canvas.updateCharacter(player);
+    var next_tile = this.haus.getCurrentMap().getTile(x, y);    
+    if (next_tile !== undefined){
+      next_tile.interactAction(this);
+    }
   }
 };
 Controller.prototype.setUpEventListeners = function(){

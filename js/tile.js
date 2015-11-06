@@ -16,6 +16,12 @@ Tile.prototype.isAccessible = function(){
 Tile.prototype.getGraphic = function(){
   return this.graphic;
 };
+Tile.prototype.interactAction = function(controller){
+  var map = controller.haus.getCurrentMap();
+  var player = controller.haus.getPlayer();
+  player.moveTo(map, this.x, this.y);
+  controller.canvas.updateCharacter(player);
+}
 
 
 var InteractiveTile = function(x, y, is_accessible, graphic, messages){
@@ -38,12 +44,21 @@ var PortalTile = function(x, y, next_location, graphic){
   this.next_location = next_location;
 };
 PortalTile.prototype = new Tile();
-PortalTile.prototype.getNextMap = function(){
-  return this.next_location.getMap(); 
+PortalTile.prototype.getNextMapIndex = function(){
+  return this.next_location.mapIndex(); 
 };
 PortalTile.prototype.getNextX = function(){
   return this.next_location.X();
 }
 PortalTile.prototype.getNextY = function(){
   return this.next_location.Y();
+}
+PortalTile.prototype.interactAction = function(controller){
+  var map_index = this.getNextMapIndex();
+  var map = controller.haus.getMap(map_index);
+  var x = this.getNextX();
+  var y = this.getNextY();
+  controller.haus.setCurrentMap(map_index);
+  controller.haus.getPlayer().moveTo(map, x, y);
+  controller.canvas.drawMap(map);
 }

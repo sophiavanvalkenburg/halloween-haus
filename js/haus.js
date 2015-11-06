@@ -31,16 +31,15 @@ var Haus = function(){
   var map1_tiles = [
     new Tile(0, 7, false, "resources/images/tiles/tile-black.png"),
     new Tile(11, 0, false, "resources/images/tiles/tile-black.png"),
-    new PortalTile(5, 3, new MapLocation(0, 5, 3), "resources/images/tiles/tile-portal.png"),
-    new Tile(5, 4, true, "")
+    new PortalTile(5, 3, new MapLocation(0, 2, 6), "resources/images/tiles/portal.png"),
+    new Tile(5, 4, true, ""),
+    new Tile(5, 5, true, "")
   ];
-  this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png");
-  var map0_characters = [
-    this.player
-  ];
+  this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png", 0);
+  this.characters = [ this.player ];
   this.maps = [
-    new MapState(map0_tiles, map0_characters),
-    new MapState(map1_tiles, [])
+    new MapState(0, map0_tiles, this.characters),
+    new MapState(1, map1_tiles, [])
   ];
   this.interacting_obj = undefined;
   this.main_dialog = new DialogText();
@@ -48,6 +47,9 @@ var Haus = function(){
 };
 Haus.prototype.getCurrentMap = function(){
   return this.getMap(this.current_map);
+};
+Haus.prototype.setCurrentMap = function(map_index){
+  this.current_map = map_index;
 };
 Haus.prototype.getMap = function(map_index){
   return this.maps[map_index];

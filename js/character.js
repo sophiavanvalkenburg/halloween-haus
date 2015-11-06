@@ -1,5 +1,6 @@
-var Character = function(name, graphic, x, y){
+var Character = function(name, graphic, map_index, x, y){
   this.name = name;
+  this.map_index = map_index;
   this.x = x;
   this.y = y;
   this.graphic = graphic;
@@ -12,11 +13,17 @@ Character.prototype.X = function(){
 Character.prototype.Y = function(){
   return this.y;
 };
+Character.prototype.mapIndex = function(){
+  return this.map_index;
+};
 Character.prototype.setX = function(x){
   this.x = x;
 };
 Character.prototype.setY = function(y){
   this.y = y;
+};
+Character.prototype.setMapIndex = function(map_index){
+  this.map_index = map_index;
 };
 Character.prototype.getGraphic = function(){
   return this.graphic;
@@ -42,12 +49,18 @@ Character.prototype.getOrientationTowardsMe = function(x, y){
   }
   return MapState.DOWN;
 };
+Character.prototype.setLocation = function(map, x, y){
+  if (map.getId() !== this.mapIndex()){
+    map.addCharacter(this);
+  }  
+  this.setX(x);
+  this.setY(y);
+}
 Character.prototype.moveTo = function(map, x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
   var tile = map.getTile(x, y);
   if (tile !== undefined && tile.isAccessible()){
-    this.setX(x);
-    this.setY(y);
+    this.setLocation(map, x, y);
     return true;
   }
   return false;
@@ -67,8 +80,8 @@ Character.prototype.hasItem = function(item){
   return this.inventory.indexOf(item) >= 0;
 };
 
-var NonPlayerCharacter = function(name, graphic, x, y, messages){
-  Character.call(this, name, graphic, x, y);
+var NonPlayerCharacter = function(name, graphic, map_index, x, y, messages){
+  Character.call(this, name, graphic, map_index, x, y);
   this.messages = messages;
 };
 NonPlayerCharacter.prototype = new Character();
@@ -76,7 +89,7 @@ NonPlayerCharacter.prototype.getMessages = function(){
   return this.messages;
 };
 
-var PlayerCharacter = function(name, graphic){
-  Character.call(this, name, graphic, 0, 0);
+var PlayerCharacter = function(name, graphic, map_index){
+  Character.call(this, name, graphic, map_index, 0, 0);
 };
 PlayerCharacter.prototype = new Character();

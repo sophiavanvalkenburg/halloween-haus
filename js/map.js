@@ -13,20 +13,24 @@ MapLocation.prototype.Y = function(){
   return this.y;
 };
 
-var MapState = function(tiles, characters){
-  this.tiles = tiles;
+var MapState = function(id, tiles, characters){
   this.characters = characters;
   this.num_characters = characters.length;
+  this.tiles = tiles;
   this.tile_grid = [];
   this.size = tiles.length;
   var res = this.mapTilesToGrid();
   this.max_x = res[0];
   this.max_y = res[1];
+  this.id = id;
 }; 
 MapState.UP = "up";
 MapState.DOWN = "down";
 MapState.LEFT = "left";
 MapState.RIGHT = "right";
+MapState.prototype.getId = function(){
+  return this.id;
+};
 MapState.prototype.addTileToGrid = function(tile){
     var x = tile.X();
     var y = tile.Y();
@@ -100,3 +104,7 @@ MapState.prototype.getMaxY = function(){
 MapState.prototype.getMaxX = function(){
   return this.max_x;
 };
+MapState.prototype.addCharacter = function(ch){
+  this.characters.push(ch);
+  this.num_characters++;
+}
