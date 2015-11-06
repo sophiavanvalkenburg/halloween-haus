@@ -21,6 +21,8 @@ var Haus = function(){
     new Tile(3, 4, true, ""),
     new Tile(4, 4, true, ""),
     new Tile(5, 4, true, ""),
+    new Tile(0, 7, false, "resources/images/tiles/tile-black.png"),
+    new Tile(11, 0, false, "resources/images/tiles/tile-black.png"),
     new InteractiveTile(6, 4, false, "resources/images/tiles/tile-blue.png", ["I'm also an interactive tile."])
   ];
   this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png");

@@ -33,7 +33,7 @@ MapState.prototype.mapTilesToGrid = function(){
   return [max_x, max_y];
 };
 MapState.prototype.getTile = function(x, y){ 
-  if (y > this.max_y || y < 0 || x > this.max_x || x < 0){
+  if (this.tile_grid[y] === undefined){
     return;
   }
   return this.tile_grid[y][x];
