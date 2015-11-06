@@ -13,7 +13,11 @@ Canvas.prototype.drawMapCell = function(x, y){
   $cell.append(this.drawCharacter(ch));
   return $cell;
 };
+Canvas.prototype.clearMap = function(){
+  this.$map.html("");
+}
 Canvas.prototype.drawMap = function(){
+  this.clearMap();
   var $table = $("<table>");
   for (var y=0; y<=this.haus.map.getMaxY(); y++){
     var $row = $("<tr>");
