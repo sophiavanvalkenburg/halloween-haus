@@ -6,12 +6,21 @@ var MapLocation = function(map_index, x, y){
 MapLocation.prototype.mapIndex = function(){
   return this.map_index;
 };
-MapLocation.prototype.X() = function(){
+MapLocation.prototype.X = function(){
   return this.x;
 };
-MapLocation.prototype.Y() = function(){
+MapLocation.prototype.Y = function(){
   return this.y;
 };
+MapLocation.prototype.setX = function(x){
+  this.x = x;
+};
+MapLocation.prototype.setY = function(y){
+  this.y = y;
+};
+MapLocation.prototype.setMap = function(map_index){
+  this.map_index = map_index;
+}
 
 var MapState = function(tiles, characters){
   this.tiles = tiles;
