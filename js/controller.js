@@ -9,7 +9,7 @@ Controller.prototype.setup = function(){
 };
 Controller.prototype.updateCanvas = function(){
   this.canvas.updateCharacter(this.haus.getPlayer());
-  //this.canvas.updateMainDialog(this.haus.getMainDialog());
+  this.canvas.updateTextDialog(this.haus.getTextDialog());
 };
 Controller.prototype.setUpEventListener = function(){
   var controller = this; 
@@ -37,11 +37,20 @@ Controller.prototype.movePlayer = function(x_offset, y_offset){
   var new_y = player.Y() + y_offset;
   player.moveTo(map, new MapLocation(map.getId(), new_x, new_y));
 }
-Controller.prototype.selectObject = function(){
+Controller.prototype.selectFacingObject = function(){
   var map = this.haus.getCurrentMap();
   var player = this.haus.getPlayer();
-  var facing_obj = this.haus.getFacingObjectOnMap(map, player);
+  return this.haus.getFacingObjectOnMap(map, player);
 }
+Controller.prototype.setTextDialogMessage = function(message){
+  var dialog = this.haus.getTextDialog();
+  dialog.setMessage(message);
+}
+Controller.prototype.unsetTextDialogMessage = function(){
+  var dialog = this.haus.getTextDialog();
+  dialog.unsetMessage();
+}
+
 
 
 $(function(){

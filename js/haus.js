@@ -43,7 +43,7 @@ var Haus = function(){
     new MapState(1, map1_tiles)
   ];
   this.interacting_obj = undefined;
-  this.text_dialog = new DialogText();
+  this.text_dialog = new TextDialog();
   this.current_map = 0;
 };
 Haus.prototype.getCurrentMap = function(){

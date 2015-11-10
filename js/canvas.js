@@ -1,7 +1,7 @@
 var Canvas = function(){
   this.$container = $("#haus-container");
-  this.$main_dialog = $("#haus-main-dialog");
-  this.$main_dialog_text = $("#haus-main-dialog .dialog-text");
+  this.$text_dialog = $("#haus-main-dialog");
+  this.$text_dialog_text = $("#haus-main-dialog .dialog-text");
   this.$map = $("#haus-map");
 };
 Canvas.prototype.drawMapCell = function(haus, map, map_loc){
@@ -83,12 +83,13 @@ Canvas.prototype.updateCharacter = function(character){
   $new_td.append($div);
   this.orientObject(character, $div);
 };
-Canvas.prototype.updateMainDialog = function(dialog_text){
-  if (dialog_text.isActivated()){    
-    this.$main_dialog.show();
-    this.$main_dialog_text.text(dialog_text.getCurrentMessage());
+Canvas.prototype.updateTextDialog = function(dialog_text){
+  var message = dialog_text.getMessage();
+  if (message !== undefined){
+    this.$text_dialog.show();
+    this.$text_dialog_text.text(message);
   }else{
-    this.$main_dialog.hide();
+    this.$text_dialog.hide();
   }
 };
 Canvas.prototype.createImage = function(filename){

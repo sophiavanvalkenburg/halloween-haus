@@ -17,14 +17,7 @@ Tile.prototype.getGraphic = function(){
   return this.graphic;
 };
 Tile.prototype.getModeSequence = function(){ return []; };
-/*
-Tile.prototype.interactAction = function(controller){
-  var map = controller.haus.getCurrentMap();
-  var player = controller.haus.getPlayer();
-  player.moveTo(map, new MapLocation(map.getId(), this.x, this.y));
-  controller.canvas.updateCharacter(player);
-}
-*/
+
 
 var InteractiveTile = function(x, y, is_accessible, graphic, messages){
   Tile.call(this, x, y, is_accessible, graphic);
@@ -34,12 +27,14 @@ InteractiveTile.prototype = new Tile();
 InteractiveTile.prototype.getMessages = function(){
   return this.messages;
 };
+InteractiveTile.prototype.getModeSequence = function(){ 
+  return [
+    new TextDialogMode({ messages: this.getMessages() })
+  ]; 
+};
 /*
 InteractiveTile.prototype.interactAction = function(controller){
-  var dialog = controller.haus.getMainDialog();
-  dialog.setMessages(this.messages);
-  dialog.start();
-  controller.haus.setInteractingObject(dialog);
+    controller.haus.setInteractingObject(dialog);
 };
 */
 

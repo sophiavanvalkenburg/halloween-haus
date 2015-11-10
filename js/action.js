@@ -12,32 +12,33 @@ Mode.prototype.downArrowButtonHandler = function(){};
 Mode.prototype.upArrowButtonHandler = function(){};
 Mode.prototype.selectButtonHandler = function(){};
 Mode.prototype.defaultHandler = function(){};
+Mode.prototype.clear = function(){};
+Mode.prototype.initialize = function(){};
 Mode.prototype.shouldEndMode = function(){
   return true;
 };
-//Mode.prototype.initialize = function(){};
-Mode.prototype.eventHandler = function(key_code, controller){
+Mode.prototype.eventHandler = function(key_code, controller, action_handler){
   switch(key_code){
     case Mode.LEFT:
-      this.leftArrowButtonHandler(controller);
-      break;
+      this.leftArrowButtonHandler(controller, action_handler);
+      return true;
     case Mode.RIGHT:
-      this.rightArrowButtonHandler(controller);
-      break;
+      this.rightArrowButtonHandler(controller, action_handler);
+      return true;
     case Mode.UP:
-      this.upArrowButtonHandler(controller);
-      break;
+      this.upArrowButtonHandler(controller, action_handler);
+      return true;
     case Mode.DOWN:
-      this.downArrowButtonHandler(controller);
-      break;
+      this.downArrowButtonHandler(controller, action_handler);
+      return true;
     case Mode.SELECT:
-      this.selectButtonHandler(controller);
-      break;
+      this.selectButtonHandler(controller, action_handler);
+      return true;
     default:
-      this.defaultHandler(controller);
-      break;
+      this.defaultHandler(controller, action_handler);
+      return true;
   }
-  return this.shouldEndMode();
+  return false;
 };
 
 
@@ -58,8 +59,14 @@ TextDialogMode.prototype.gotoNextMessage = function(controller){
     this.environment.messages = this.environment.messages.slice(1);
   }
 }
-TextDialogMode.shouldEndMode = function(){
+TextDialogMode.prototype.shouldEndMode = function(){
   return this.environment.messages === undefined || this.environment.messages.length === 0;
+}
+TextDialogMode.prototype.initialize = function(controller){
+  this.gotoNextMessage(controller);
+};
+TextDialogMode.prototype.clear = function(controller){
+  controller.unsetTextDialogMessage();
 }
 
 
@@ -79,26 +86,35 @@ ChoiceDialogMode.prototype.selectButtonHandler = function(controller){
 };
 
 
-var MapMode = function(environment){
-  Mode.call(this, environment);
+var MapMode = function(){
+  Mode.call(this, {handled: false});
 };
 MapMode.prototype = new Mode();
 MapMode.prototype.constructor = MapMode;
 MapMode.prototype.leftArrowButtonHandler = function(controller){
   controller.movePlayerLeft();
+  this.environment.handled = true;
 }
 MapMode.prototype.rightArrowButtonHandler = function(controller){
   controller.movePlayerRight();
+  this.environment.handled = true;
 }
 MapMode.prototype.downArrowButtonHandler = function(controller){
   controller.movePlayerDown();
+  this.environment.handled = true;
 };
 MapMode.prototype.upArrowButtonHandler = function(controller){
   controller.movePlayerUp();
+  this.environment.handled = true;
 };
-MapMode.prototype.selectButtonHandler = function(controller){
-  controller.selectObject();
+MapMode.prototype.selectButtonHandler = function(controller, action_handler){
+  var target_obj = controller.selectFacingObject();
+  action_handler.addModes(target_obj.getModeSequence()); 
+  this.environment.handled = true;
 };
+MapMode.prototype.shouldEndMode = function(){
+  return this.environment.handled === true;
+}
 
 
 var ActionHandler = function(){
@@ -111,10 +127,10 @@ ActionHandler.prototype.currentMode = function(){
   if (!this.modeQueueIsEmpty()){
     return this.mode_queue[0];
   }
-  return undefined;
 };
 ActionHandler.prototype.gotoNextMode = function(){
   this.mode_queue = this.mode_queue.slice(1);
+  return this.currentMode();
 };
 ActionHandler.prototype.modeQueueIsEmpty = function(){
   return this.mode_queue.length === 0;
@@ -125,9 +141,15 @@ ActionHandler.prototype.handleKeyEvent = function(key_code, controller){
   }
   var curr_mode = this.currentMode();
   if (curr_mode !== undefined){
-    var should_end_mode = curr_mode.eventHandler(key_code, controller);
-    if (should_end_mode){
-      this.gotoNextMode(); 
+    if (curr_mode.shouldEndMode()){
+      curr_mode.clear(controller);
+      var curr_mode = this.gotoNextMode();
+      if (curr_mode !== undefined){
+        curr_mode.initialize(controller);
+      }
+    }
+    if (curr_mode !== undefined){ 
+      curr_mode.eventHandler(key_code, controller, this);
     }
   }
 };
