@@ -54,7 +54,7 @@ MapState.prototype.locationIsAccessible = function(x, y){
   return tile !== undefined && tile.isAccessible();
 };
 MapState.prototype.getTile = function(x, y){ 
-  if (this.tile_grid[y] === undefined){
+  if (x === undefined || y == undefined || this.tile_grid[y] === undefined){
     return;
   }
   return this.tile_grid[y][x];

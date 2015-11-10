@@ -43,7 +43,7 @@ var Haus = function(){
     new MapState(1, map1_tiles)
   ];
   this.interacting_obj = undefined;
-  this.main_dialog = new DialogText();
+  this.text_dialog = new DialogText();
   this.current_map = 0;
 };
 Haus.prototype.getCurrentMap = function(){
@@ -58,17 +58,8 @@ Haus.prototype.getMap = function(map_index){
 Haus.prototype.getPlayer = function(){
   return this.player;
 };
-Haus.prototype.getMainDialog = function(){
-  return this.main_dialog;
-};
-Haus.prototype.getInteractingObject = function(){
-  return this.interacting_obj;
-};
-Haus.prototype.setInteractingObject = function(obj){
-  this.interacting_obj = obj;
-};
-Haus.prototype.unsetInteractingObject = function(){
-  this.interacting_obj = undefined;
+Haus.prototype.getTextDialog = function(){
+  return this.text_dialog;
 };
 Haus.prototype.getCharacterOnMap = function(map_loc){
   // don't store a character grid because it's very sparse

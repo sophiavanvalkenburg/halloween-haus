@@ -16,12 +16,14 @@ Tile.prototype.isAccessible = function(){
 Tile.prototype.getGraphic = function(){
   return this.graphic;
 };
+/*
 Tile.prototype.interactAction = function(controller){
   var map = controller.haus.getCurrentMap();
   var player = controller.haus.getPlayer();
   player.moveTo(map, new MapLocation(map.getId(), this.x, this.y));
   controller.canvas.updateCharacter(player);
 }
+*/
 
 var InteractiveTile = function(x, y, is_accessible, graphic, messages){
   Tile.call(this, x, y, is_accessible, graphic);
@@ -31,12 +33,14 @@ InteractiveTile.prototype = new Tile();
 InteractiveTile.prototype.getMessages = function(){
   return this.messages;
 };
+/*
 InteractiveTile.prototype.interactAction = function(controller){
   var dialog = controller.haus.getMainDialog();
   dialog.setMessages(this.messages);
   dialog.start();
   controller.haus.setInteractingObject(dialog);
 };
+*/
 
 var PortalTile = function(x, y, next_location, graphic){
   Tile.call(this, x, y, true, graphic);
@@ -52,6 +56,7 @@ PortalTile.prototype.getNextX = function(){
 PortalTile.prototype.getNextY = function(){
   return this.next_location.Y();
 }
+/*
 PortalTile.prototype.interactAction = function(controller){
   var map_index = this.getNextMapIndex();
   var map = controller.haus.getMap(map_index);
@@ -61,3 +66,4 @@ PortalTile.prototype.interactAction = function(controller){
   controller.haus.getPlayer().moveTo(map, new MapLocation(map_index, x, y));
   controller.canvas.drawMap(controller.haus);
 }
+*/

@@ -70,6 +70,8 @@ Character.prototype.getFacingLocation = function(){
       facing_y = this.y;
       break;
     default:
+      facing_x = this.x;
+      facing_y = this.y + 1;
       break;
   }
   return new MapLocation(this.mapIndex, facing_x, facing_y);
@@ -86,9 +88,7 @@ Character.prototype.moveTo = function(map, map_loc){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
   if (map.locationIsAccessible(x, y)){
     this.setLocation(map_index, x, y);
-    return true;
   }
-  return false;
 };
 Character.prototype.addToInventory = function(item){
   this.inventory.push(item);
