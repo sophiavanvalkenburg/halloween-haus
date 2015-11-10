@@ -16,6 +16,7 @@ Tile.prototype.isAccessible = function(){
 Tile.prototype.getGraphic = function(){
   return this.graphic;
 };
+Tile.prototype.getModeSequence = function(){ return []; };
 /*
 Tile.prototype.interactAction = function(controller){
   var map = controller.haus.getCurrentMap();

@@ -1,110 +1,133 @@
-var ActionMode = function(target){
-  this.target = target;
+var Mode = function(environment){
+  this.environment = environment;
 };
-ActionMode.LEFT = 37;
-ActionMode.UP = 38;
-ActionMode.RIGHT = 39;
-ActionMode.DOWN = 40;
-ActionMode.SELECT = 90;
-ActionMode.prototype.leftArrowButtonHandler = function(){};
-ActionMode.prototype.rightArrowButtonHandler = function(){};
-ActionMode.prototype.downArrowButtonHandler = function(){};
-ActionMode.prototype.upArrowButtonHandler = function(){};
-ActionMode.prototype.selectButtonHandler = function(){};
-ActionMode.prototype.defaultHandler = function(){};
-ActionMode.prototype.eventHandler = function(key_code, controller){
+Mode.LEFT = 37;
+Mode.UP = 38;
+Mode.RIGHT = 39;
+Mode.DOWN = 40;
+Mode.SELECT = 90;
+Mode.prototype.leftArrowButtonHandler = function(){};
+Mode.prototype.rightArrowButtonHandler = function(){};
+Mode.prototype.downArrowButtonHandler = function(){};
+Mode.prototype.upArrowButtonHandler = function(){};
+Mode.prototype.selectButtonHandler = function(){};
+Mode.prototype.defaultHandler = function(){};
+Mode.prototype.shouldEndMode = function(){
+  return true;
+};
+//Mode.prototype.initialize = function(){};
+Mode.prototype.eventHandler = function(key_code, controller){
   switch(key_code){
-    case ActionMode.LEFT:
+    case Mode.LEFT:
       this.leftArrowButtonHandler(controller);
       break;
-    case ActionMode.RIGHT:
+    case Mode.RIGHT:
       this.rightArrowButtonHandler(controller);
       break;
-    case ActionMode.UP:
+    case Mode.UP:
       this.upArrowButtonHandler(controller);
       break;
-    case ActionMode.DOWN:
+    case Mode.DOWN:
       this.downArrowButtonHandler(controller);
       break;
-    case ActionMode.SELECT:
+    case Mode.SELECT:
       this.selectButtonHandler(controller);
       break;
     default:
       this.defaultHandler(controller);
       break;
   }
+  return this.shouldEndMode();
 };
 
 
-var TextDialogActionMode = function(target){
-  ActionMode.call(this, target);
+var TextDialogMode = function(environment){
+  Mode.call(this, environment);
 };
-TextDialogActionMode.prototype = new ActionMode();
-TextDialogActionMode.prototype.constructor = TextDialogActionMode;
-TextDialogActionMode.prototype.downArrowButtonHandler = function(controller){
-  controller.textDialogGotoNextMessage();
+TextDialogMode.prototype = new Mode();
+TextDialogMode.prototype.constructor = TextDialogMode;
+TextDialogMode.prototype.downArrowButtonHandler = function(controller){
+  this.gotoNextMessage(controller);
 };
-TextDialogActionMode.prototype.selectButtonHandler = function(controller){
-  controller.textDialogGotoNextMessage();
+TextDialogMode.prototype.selectButtonHandler = function(controller){
+  this.gotoNextMessage(controller);
 };
+TextDialogMode.prototype.gotoNextMessage = function(controller){
+  if (!this.shouldEndMode()){
+    controller.setTextDialogMessage(this.environment.messages[0]);
+    this.environment.messages = this.environment.messages.slice(1);
+  }
+}
+TextDialogMode.shouldEndMode = function(){
+  return this.environment.messages === undefined || this.environment.messages.length === 0;
+}
 
 
-var ChoiceDialogActionMode = function(target){
-  ActionMode.call(this, target);
+var ChoiceDialogMode = function(environment){
+  Mode.call(this, environment);
 };
-ChoiceDialogActionMode.prototype = new ActionMode();
-ChoiceDialogActionMode.prototype.constructor = ChoiceDialogActionMode;
-ChoiceDialogActionMode.prototype.downArrowButtonHandler = function(controller){
+ChoiceDialogMode.prototype = new Mode();
+ChoiceDialogMode.prototype.constructor = ChoiceDialogMode;
+ChoiceDialogMode.prototype.downArrowButtonHandler = function(controller){
   controller.choiceDialogSelectBelow();
 };
-ChoiceDialogActionMode.prototype.upArrowButtonHandler = function(controller){
+ChoiceDialogMode.prototype.upArrowButtonHandler = function(controller){
   controller.choiceDialogSelectAbove();
 };
-ChoiceDialogActionMode.prototype.selectButtonHandler = function(controller){
+ChoiceDialogMode.prototype.selectButtonHandler = function(controller){
   controller.choiceDialogSelect();
 };
 
 
-var MapActionMode = function(target){
-  ActionMode.call(this, target);
+var MapMode = function(environment){
+  Mode.call(this, environment);
 };
-MapActionMode.prototype = new ActionMode();
-MapActionMode.prototype.constructor = MapActionMode;
-MapActionMode.prototype.leftArrowButtonHandler = function(controller){
-  controller.movePlayerLeft(this.target);
+MapMode.prototype = new Mode();
+MapMode.prototype.constructor = MapMode;
+MapMode.prototype.leftArrowButtonHandler = function(controller){
+  controller.movePlayerLeft();
 }
-MapActionMode.prototype.rightArrowButtonHandler = function(controller){
-  controller.movePlayerRight(this.target);
+MapMode.prototype.rightArrowButtonHandler = function(controller){
+  controller.movePlayerRight();
 }
-MapActionMode.prototype.downArrowButtonHandler = function(controller){
-  controller.movePlayerDown(this.target);
+MapMode.prototype.downArrowButtonHandler = function(controller){
+  controller.movePlayerDown();
 };
-MapActionMode.prototype.upArrowButtonHandler = function(controller){
-  controller.movePlayerUp(this.target);
+MapMode.prototype.upArrowButtonHandler = function(controller){
+  controller.movePlayerUp();
 };
-MapActionMode.prototype.selectButtonHandler = function(controller){
-  controller.objectSelect(this.target);
+MapMode.prototype.selectButtonHandler = function(controller){
+  controller.selectObject();
 };
 
 
 var ActionHandler = function(){
-  this.action_queue = [];
+  this.mode_queue = [];
 };
-ActionHandler.prototype.addActions = function(actions){
-  this.action_queue = this.action_queue.concat(actions);
+ActionHandler.prototype.addModes = function(modes){
+  this.mode_queue = this.mode_queue.concat(modes);
 };
-ActionHandler.prototype.nextAction = function(){
-  var next = this.action_queue[0];
-  this.action_queue = this.action_queue.slice(1);
-  return next;
+ActionHandler.prototype.currentMode = function(){
+  if (!this.modeQueueIsEmpty()){
+    return this.mode_queue[0];
+  }
+  return undefined;
 };
-ActionHandler.prototype.actionQueueIsEmpty = function(){
-  return this.action_queue.length === 0;
+ActionHandler.prototype.gotoNextMode = function(){
+  this.mode_queue = this.mode_queue.slice(1);
+};
+ActionHandler.prototype.modeQueueIsEmpty = function(){
+  return this.mode_queue.length === 0;
 };
 ActionHandler.prototype.handleKeyEvent = function(key_code, controller){
-  if (this.actionQueueIsEmpty()){
-    var target = controller.getActionTarget();
-    this.addActions(target.getActionSequence());
+  if (this.modeQueueIsEmpty()){
+    this.addModes([new MapMode()]);
   }
-  this.nextAction().eventHandler(key_code, controller);
+  var curr_mode = this.currentMode();
+  if (curr_mode !== undefined){
+    var should_end_mode = curr_mode.eventHandler(key_code, controller);
+    if (should_end_mode){
+      this.gotoNextMode(); 
+    }
+  }
 };
