@@ -53,10 +53,13 @@ TextDialogMode.prototype.downArrowButtonHandler = function(controller){
 TextDialogMode.prototype.selectButtonHandler = function(controller){
   this.gotoNextMessage(controller);
 };
+TextDialogMode.prototype.setTextDialogMessage = function(controller){
+  controller.setTextDialogMessage(this.environment.messages[0]);
+}
 TextDialogMode.prototype.gotoNextMessage = function(controller){
   if (!this.shouldEndMode()){
     this.environment.messages = this.environment.messages.slice(1);
-    controller.setTextDialogMessage(this.environment.messages[0]);
+    this.setTextDialogMessage(controller);
   }
 }
 TextDialogMode.prototype.shouldEndMode = function(){
@@ -64,7 +67,7 @@ TextDialogMode.prototype.shouldEndMode = function(){
 }
 TextDialogMode.prototype.initialize = function(controller){
   if (!this.shouldEndMode()){
-    controller.setTextDialogMessage(this.environment.messages[0]);
+    this.setTextDialogMessage();
   }
 }
 TextDialogMode.prototype.clear = function(controller){
