@@ -21,24 +21,23 @@ Mode.prototype.eventHandler = function(key_code, controller, action_handler){
   switch(key_code){
     case Mode.LEFT:
       this.leftArrowButtonHandler(controller, action_handler);
-      return true;
+      break;
     case Mode.RIGHT:
       this.rightArrowButtonHandler(controller, action_handler);
-      return true;
+      break;
     case Mode.UP:
       this.upArrowButtonHandler(controller, action_handler);
-      return true;
+      break;
     case Mode.DOWN:
       this.downArrowButtonHandler(controller, action_handler);
-      return true;
+      break;
     case Mode.SELECT:
       this.selectButtonHandler(controller, action_handler);
-      return true;
+      break;
     default:
       this.defaultHandler(controller, action_handler);
-      return true;
+      break;
   }
-  return false;
 };
 
 

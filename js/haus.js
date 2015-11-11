@@ -44,6 +44,7 @@ var Haus = function(){
   ];
   this.interacting_obj = undefined;
   this.text_dialog = new TextDialog();
+  this.choice_dialog = new ChoiceDialog();
   this.current_map = 0;
 };
 Haus.prototype.getCurrentMap = function(){
@@ -61,6 +62,9 @@ Haus.prototype.getPlayer = function(){
 Haus.prototype.getTextDialog = function(){
   return this.text_dialog;
 };
+Haus.prototype.getChoiceDialog = function(){
+  return this.choice_dialog;
+}
 Haus.prototype.getCharacterOnMap = function(map_loc){
   // don't store a character grid because it's very sparse
   for (var i=0; i<this.num_characters; i++){
