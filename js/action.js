@@ -55,16 +55,18 @@ TextDialogMode.prototype.selectButtonHandler = function(controller){
 };
 TextDialogMode.prototype.gotoNextMessage = function(controller){
   if (!this.shouldEndMode()){
-    controller.setTextDialogMessage(this.environment.messages[0]);
     this.environment.messages = this.environment.messages.slice(1);
+    controller.setTextDialogMessage(this.environment.messages[0]);
   }
 }
 TextDialogMode.prototype.shouldEndMode = function(){
   return this.environment.messages === undefined || this.environment.messages.length === 0;
 }
 TextDialogMode.prototype.initialize = function(controller){
-  this.gotoNextMessage(controller);
-};
+  if (!this.shouldEndMode()){
+    controller.setTextDialogMessage(this.environment.messages[0]);
+  }
+}
 TextDialogMode.prototype.clear = function(controller){
   controller.unsetTextDialogMessage();
 }
@@ -141,15 +143,13 @@ ActionHandler.prototype.handleKeyEvent = function(key_code, controller){
   }
   var curr_mode = this.currentMode();
   if (curr_mode !== undefined){
+    curr_mode.eventHandler(key_code, controller, this);
     if (curr_mode.shouldEndMode()){
       curr_mode.clear(controller);
-      var curr_mode = this.gotoNextMode();
-      if (curr_mode !== undefined){
-        curr_mode.initialize(controller);
+      var next_mode = this.gotoNextMode();
+      if (next_mode !== undefined){
+        next_mode.initialize(controller);
       }
-    }
-    if (curr_mode !== undefined){ 
-      curr_mode.eventHandler(key_code, controller, this);
     }
   }
 };
