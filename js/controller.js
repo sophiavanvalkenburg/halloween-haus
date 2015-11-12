@@ -51,7 +51,18 @@ Controller.prototype.unsetTextDialogMessage = function(){
   var dialog = this.haus.getTextDialog();
   dialog.unsetMessage();
 }
-
+Controller.prototype.setChoiceDialogLabels = function(labels){
+  var dialog = this.haus.getChoiceDialog();
+  dialog.setChoices(labels);
+}
+Controller.prototype.unsetChoiceDialogLabels = function(){
+  var dialog = this.haus.getChoiceDialog();
+  dialog.unsetChoices();
+}
+Controller.prototype.choiceDialogSelectItem = function(item_index){
+  var dialog = this.haus.getChoiceDialog();
+  dialog.selectChoice(item_index);
+}
 
 
 $(function(){
