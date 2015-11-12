@@ -18,25 +18,25 @@ Mode.prototype.initialize = function(){};
 Mode.prototype.shouldEndMode = function(){
   return true;
 };
-Mode.prototype.eventHandler = function(key_code, controller, action_handler){
+Mode.prototype.eventHandler = function(key_code, controller, mode_manager){
   switch(key_code){
     case Mode.LEFT:
-      this.leftArrowButtonHandler(controller, action_handler);
+      this.leftArrowButtonHandler(controller, mode_manager);
       break;
     case Mode.RIGHT:
-      this.rightArrowButtonHandler(controller, action_handler);
+      this.rightArrowButtonHandler(controller, mode_manager);
       break;
     case Mode.UP:
-      this.upArrowButtonHandler(controller, action_handler);
+      this.upArrowButtonHandler(controller, mode_manager);
       break;
     case Mode.DOWN:
-      this.downArrowButtonHandler(controller, action_handler);
+      this.downArrowButtonHandler(controller, mode_manager);
       break;
     case Mode.SELECT:
-      this.selectButtonHandler(controller, action_handler);
+      this.selectButtonHandler(controller, mode_manager);
       break;
     default:
-      this.defaultHandler(controller, action_handler);
+      this.defaultHandler(controller, mode_manager);
       break;
   }
 };
@@ -110,8 +110,8 @@ ChoiceDialogMode.prototype.upArrowButtonHandler = function(controller){
   this.selected = this.selected === 0 ? 0 : this.selected - 1;
   controller.choiceDialogSelectItem(this.selected);
 };
-ChoiceDialogMode.prototype.selectButtonHandler = function(controller, action_handler){
-  this.select_fn(controller, action_handler, this.choices[this.selected])
+ChoiceDialogMode.prototype.selectButtonHandler = function(controller, mode_manager){
+  this.select_fn(controller, mode_manager, this.choices[this.selected])
   this.handled = true; 
 };
 ChoiceDialogMode.prototype.shouldEndMode = function(){
@@ -144,9 +144,9 @@ MapMode.prototype.upArrowButtonHandler = function(controller){
   controller.movePlayerUp();
   this.handled = true;
 };
-MapMode.prototype.selectButtonHandler = function(controller, action_handler){
+MapMode.prototype.selectButtonHandler = function(controller, mode_manager){
   var target_obj = controller.selectFacingObject();
-  action_handler.addModes(target_obj.getModeSequence()); 
+  mode_manager.addModes(target_obj.getModeSequence()); 
   this.handled = true;
 };
 MapMode.prototype.shouldEndMode = function(){
@@ -154,28 +154,28 @@ MapMode.prototype.shouldEndMode = function(){
 }
 
 
-var ActionHandler = function(){
+var InputModeManager = function(){
   this.mode_queue = [];
 };
-ActionHandler.prototype.addModes = function(mode_factories){
+InputModeManager.prototype.addModes = function(mode_factories){
   for (var i=0; i<mode_factories.length; i++){
     var create_mode_fn = mode_factories[i];
     this.mode_queue.push(create_mode_fn());
   }
 };
-ActionHandler.prototype.currentMode = function(){
+InputModeManager.prototype.currentMode = function(){
   if (!this.modeQueueIsEmpty()){
     return this.mode_queue[0];
   }
 };
-ActionHandler.prototype.gotoNextMode = function(){
+InputModeManager.prototype.gotoNextMode = function(){
   this.mode_queue = this.mode_queue.slice(1);
   return this.currentMode();
 };
-ActionHandler.prototype.modeQueueIsEmpty = function(){
+InputModeManager.prototype.modeQueueIsEmpty = function(){
   return this.mode_queue.length === 0;
 };
-ActionHandler.prototype.handleKeyEvent = function(key_code, controller){
+InputModeManager.prototype.handleKeyEvent = function(key_code, controller){
   if (this.modeQueueIsEmpty()){
     this.addModes([MapMode.createFactory()]);
   }

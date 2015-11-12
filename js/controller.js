@@ -1,7 +1,7 @@
-var Controller = function(haus, canvas, action_handler){
+var Controller = function(haus, canvas, mode_manager){
   this.haus = haus;
   this.canvas = canvas;
-  this.action_handler = action_handler;
+  this.mode_manager = mode_manager;
 };
 Controller.prototype.setup = function(){
   this.setUpEventListener();
@@ -17,7 +17,7 @@ Controller.prototype.updateCanvas = function(){
 Controller.prototype.setUpEventListener = function(){
   var controller = this; 
   window.addEventListener("keydown", function(e){
-    controller.action_handler.handleKeyEvent(e.which, controller);
+    controller.mode_manager.handleKeyEvent(e.which, controller);
     controller.updateCanvas();
   });
 };
@@ -73,8 +73,8 @@ Controller.prototype.choiceDialogSelectItem = function(item_index){
 $(function(){
   var the_haus = new Haus();
   var canvas = new Canvas();
-  var action_handler = new ActionHandler();
-  var controller = new Controller(the_haus, canvas, action_handler);
+  var mode_manager = new InputModeManager();
+  var controller = new Controller(the_haus, canvas, mode_manager);
   controller.setup();
 });
 

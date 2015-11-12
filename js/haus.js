@@ -35,13 +35,13 @@ var Haus = function(){
         new MapLocation(0, 6, 4), undefined, false, "resources/images/tiles/tile-blue.png", 
         [
             TextDialogMode.createFactory(["I'm also an interactive tile."]),
-            ChoiceDialogMode.createFactory(["Yes", "Maybe", "No"], "Do you like me?", function(controller, action_handler, selected_item){
+            ChoiceDialogMode.createFactory(["Yes", "Maybe", "No"], "Do you like me?", function(controller, mode_manager, selected_item){
                 if (selected_item === "Yes"){
-                    action_handler.addModes([ TextDialogMode.createFactory(["You're making me blush!"])]);
+                    mode_manager.addModes([ TextDialogMode.createFactory(["You're making me blush!"])]);
                 } else if (selected_item === "No"){
-                    action_handler.addModes([ TextDialogMode.createFactory(["Well I don't like you either."])]);
+                    mode_manager.addModes([ TextDialogMode.createFactory(["Well I don't like you either."])]);
                 } else {
-                    action_handler.addModes([ TextDialogMode.createFactory(["Ummm... Okay."])]);
+                    mode_manager.addModes([ TextDialogMode.createFactory(["Ummm... Okay."])]);
                 }
             })
         ]
