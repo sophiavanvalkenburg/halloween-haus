@@ -19,24 +19,14 @@ Tile.prototype.getGraphic = function(){
 Tile.prototype.getModeSequence = function(){ return []; };
 
 
-var InteractiveTile = function(x, y, is_accessible, graphic, messages){
+var InteractiveTile = function(x, y, is_accessible, graphic, modes){
   Tile.call(this, x, y, is_accessible, graphic);
-  this.messages = messages;
+  this.modes = modes;
 };
 InteractiveTile.prototype = new Tile();
-InteractiveTile.prototype.getMessages = function(){
-  return this.messages;
-};
 InteractiveTile.prototype.getModeSequence = function(){ 
-  return [
-    new TextDialogMode({ messages: this.getMessages() })
-  ]; 
+  return this.modes;
 };
-/*
-InteractiveTile.prototype.interactAction = function(controller){
-    controller.haus.setInteractingObject(dialog);
-};
-*/
 
 var PortalTile = function(x, y, next_location, graphic){
   Tile.call(this, x, y, true, graphic);

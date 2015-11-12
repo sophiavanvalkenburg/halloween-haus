@@ -16,7 +16,12 @@ var Haus = function(){
     new Tile(6, 2, true, ""),
     new Tile(7, 2, true, ""),
     new Tile(0, 2, true, ""),
-    new InteractiveTile(8, 2, false, "resources/images/tiles/tile-red.png", ["This is an interactive tile.", "This is the next message."]),
+    new InteractiveTile(
+        8, 2, false, "resources/images/tiles/tile-red.png", 
+        [ 
+          TextDialogMode.createFactory(["This is an interactive tile.", "This is the next message."])
+        ]
+    ),
     new Tile(0, 3, true, ""),
     new Tile(1, 3, true, ""),
     new Tile(2, 3, true, ""),
@@ -26,7 +31,21 @@ var Haus = function(){
     new Tile(5, 4, true, ""),
     new Tile(0, 7, false, "resources/images/tiles/tile-black.png"),
     new Tile(11, 0, false, "resources/images/tiles/tile-black.png"),
-    new InteractiveTile(6, 4, false, "resources/images/tiles/tile-blue.png", ["I'm also an interactive tile."])
+    new InteractiveTile(
+        6, 4, false, "resources/images/tiles/tile-blue.png", 
+        [
+            TextDialogMode.createFactory(["I'm also an interactive tile."]),
+            ChoiceDialogMode.createFactory(["Yes", "Maybe", "No"], "Do you like me?", function(controller, action_handler, selected_item){
+                if (selected_item === "Yes"){
+                    action_handler.addModes([ TextDialogMode.createFactory(["You're making me blush!"])]);
+                } else if (selected_item === "No"){
+                    action_handler.addModes([ TextDialogMode.createFactory(["Well I don't like you either."])]);
+                } else {
+                    action_handler.addModes([ TextDialogMode.createFactory(["Ummm... Okay."])]);
+                }
+            })
+        ]
+   )  
   ];
   var map1_tiles = [
     new Tile(0, 7, false, "resources/images/tiles/tile-black.png"),
