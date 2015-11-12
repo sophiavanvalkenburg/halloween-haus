@@ -10,6 +10,7 @@ Controller.prototype.setup = function(){
 Controller.prototype.updateCanvas = function(){
   this.canvas.updateCharacter(this.haus.getPlayer());
   this.canvas.updateTextDialog(this.haus.getTextDialog());
+  this.canvas.updateChoiceDialog(this.haus.getChoiceDialog());
 };
 Controller.prototype.setUpEventListener = function(){
   var controller = this; 

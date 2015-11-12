@@ -16,11 +16,9 @@ TextDialog.prototype.hasMessage = function(){
 
 
 var ChoiceDialog = function(){
-  TextDialog.call(this);
   this.choices = [];
+  this.selected = undefined;
 }
-ChoiceDialog.prototype = new TextDialog();
-ChoiceDialog.prototype.constructor = ChoiceDialog;
 ChoiceDialog.prototype.hasChoices = function(){
   return this.choices.length !== 0;
 }
@@ -33,18 +31,16 @@ ChoiceDialog.prototype.setChoices = function(choices){
 ChoiceDialog.prototype.getChoiceLabels = function(){
   var labels = [];
   for (var i=0; i<this.choices.length; i++){
-    var choice_obj = this.choices[i];
-    if (choice_obj.label !== undefined){
-      labels.push(choice_obj.label);
+    var choice = this.choices[i];
+    if (choice !== undefined){
+      labels.push(choice);
     }
   }
   return labels;
 }
-ChoiceDialog.prototype.choiceOutcomeForLabel = function(label){
-  for (var i=0; i<this.choices.length; i++){
-    var choice_obj = this.choices[i];
-    if (choice_obj.label === label){
-      return choice_obj.outcome;
-    }
-  }
+ChoiceDialog.prototype.selectChoice = function(item_index){
+  this.selected = item_index;
+}
+ChoiceDialog.prototype.getSelectedLabel = function(){
+  return this.choices[this.selected];
 }
