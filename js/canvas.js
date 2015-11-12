@@ -1,8 +1,10 @@
 var Canvas = function(){
   this.$container = $("#haus-container");
-  this.$main_dialog = $("#haus-main-dialog");
-  this.$main_dialog_text = $("#haus-main-dialog .dialog-text");
+  this.$text_dialog = $("#haus-main-dialog");
+  this.$text_dialog_text = $("#haus-main-dialog .dialog-text");
+  this.$choice_dialog = $("#haus-choice-dialog");
   this.$map = $("#haus-map");
+  this.current_map_index = -1;
 };
 Canvas.prototype.drawMapCell = function(haus, map, map_loc){
   var x = map_loc.X();
@@ -19,6 +21,10 @@ Canvas.prototype.clearMap = function(){
 }
 Canvas.prototype.drawMap = function(haus){
   var map = haus.getCurrentMap();
+  if (map.getId() === this.current_map_index){
+    return;
+  }
+  this.current_map_index = map.getId();
   this.clearMap();
   var $table = $("<table>");
   for (var y=0; y<=map.getMaxY(); y++){
@@ -83,14 +89,39 @@ Canvas.prototype.updateCharacter = function(character){
   $new_td.append($div);
   this.orientObject(character, $div);
 };
-Canvas.prototype.updateMainDialog = function(dialog_text){
-  if (dialog_text.isActivated()){    
-    this.$main_dialog.show();
-    this.$main_dialog_text.text(dialog_text.getCurrentMessage());
+Canvas.prototype.updateTextDialog = function(text_dialog){
+  if (text_dialog.hasMessage()){
+    this.$text_dialog_text.text(text_dialog.getMessage());
+    this.$text_dialog.show();
   }else{
-    this.$main_dialog.hide();
+    this.$text_dialog.hide();
+    this.$text_dialog_text.text("");
   }
 };
+Canvas.prototype.drawChoiceList = function(choice_labels, selected_label){
+  var $selected_icon = this.createImage("resources/images/icons/right-select-arrow.png");;
+  var $table = $("<table>");
+  for (var i=0; i<choice_labels.length; i++){
+    var $choice_row = $("<tr>");
+    var label = choice_labels[i];
+    $icon = label === selected_label ? $selected_icon : undefined;
+    $choice_row.append($("<td>").append($icon));
+    $choice_row.append($("<td>"+label+"</td>"));
+    $table.append($choice_row);
+  }
+  this.$choice_dialog.html("");
+  this.$choice_dialog.append($table);
+}
+Canvas.prototype.updateChoiceDialog = function(choice_dialog){
+  if (choice_dialog.hasChoices()){
+    var choice_labels = choice_dialog.getChoiceLabels();
+    this.drawChoiceList(choice_labels, choice_dialog.getSelectedLabel());
+    this.$choice_dialog.css('display', 'inline-block');
+  }else{
+    this.$choice_dialog.hide();
+    this.$choice_dialog.html("");
+  }
+}
 Canvas.prototype.createImage = function(filename){
   if (filename !== undefined){
     return $("<img src='"+filename+"'/>");

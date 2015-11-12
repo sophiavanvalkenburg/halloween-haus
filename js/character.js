@@ -34,6 +34,9 @@ Character.prototype.setOrientation = function(orientation){
 Character.prototype.getOrientation = function(){
   return this.orientation;
 };
+Character.prototype.setOrientationTowards = function(x, y){
+  this.setOrientation(this.getOrientationTowardsMe(x, y));
+}
 Character.prototype.getOrientationTowardsMe = function(x, y){
   if (x > this.x){
     return MapState.RIGHT;
@@ -70,25 +73,24 @@ Character.prototype.getFacingLocation = function(){
       facing_y = this.y;
       break;
     default:
+      facing_x = this.x;
+      facing_y = this.y + 1;
       break;
   }
   return new MapLocation(this.mapIndex, facing_x, facing_y);
 }
-Character.prototype.setLocation = function(map_index, x, y){
-  this.setX(x);
-  this.setY(y);
-  this.setMapIndex(map_index);
+Character.prototype.setLocation = function(loc){
+  this.setX(loc.X());
+  this.setY(loc.Y());
+  this.setMapIndex(loc.mapIndex());
 }
-Character.prototype.moveTo = function(map, map_loc){
-  var x = map_loc.X();
-  var y = map_loc.Y();
-  var map_index = map_loc.mapIndex()
-  this.setOrientation(this.getOrientationTowardsMe(x, y));
-  if (map.locationIsAccessible(x, y)){
-    this.setLocation(map_index, x, y);
-    return true;
+Character.prototype.moveTo = function(tile){
+  if (tile === undefined){
+    return;
   }
-  return false;
+  if (tile.isAccessible()){
+    this.setLocation(tile.getPortalLoc());
+  }
 };
 Character.prototype.addToInventory = function(item){
   this.inventory.push(item);

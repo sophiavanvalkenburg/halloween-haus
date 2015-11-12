@@ -33,6 +33,21 @@
     margin-top: 10px;
 }
 
+#haus-choice-dialog {
+    min-width: 30px;
+    max-width: 125px;
+    min-height: 30px;
+    max-height: 200px;
+    margin-top: 10px;
+    font-family: monospace;
+    overflow: hidden;
+}
+
+#haus-choice-dialog table {
+    padding: 0px;
+    margin: 0px;
+}
+
 .dialog {
     border: 2px solid black;
     display: none;
