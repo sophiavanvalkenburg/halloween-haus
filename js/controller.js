@@ -73,26 +73,3 @@ $(function(){
   controller.setup();
 });
 
-/*
- *
- * var player = controller.haus.getPlayer();
-    switch(e.which){
-      case 37:
-        controller.movementHandler(player.X() - 1, player.Y());
-        break;
-      case 38:
-        controller.movementHandler(player.X(), player.Y() - 1);
-        break;
-      case 39:
-        controller.movementHandler(player.X() + 1, player.Y());
-        break;
-      case 40:
-        controller.movementHandler(player.X(), player.Y() + 1);
-        break;
-      case 90:
-        controller.interactionHandler();
-        break;
-      default:
-        console.log(player.name, "do nothing");
-    }
-*/
