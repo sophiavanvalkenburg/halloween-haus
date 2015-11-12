@@ -2,20 +2,6 @@
 
 Basic 2D exploration game w/tiled maps + character interaction
 
-### Prototypal Structure
-- Controller
-- Haus
-- Canvas
-- Character
-  - NonPlayerCharacter
-  - PlayerCharacter
-- Dialog
-- Map
-- MapLocation
-- Tile
-  - InteractiveTile
-  - PortalTile
-
 ### To-Do
 - create story.js with methods/variables related to the details of the game "story" state
 - add a removeCharacter function in map
