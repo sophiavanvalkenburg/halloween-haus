@@ -99,7 +99,7 @@ Canvas.prototype.updateTextDialog = function(text_dialog){
   }
 };
 Canvas.prototype.drawChoiceList = function(choice_labels, selected_label){
-  var $selected_icon = ">";
+  var $selected_icon = this.createImage("resources/images/icons/right-select-arrow.png");;
   var $table = $("<table>");
   for (var i=0; i<choice_labels.length; i++){
     var $choice_row = $("<tr>");
