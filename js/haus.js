@@ -1,38 +1,38 @@
 var Haus = function(){
-  var map0_tiles = [
-    new Tile(0, 0, true, ""),
-    new Tile(0, 1, true, ""),
-    new Tile(1, 0, true, ""),
-    new Tile(2, 0, true, ""),
-    new Tile(2, 1, false, "resources/images/tiles/fuschia-flower.png"),
-    new Tile(2, 5, true, ""),
-    new Tile(2, 6, true, ""),
-    new PortalTile(2, 7, new MapLocation(1, 5, 4), "resources/images/tiles/portal.png"),
-    new Tile(3, 0, true, ""),
-    new Tile(3, 1, true, ""),
-    new Tile(4, 1, true, ""),
-    new Tile(4, 2, true, ""),
-    new Tile(5, 2, true, ""),
-    new Tile(6, 2, true, ""),
-    new Tile(7, 2, true, ""),
-    new Tile(0, 2, true, ""),
+  var tiles = [
+    new Tile(new MapLocation(0, 0, 0), undefined, true, ""),
+    new Tile(new MapLocation(0, 0, 1), undefined, true, ""),
+    new Tile(new MapLocation(0, 1, 0), undefined, true, ""),
+    new Tile(new MapLocation(0, 2, 0), undefined, true, ""),
+    new Tile(new MapLocation(0, 2, 1), undefined, false, "resources/images/tiles/fuschia-flower.png"),
+    new Tile(new MapLocation(0, 2, 5), undefined, true, ""),
+    new Tile(new MapLocation(0, 2, 6), undefined, true, ""),
+    new Tile(new MapLocation(0, 2, 7), new MapLocation(1, 5, 4), true, "resources/images/tiles/portal.png"),
+    new Tile(new MapLocation(0, 3, 0), undefined, true, ""),
+    new Tile(new MapLocation(0, 3, 1), undefined, true, ""),
+    new Tile(new MapLocation(0, 4, 1), undefined, true, ""),
+    new Tile(new MapLocation(0, 4, 2), undefined, true, ""),
+    new Tile(new MapLocation(0, 5, 2), undefined, true, ""),
+    new Tile(new MapLocation(0, 6, 2), undefined, true, ""),
+    new Tile(new MapLocation(0, 7, 2), undefined, true, ""),
+    new Tile(new MapLocation(0, 0, 2), undefined, true, ""),
     new InteractiveTile(
-        8, 2, false, "resources/images/tiles/tile-red.png", 
+        new MapLocation(0, 8, 2), undefined, false, "resources/images/tiles/tile-red.png", 
         [ 
           TextDialogMode.createFactory(["This is an interactive tile.", "This is the next message."])
         ]
     ),
-    new Tile(0, 3, true, ""),
-    new Tile(1, 3, true, ""),
-    new Tile(2, 3, true, ""),
-    new Tile(2, 4, true, ""),
-    new Tile(3, 4, true, ""),
-    new Tile(4, 4, true, ""),
-    new Tile(5, 4, true, ""),
-    new Tile(0, 7, false, "resources/images/tiles/tile-black.png"),
-    new Tile(11, 0, false, "resources/images/tiles/tile-black.png"),
+    new Tile(new MapLocation(0, 0, 3), undefined, true, ""),
+    new Tile(new MapLocation(0, 1, 3), undefined, true, ""),
+    new Tile(new MapLocation(0, 2, 3), undefined, true, ""),
+    new Tile(new MapLocation(0, 2, 4), undefined, true, ""),
+    new Tile(new MapLocation(0, 3, 4), undefined, true, ""),
+    new Tile(new MapLocation(0, 4, 4), undefined, true, ""),
+    new Tile(new MapLocation(0, 5, 4), undefined, true, ""),
+    new Tile(new MapLocation(0, 0, 7), undefined, false, "resources/images/tiles/tile-black.png"),
+    new Tile(new MapLocation(0, 11, 0), undefined, false, "resources/images/tiles/tile-black.png"),
     new InteractiveTile(
-        6, 4, false, "resources/images/tiles/tile-blue.png", 
+        new MapLocation(0, 6, 4), undefined, false, "resources/images/tiles/tile-blue.png", 
         [
             TextDialogMode.createFactory(["I'm also an interactive tile."]),
             ChoiceDialogMode.createFactory(["Yes", "Maybe", "No"], "Do you like me?", function(controller, action_handler, selected_item){
@@ -45,26 +45,24 @@ var Haus = function(){
                 }
             })
         ]
-   )  
-  ];
-  var map1_tiles = [
-    new Tile(0, 7, false, "resources/images/tiles/tile-black.png"),
-    new Tile(11, 0, false, "resources/images/tiles/tile-black.png"),
-    new PortalTile(5, 3, new MapLocation(0, 2, 6), "resources/images/tiles/portal.png"),
-    new Tile(5, 4, true, ""),
-    new Tile(5, 5, true, "")
+   ),  
+    new Tile(new MapLocation(1, 0, 7), undefined, false, "resources/images/tiles/tile-black.png"),
+    new Tile(new MapLocation(1, 11, 0), undefined, false, "resources/images/tiles/tile-black.png"),
+    new Tile(new MapLocation(1, 5, 3), new MapLocation(0, 2, 6), true, "resources/images/tiles/portal.png"),
+    new Tile(new MapLocation(1, 5, 4), undefined, true, ""),
+    new Tile(new MapLocation(1, 5, 5), undefined, true, "")
   ];
   this.player = new PlayerCharacter("Sophia", "resources/images/characters/player-test.png", 0);
   this.characters = [ this.player ];
   this.num_characters = this.characters.length;
   this.maps = [
-    new MapState(0, map0_tiles),
-    new MapState(1, map1_tiles)
+    new MapState(0, tiles),
+    new MapState(1, tiles)
   ];
   this.interacting_obj = undefined;
   this.text_dialog = new TextDialog();
   this.choice_dialog = new ChoiceDialog();
-  this.current_map = 0;
+  this.current_map = -1;
 };
 Haus.prototype.getCurrentMap = function(){
   return this.getMap(this.current_map);

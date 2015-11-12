@@ -4,6 +4,7 @@ var Canvas = function(){
   this.$text_dialog_text = $("#haus-main-dialog .dialog-text");
   this.$choice_dialog = $("#haus-choice-dialog");
   this.$map = $("#haus-map");
+  this.current_map_index = -1;
 };
 Canvas.prototype.drawMapCell = function(haus, map, map_loc){
   var x = map_loc.X();
@@ -20,6 +21,10 @@ Canvas.prototype.clearMap = function(){
 }
 Canvas.prototype.drawMap = function(haus){
   var map = haus.getCurrentMap();
+  if (map.getId() === this.current_map_index){
+    return;
+  }
+  this.current_map_index = map.getId();
   this.clearMap();
   var $table = $("<table>");
   for (var y=0; y<=map.getMaxY(); y++){
@@ -108,7 +113,6 @@ Canvas.prototype.drawChoiceList = function(choice_labels, selected_label){
   this.$choice_dialog.append($table);
 }
 Canvas.prototype.updateChoiceDialog = function(choice_dialog){
-  console.log(choice_dialog);
   if (choice_dialog.hasChoices()){
     var choice_labels = choice_dialog.getChoiceLabels();
     this.drawChoiceList(choice_labels, choice_dialog.getSelectedLabel());

@@ -5,12 +5,14 @@ var Controller = function(haus, canvas, action_handler){
 };
 Controller.prototype.setup = function(){
   this.setUpEventListener();
+  this.haus.setCurrentMap(0);
   this.canvas.drawMap(this.haus);
 };
 Controller.prototype.updateCanvas = function(){
   this.canvas.updateCharacter(this.haus.getPlayer());
   this.canvas.updateTextDialog(this.haus.getTextDialog());
   this.canvas.updateChoiceDialog(this.haus.getChoiceDialog());
+  this.canvas.drawMap(this.haus);
 };
 Controller.prototype.setUpEventListener = function(){
   var controller = this; 
@@ -34,9 +36,12 @@ Controller.prototype.movePlayerDown = function(){
 Controller.prototype.movePlayer = function(x_offset, y_offset){
   var map = this.haus.getCurrentMap();
   var player = this.haus.getPlayer();
-  var new_x = player.X() + x_offset;
-  var new_y = player.Y() + y_offset;
-  player.moveTo(map, new MapLocation(map.getId(), new_x, new_y));
+  var tile_x = player.X() + x_offset;
+  var tile_y = player.Y() + y_offset;
+  player.setOrientationTowards(tile_x, tile_y);
+  var tile = map.getTile(tile_x, tile_y);
+  player.moveTo(tile);
+  this.haus.setCurrentMap(player.mapIndex());
 }
 Controller.prototype.selectFacingObject = function(){
   var map = this.haus.getCurrentMap();

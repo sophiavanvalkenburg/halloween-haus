@@ -1,14 +1,24 @@
-var Tile = function(x, y, is_accessible, graphic){
-  this.x = x;
-  this.y = y;
+var Tile = function(map_loc, portal_loc, is_accessible, graphic){
+  this.map_loc = map_loc;
+  if (portal_loc === undefined){
+    this.portal_loc = map_loc;
+  }else{
+    this.portal_loc = portal_loc;
+  }
   this.graphic = graphic;
   this.is_accessible = is_accessible;
 };
 Tile.prototype.X = function(){
-  return this.x;
+  return this.map_loc.X();
 };
 Tile.prototype.Y = function(){
-  return this.y;
+  return this.map_loc.Y();
+};
+Tile.prototype.mapIndex = function(){
+  return this.map_loc.mapIndex();
+}
+Tile.prototype.getPortalLoc = function(){
+  return this.portal_loc; 
 };
 Tile.prototype.isAccessible = function(){
   return this.is_accessible;
@@ -19,8 +29,8 @@ Tile.prototype.getGraphic = function(){
 Tile.prototype.getModeSequence = function(){ return []; };
 
 
-var InteractiveTile = function(x, y, is_accessible, graphic, modes){
-  Tile.call(this, x, y, is_accessible, graphic);
+var InteractiveTile = function(map_loc, portal_loc, is_accessible, graphic, modes){
+  Tile.call(this, map_loc, portal_loc, is_accessible, graphic);
   this.modes = modes;
 };
 InteractiveTile.prototype = new Tile();
@@ -28,28 +38,3 @@ InteractiveTile.prototype.getModeSequence = function(){
   return this.modes;
 };
 
-var PortalTile = function(x, y, next_location, graphic){
-  Tile.call(this, x, y, true, graphic);
-  this.next_location = next_location;
-};
-PortalTile.prototype = new Tile();
-PortalTile.prototype.getNextMapIndex = function(){
-  return this.next_location.mapIndex(); 
-};
-PortalTile.prototype.getNextX = function(){
-  return this.next_location.X();
-}
-PortalTile.prototype.getNextY = function(){
-  return this.next_location.Y();
-}
-/*
-PortalTile.prototype.interactAction = function(controller){
-  var map_index = this.getNextMapIndex();
-  var map = controller.haus.getMap(map_index);
-  var x = this.getNextX();
-  var y = this.getNextY();
-  controller.haus.setCurrentMap(map_index);
-  controller.haus.getPlayer().moveTo(map, new MapLocation(map_index, x, y));
-  controller.canvas.drawMap(controller.haus);
-}
-*/

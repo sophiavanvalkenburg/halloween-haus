@@ -14,13 +14,13 @@ MapLocation.prototype.Y = function(){
 };
 
 var MapState = function(id, tiles){
+  this.id = id;
   this.tiles = tiles;
   this.tile_grid = [];
   this.size = tiles.length;
   var res = this.mapTilesToGrid();
   this.max_x = res[0];
   this.max_y = res[1];
-  this.id = id;
 }; 
 MapState.UP = "up";
 MapState.DOWN = "down";
@@ -43,15 +43,14 @@ MapState.prototype.mapTilesToGrid = function(){
   var max_y = 0;
   for (var i=0; i<this.size; i++){
     var tile = this.tiles[i];
+    if (tile.mapIndex() !== this.getId()){
+      continue;
+    }
     max_x = tile.X() > max_x ? tile.X() : max_x;
     max_y = tile.Y() > max_y ? tile.Y() : max_y;
     this.addTileToGrid(tile);
   }
   return [max_x, max_y];
-};
-MapState.prototype.locationIsAccessible = function(x, y){
-  var tile = this.getTile(x, y);
-  return tile !== undefined && tile.isAccessible();
 };
 MapState.prototype.getTile = function(x, y){ 
   if (x === undefined || y == undefined || this.tile_grid[y] === undefined){
