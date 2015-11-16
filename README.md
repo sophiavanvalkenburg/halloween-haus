@@ -3,6 +3,11 @@
 Basic 2D exploration game w/tiled maps + character interaction
 
 ### To-Do
+- create debug mode
+  - toggle gridlines
+  - mouseover coordinates
+  - highlighted portal tiles
+  - etc
 - create story.js with methods/variables related to the details of the game "story" state
 - add a removeCharacter function in map
 - Read map configuration from a file instead of hardcoding it (this will also abstract it away from haus.js)
