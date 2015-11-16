@@ -116,7 +116,7 @@ NonPlayerCharacter.prototype.getMessages = function(){
   return this.messages;
 };
 
-var PlayerCharacter = function(name, graphic, map_index){
-  Character.call(this, name, graphic, map_index, 0, 0);
+var PlayerCharacter = function(name, graphic, map_index, x, y){
+  Character.call(this, name, graphic, map_index, x, y);
 };
 PlayerCharacter.prototype = new Character();

@@ -146,7 +146,9 @@ MapMode.prototype.upArrowButtonHandler = function(controller){
 };
 MapMode.prototype.selectButtonHandler = function(controller, mode_manager){
   var target_obj = controller.selectFacingObject();
-  mode_manager.addModes(target_obj.getModeSequence()); 
+  if (target_obj !== undefined){
+    mode_manager.addModes(target_obj.getModeSequence()); 
+  }
   this.handled = true;
 };
 MapMode.prototype.shouldEndMode = function(){
