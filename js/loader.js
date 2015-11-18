@@ -12,8 +12,8 @@ MapLoader.prototype.startLoadMap = function(file, callback){
   the_loader = this;
   $.getJSON(file, function(json){
     the_loader.loadMap(json);
-    this.load_jobs--;
-    if (this.load_jobs === 0){
+    the_loader.load_jobs--;
+    if (the_loader.load_jobs === 0){
       callback();
     }
   });
@@ -58,7 +58,7 @@ MapLoader.prototype.parseTileData = function(tile_data){
   var portal = this.makeMapLocation(tile_data.portal);
   var img_src = this.makeTileImageSrc(tile_data.graphic);
   if (tile_data.messages.length > 0){
-    var modes = makeTileModes(tile_data);
+    var modes = this.makeTileModes(tile_data);
     return new InteractiveTile(loc, portal, tile_data.is_accessible, img_src, modes);
   }
   return new Tile(loc, portal, tile_data.is_accessible, img_src);

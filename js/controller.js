@@ -75,6 +75,8 @@ $(function(){
   var canvas = new Canvas();
   var mode_manager = new InputModeManager();
   var controller = new Controller(the_haus, canvas, mode_manager);
-  map_loader.loadAllMaps(HausConfig.mapfiles, controller.setup); 
+  map_loader.loadAllMaps(HausConfig.mapfiles, function(){
+    controller.setup();
+  }); 
 });
 
