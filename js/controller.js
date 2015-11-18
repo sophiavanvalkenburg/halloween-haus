@@ -69,12 +69,12 @@ Controller.prototype.choiceDialogSelectItem = function(item_index){
   dialog.selectChoice(item_index);
 }
 
-
 $(function(){
   var the_haus = new Haus();
+  var map_loader = new MapLoader(the_haus);
   var canvas = new Canvas();
   var mode_manager = new InputModeManager();
   var controller = new Controller(the_haus, canvas, mode_manager);
-  controller.setup();
+  map_loader.loadAllMaps(HausConfig.mapfiles, controller.setup); 
 });
 

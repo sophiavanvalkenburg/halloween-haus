@@ -1,12 +1,8 @@
 var Haus = function(){
-  var tiles = HausConfig.tiles;
-  this.player = new PlayerCharacter("Sophia", "resources/images/characters/player.png", 0, 10, 7);
+  this.player = HausConfig.player;
   this.characters = [ this.player ];
   this.num_characters = this.characters.length;
-  this.maps = [
-    new MapState(0, tiles),
-    new MapState(1, tiles)
-  ];
+  this.maps = {};
   this.text_dialog = new TextDialog();
   this.choice_dialog = new ChoiceDialog();
   this.current_map = -1;
@@ -16,6 +12,9 @@ Haus.prototype.setSelectionResult = function(result){
 }
 Haus.prototype.unsetSelectionResult = function(){
   this.selection_result = undefined;
+}
+Haus.prototype.addMap = function(map){
+  this.maps[map.getId()] = map;
 }
 Haus.prototype.getCurrentMap = function(){
   return this.getMap(this.current_map);
