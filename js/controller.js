@@ -9,10 +9,10 @@ Controller.prototype.setup = function(){
   this.canvas.drawMap(this.haus);
 };
 Controller.prototype.updateCanvas = function(){
+  this.canvas.drawMap(this.haus);
   this.canvas.updateCharacter(this.haus.getPlayer());
   this.canvas.updateTextDialog(this.haus.getTextDialog());
   this.canvas.updateChoiceDialog(this.haus.getChoiceDialog());
-  this.canvas.drawMap(this.haus);
 };
 Controller.prototype.setUpEventListener = function(){
   var controller = this; 

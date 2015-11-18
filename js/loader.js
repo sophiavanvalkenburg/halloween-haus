@@ -21,7 +21,6 @@ MapLoader.prototype.startLoadMap = function(file, callback){
 MapLoader.prototype.convertToInt = function(str){
   var new_int = parseInt(str);
   if (isNaN(new_int)){
-    console.log("MapLoader: err: " + str + " is not a number");
     return -1;
   }
   return new_int;
@@ -44,9 +43,16 @@ MapLoader.prototype.parseMetaData = function(data){
   return {resolution: res, num_columns: cols, num_rows: rows, map_id: map};
 }
 MapLoader.prototype.makeMapLocation = function(loc){
-  if (loc !== undefined && loc !== {}){
-    return new MapLocation(loc.map, loc.x, loc.y);
+  if (loc === undefined){
+    return;
   }
+  var map = this.convertToInt(loc.map);
+  var x = this.convertToInt(loc.x);
+  var y = this.convertToInt(loc.y);
+  if (map === -1 || x === -1 || y === -1){
+    return;
+  }
+  return new MapLocation(map, x, y);
 }
 MapLoader.prototype.makeTileModes = function(tile_data){
   return [
