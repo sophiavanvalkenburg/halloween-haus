@@ -3,9 +3,10 @@
 Basic 2D exploration game w/tiled maps + character interaction
 
 ### How to Run
-
+```bash
 $ npm install http-server -g
 $ http-server .
+```
 
 ### To-Do
 - create debug mode
