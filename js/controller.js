@@ -40,8 +40,13 @@ Controller.prototype.movePlayer = function(x_offset, y_offset){
   var tile_y = player.Y() + y_offset;
   player.setOrientationTowards(tile_x, tile_y);
   var tile = map.getTile(tile_x, tile_y);
-  player.moveTo(tile);
-  this.haus.setCurrentMap(player.mapIndex());
+  if (tile !== undefined && 
+      tile.isAccessible() && 
+      this.haus.getCharacterOnMap(tile.getPortalLoc()) === undefined
+     ){
+    player.moveTo(tile);
+    this.haus.setCurrentMap(player.mapIndex());
+  }
 }
 Controller.prototype.selectFacingObject = function(){
   var map = this.haus.getCurrentMap();

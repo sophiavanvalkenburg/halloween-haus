@@ -85,12 +85,7 @@ Character.prototype.setLocation = function(loc){
   this.setMapIndex(loc.mapIndex());
 }
 Character.prototype.moveTo = function(tile){
-  if (tile === undefined){
-    return;
-  }
-  if (tile.isAccessible()){
-    this.setLocation(tile.getPortalLoc());
-  }
+  this.setLocation(tile.getPortalLoc());
 };
 Character.prototype.addToInventory = function(item){
   this.inventory.push(item);
