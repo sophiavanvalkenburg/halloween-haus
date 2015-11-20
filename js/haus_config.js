@@ -6,5 +6,8 @@ var HausConfig = {
     "resources/maps/map12.json", 
     "resources/maps/map7.json"
   ],
-  player: new PlayerCharacter("Sophia", "resources/images/characters/player.png", 0, 10, 7)
+  player: new PlayerCharacter("Sophia", "resources/images/characters/player.png", 0, 10, 7),
+  characters: [
+    new NonPlayerCharacter("Calico", "resources/images/characters/cat.png", 0, 13, 1, ["Meow!"])
+  ]
 }

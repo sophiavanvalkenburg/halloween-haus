@@ -1,6 +1,6 @@
 var Haus = function(){
   this.player = HausConfig.player;
-  this.characters = [ this.player ];
+  this.characters = HausConfig.characters.concat(this.player);
   this.num_characters = this.characters.length;
   this.maps = {};
   this.text_dialog = new TextDialog();
