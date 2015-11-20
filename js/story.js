@@ -72,7 +72,7 @@ Story.prototype.setupStoryEvents = function(){
         var player = the_story.controller.haus.getPlayer();
         var map0 = the_story.controller.haus.getMap(0);
         var tile = map0.getTile(10, 7);
-        player.moveTo(tile);
+        player.setLocation(tile.getPortalLoc());
         the_story.controller.haus.setCurrentMap(player.mapIndex());
       }),
 

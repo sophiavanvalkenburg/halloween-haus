@@ -6,8 +6,17 @@ var HausConfig = {
     "resources/maps/map12.json", 
     "resources/maps/map7.json"
   ],
-  player: new PlayerCharacter("Sophia", "resources/images/characters/player.png", 0, 10, 7),
+  player: new Character(
+      "Sophia", 
+      new MapLocation(0, 10, 7), 
+      "resources/images/characters/player.png"
+      ),
   characters: [
-    new NonPlayerCharacter("Calico", "resources/images/characters/cat.png", 0, 13, 1, ["Meow!"])
+    new Character(
+        "Calico", 
+        new MapLocation(0, 13, 1),
+        "resources/images/characters/cat.png", 
+        [TextDialogMode.createFactory(["Calico: \"Meow!\""])]
+      ),
   ]
 }

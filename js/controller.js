@@ -44,7 +44,7 @@ Controller.prototype.movePlayer = function(x_offset, y_offset){
       tile.isAccessible() && 
       this.haus.getCharacterOnMap(tile.getPortalLoc()) === undefined
      ){
-    player.moveTo(tile);
+    player.setLocation(tile.getPortalLoc());
     this.haus.setCurrentMap(player.mapIndex());
   }
 }
