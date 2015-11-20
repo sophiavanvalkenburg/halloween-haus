@@ -1,4 +1,4 @@
-var Tile = function(map_loc, portal_loc, is_accessible, graphic){
+var Tile = function(map_loc, portal_loc, is_accessible, graphic, modes){
   this.map_loc = map_loc;
   if (portal_loc === undefined){
     this.portal_loc = map_loc;
@@ -7,6 +7,7 @@ var Tile = function(map_loc, portal_loc, is_accessible, graphic){
   }
   this.graphic = graphic;
   this.is_accessible = is_accessible;
+  this.modes = modes === undefined ? [] : modes;
 };
 Tile.prototype.X = function(){
   return this.map_loc.X();
@@ -26,21 +27,9 @@ Tile.prototype.isAccessible = function(){
 Tile.prototype.getGraphic = function(){
   return this.graphic;
 };
-Tile.prototype.getModeSequence = function(){ return []; };
-
-
-var InteractiveTile = function(map_loc, portal_loc, is_accessible, graphic, modes){
-  Tile.call(this, map_loc, portal_loc, is_accessible, graphic);
-  this.modes = modes;
-};
-InteractiveTile.prototype = new Tile();
-InteractiveTile.prototype.constructor = InteractiveTile;
-InteractiveTile.prototype.getMessages = function(){
-  return this.messages;
-};
-InteractiveTile.prototype.getModeSequence = function(){ 
+Tile.prototype.getModeSequence = function(){ 
   return this.modes;
 };
-InteractiveTile.prototype.addMode = function(mode){
+Tile.prototype.addMode = function(mode){
   this.modes.push(mode);
 }

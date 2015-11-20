@@ -55,19 +55,20 @@ MapLoader.prototype.makeMapLocation = function(loc){
   return new MapLocation(map, x, y);
 }
 MapLoader.prototype.makeTileModes = function(tile_data){
-  return [
+  if (tile_data.messages.length > 0){
+    return [
         TextDialogMode.createFactory(tile_data.messages)
       ];
+  } else {
+    return [];
+  }
 }
 MapLoader.prototype.parseTileData = function(tile_data){
   var loc = this.makeMapLocation(tile_data.loc);
   var portal = this.makeMapLocation(tile_data.portal);
   var img_src = this.makeTileImageSrc(tile_data.graphic);
-  if (tile_data.messages.length > 0){
-    var modes = this.makeTileModes(tile_data);
-    return new InteractiveTile(loc, portal, tile_data.is_accessible, img_src, modes);
-  }
-  return new Tile(loc, portal, tile_data.is_accessible, img_src);
+  var modes = this.makeTileModes(tile_data);
+  return new Tile(loc, portal, tile_data.is_accessible, img_src, modes);
 }
 MapLoader.prototype.loadMap = function(data){
   var meta = this.parseMetaData(data);

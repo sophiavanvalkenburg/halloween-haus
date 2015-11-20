@@ -51,6 +51,19 @@ Story.prototype.setupStoryEvents = function(){
         )]);
         var player = the_story.controller.haus.getPlayer();
         player.addToInventory(the_story.objects.COIN);
+
+        var map11 = the_story.controller.haus.getMap(11);
+        var table_tile = map11.getTile(7, 8);
+        table_tile.addMode(
+            ChoiceDialogMode.createFactory(
+              ["Yes", "No"], 
+              "Place coin on table?",
+              function(controller, mode_manager, selected_item){
+                if (selected_item === "Yes"){
+                    the_story.triggerEvent(the_story.events.placeCoinOnKitchenTable);
+                } 
+              })
+          );
       }),
 
     movePlayerAfterReceivingCoin:
@@ -61,29 +74,13 @@ Story.prototype.setupStoryEvents = function(){
         var tile = map0.getTile(10, 7);
         player.moveTo(tile);
         the_story.controller.haus.setCurrentMap(player.mapIndex());
-        
-        var map11 = the_story.controller.haus.getMap(11);
-        /*
-        var table_tile = map11.getTile(7, 9);
-        table_tile.addMode(
-            ChoiceDialogMode.createFactory(
-              ["Yes", "No"], 
-              "Place coin on table?",
-              function(controller, mode_manager, selected_item){
-                if (selected_item === "Yes"){
-                    the_story.triggerEvent(the_story.events.placeCoinOnKitchenTable);
-                } 
-              })
-          )
-        */
-      }),   
+      }),
 
     placeCoinOnKitchenTable:
     new StoryEvent("place-coin-on-kitchen-table",
       function(){
         var player = the_story.controller.haus.getPlayer();
         player.removeFromInventory(the_story.objects.COIN);
-        console.log(player.hasItem(the_story.objects.COIN));
       })
 
   }
