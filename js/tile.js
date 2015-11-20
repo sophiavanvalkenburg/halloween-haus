@@ -2,7 +2,10 @@ var MapObject = function(map_loc, is_accessible, graphic, modes){
   this.map_loc = map_loc;
   this.graphic = graphic;
   this.is_accessible = is_accessible;
-  this.modes = modes === undefined ? [] : modes;
+  this.modes = {};
+  if (modes !== undefined){
+    this.addModes(modes);
+  }
 }
 MapObject.prototype.getGraphic = function(){
   return this.graphic;
@@ -37,13 +40,29 @@ MapObject.prototype.getOrientationTowardsMe = function(x, y){
   }
   return MapState.DOWN;
 };
-MapObject.prototype.getModeSequence = function(){ 
-  return this.modes;
+MapObject.prototype.getModeSequence = function(game_state){
+  return this.modes[game_state] === undefined ? []: this.modes[game_state];
 };
-MapObject.prototype.addMode = function(mode){
-  this.modes.push(mode);
+MapObject.prototype.addMode = function(game_state, mode){
+  if (this.modes[game_state] === undefined){
+    this.modes[game_state] = [];
+  }
+  this.modes[game_state].push(mode);
+};
+MapObject.prototype.addModesForState = function(game_state, modes){
+  if (this.modes[game_state] === undefined){
+    this.modes[game_state] = [];
+  }
+  for (var i=0; i<modes.length; i++){
+    this.addMode(game_state, modes[i]);
+  }
 }
-;
+MapObject.prototype.addModes = function(modes_per_state){
+  for (var i=0; i<modes_per_state.length; i++){
+    var obj = modes_per_state[i];
+    this.addModesForState(obj.state, obj.modes);
+  }
+}
 
 
 var Tile = function(map_loc, portal_loc, is_accessible, graphic, modes){

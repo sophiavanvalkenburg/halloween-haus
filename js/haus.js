@@ -1,17 +1,18 @@
 var Haus = function(){
-  this.player = HausConfig.player;
-  this.characters = HausConfig.characters.concat(this.player);
+  this.player = Config.player;
+  this.characters = Config.characters.concat(this.player);
   this.num_characters = this.characters.length;
   this.maps = {};
   this.text_dialog = new TextDialog();
   this.choice_dialog = new ChoiceDialog();
   this.current_map = -1;
+  this.current_state = StoryStates.INIT;
 };
-Haus.prototype.setSelectionResult = function(result){
-  this.selection_result = result;
+Haus.prototype.setCurrentGameState = function(state){
+  this.current_state = state;
 }
-Haus.prototype.unsetSelectionResult = function(){
-  this.selection_result = undefined;
+Haus.prototype.getCurrentGameState = function(){
+  return this.current_state;
 }
 Haus.prototype.addMap = function(map){
   this.maps[map.getId()] = map;

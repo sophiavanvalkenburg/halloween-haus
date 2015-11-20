@@ -1,4 +1,4 @@
-var Controller = function(haus, canvas, mode_manager, story){
+var Controller = function(haus, canvas, mode_manager){
   this.haus = haus;
   this.canvas = canvas;
   this.mode_manager = mode_manager;
@@ -81,7 +81,7 @@ $(function(){
   var mode_manager = new InputModeManager();
   var controller = new Controller(the_haus, canvas, mode_manager);
   var the_story = new Story(controller);
-  map_loader.loadAllMaps(HausConfig.mapfiles, function(){
+  map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
     the_story.setup();
   }); 

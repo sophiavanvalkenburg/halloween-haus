@@ -1,4 +1,4 @@
-var HausConfig = {
+var Config = {
   mapfiles: [
     "resources/maps/map0.json", 
     "resources/maps/map1.json", 
@@ -16,7 +16,12 @@ var HausConfig = {
         "Calico", 
         new MapLocation(0, 13, 1),
         "resources/images/characters/cat-move.gif", 
-        [TextDialogMode.createFactory(["<b>Calico:</b> \"Meow!\""])]
+        [
+          {
+            state: StoryStates.INIT, 
+            modes: [TextDialogMode.createFactory(["<b>Calico:</b> \"Meow!\""])]
+          }
+        ]
       ),
   ]
 }

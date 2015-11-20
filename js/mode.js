@@ -150,7 +150,8 @@ MapMode.prototype.upArrowButtonHandler = function(controller){
 MapMode.prototype.selectButtonHandler = function(controller, mode_manager){
   var target_obj = controller.selectFacingObject();
   if (target_obj !== undefined){
-    mode_manager.addModes(target_obj.getModeSequence()); 
+    var current_state = controller.haus.getCurrentGameState();
+    mode_manager.addModes(target_obj.getModeSequence(current_state)); 
   }
   this.handled = true;
 };

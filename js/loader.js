@@ -57,8 +57,11 @@ MapLoader.prototype.makeMapLocation = function(loc){
 MapLoader.prototype.makeTileModes = function(tile_data){
   if (tile_data.messages.length > 0){
     return [
-        TextDialogMode.createFactory(tile_data.messages)
-      ];
+            {
+              state: StoryStates.INIT,
+              modes: [TextDialogMode.createFactory(tile_data.messages)]
+            }
+        ];
   } else {
     return [];
   }
