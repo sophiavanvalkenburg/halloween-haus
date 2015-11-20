@@ -25,6 +25,10 @@ Haus.prototype.setCurrentMap = function(map_index){
 Haus.prototype.getMap = function(map_index){
   return this.maps[map_index];
 };
+Haus.prototype.getTileOnMap = function(map_index, tile_x, tile_y){
+  var map = this.getMap(map_index);
+  return map.getTile(tile_x, tile_y);
+};
 Haus.prototype.getPlayer = function(){
   return this.player;
 };

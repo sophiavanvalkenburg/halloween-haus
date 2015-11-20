@@ -22,8 +22,7 @@ Story.prototype.triggerEvent = function(event){
 }
 Story.prototype.setupStoryModes = function(){
   var the_story = this;
-  var map7 = this.controller.haus.getMap(7);
-  var fountain_tile = map7.getTile(5, 5);
+  var fountain_tile = this.controller.haus.getTileOnMap(7, 5, 5);
   fountain_tile.addMode(
     ChoiceDialogMode.createFactory(
       ["Yes", "No"], 
@@ -52,8 +51,7 @@ Story.prototype.setupStoryEvents = function(){
         var player = the_story.controller.haus.getPlayer();
         player.addToInventory(the_story.objects.COIN);
 
-        var map11 = the_story.controller.haus.getMap(11);
-        var table_tile = map11.getTile(7, 8);
+        var table_tile = the_story.controller.haus.getTileOnMap(11, 7, 8);
         table_tile.addMode(
             ChoiceDialogMode.createFactory(
               ["Yes", "No"], 
@@ -70,8 +68,7 @@ Story.prototype.setupStoryEvents = function(){
     new StoryEvent("move-player-after-receiving-coin",
       function(){
         var player = the_story.controller.haus.getPlayer();
-        var map0 = the_story.controller.haus.getMap(0);
-        var tile = map0.getTile(10, 7);
+        var tile = the_story.controller.haus.getTileOnMap(0, 10, 7);
         player.setLocation(tile.getPortalLoc());
         the_story.controller.haus.setCurrentMap(player.mapIndex());
       }),
