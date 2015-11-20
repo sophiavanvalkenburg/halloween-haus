@@ -41,3 +41,6 @@ InteractiveTile.prototype.getMessages = function(){
 InteractiveTile.prototype.getModeSequence = function(){ 
   return this.modes;
 };
+InteractiveTile.prototype.addMode = function(mode){
+  this.modes.push(mode);
+}

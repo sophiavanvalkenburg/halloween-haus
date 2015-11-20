@@ -42,12 +42,13 @@ Mode.prototype.eventHandler = function(key_code, controller, mode_manager){
 };
 
 
-var TextDialogMode = function(messages){
+var TextDialogMode = function(messages, result_fn){
   Mode.call(this);
   this.messages = messages;
+  this.result_fn = result_fn;
 };
-TextDialogMode.createFactory = function(messages){
-  return function() { return new TextDialogMode(messages); };
+TextDialogMode.createFactory = function(messages, result_fn){
+  return function() { return new TextDialogMode(messages, result_fn); };
 }
 TextDialogMode.prototype = new Mode();
 TextDialogMode.prototype.constructor = TextDialogMode;
@@ -61,7 +62,7 @@ TextDialogMode.prototype.gotoNextMessage = function(controller){
   if (!this.shouldEndMode()){
     this.messages = this.messages.slice(1);
     this.initialize(controller);
-  }
+  } 
 }
 TextDialogMode.prototype.shouldEndMode = function(){
   return this.messages === undefined || this.messages.length === 0;
@@ -69,6 +70,8 @@ TextDialogMode.prototype.shouldEndMode = function(){
 TextDialogMode.prototype.initialize = function(controller){
   if (!this.shouldEndMode()){
     controller.setTextDialogMessage(this.messages[0]);
+  }else if (this.result_fn !== undefined){
+    this.result_fn();
   }
 }
 TextDialogMode.prototype.clear = function(controller){
