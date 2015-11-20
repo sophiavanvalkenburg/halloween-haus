@@ -15,8 +15,8 @@ var HausConfig = {
     new Character(
         "Calico", 
         new MapLocation(0, 13, 1),
-        "resources/images/characters/cat.png", 
-        [TextDialogMode.createFactory(["Calico: \"Meow!\""])]
+        "resources/images/characters/cat-move.gif", 
+        [TextDialogMode.createFactory(["<b>Calico:</b> \"Meow!\""])]
       ),
   ]
 }

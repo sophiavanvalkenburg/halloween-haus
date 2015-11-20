@@ -91,11 +91,11 @@ Canvas.prototype.updateCharacter = function(character){
 };
 Canvas.prototype.updateTextDialog = function(text_dialog){
   if (text_dialog.hasMessage()){
-    this.$text_dialog_text.text(text_dialog.getMessage());
+    this.$text_dialog_text.html(text_dialog.getMessage());
     this.$text_dialog.show();
   }else{
     this.$text_dialog.hide();
-    this.$text_dialog_text.text("");
+    this.$text_dialog_text.html("");
   }
 };
 Canvas.prototype.drawChoiceList = function(choice_labels, selected_label){
