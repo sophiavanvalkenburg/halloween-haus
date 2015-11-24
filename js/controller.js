@@ -1,25 +1,25 @@
-var Controller = function(haus, canvas, mode_manager, the_story){
+var Controller = function(haus, renderer, mode_manager, the_story){
   this.haus = haus;
-  this.canvas = canvas;
+  this.renderer = renderer;
   this.mode_manager = mode_manager;
   this.the_story = the_story;
 };
 Controller.prototype.setup = function(){
   this.setUpEventListener();
   this.haus.setCurrentMap(0);
-  this.canvas.drawMap(this.haus);
+  this.renderer.drawMap(this.haus);
 };
-Controller.prototype.updateCanvas = function(){
-  this.canvas.drawMap(this.haus);
-  this.canvas.updateCharacter(this.haus.getPlayer());
-  this.canvas.updateTextDialog(this.haus.getTextDialog());
-  this.canvas.updateChoiceDialog(this.haus.getChoiceDialog());
+Controller.prototype.updateRenderer = function(){
+  this.renderer.drawMap(this.haus);
+  this.renderer.updateCharacter(this.haus.getPlayer());
+  this.renderer.updateTextDialog(this.haus.getTextDialog());
+  this.renderer.updateChoiceDialog(this.haus.getChoiceDialog());
 };
 Controller.prototype.setUpEventListener = function(){
   var controller = this; 
   window.addEventListener("keydown", function(e){
     controller.mode_manager.handleKeyEvent(e.which, controller);
-    controller.updateCanvas();
+    controller.updateRenderer();
   });
 };
 Controller.prototype.movePlayerLeft = function(){
@@ -78,10 +78,10 @@ Controller.prototype.choiceDialogSelectItem = function(item_index){
 $(function(){
   var the_haus = new Haus();
   var map_loader = new MapLoader(the_haus);
-  var canvas = new Canvas();
+  var renderer = new Renderer();
   var mode_manager = new InputModeManager();
   var the_story = new Story();
-  var controller = new Controller(the_haus, canvas, mode_manager, the_story);
+  var controller = new Controller(the_haus, renderer, mode_manager, the_story);
   map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
     the_story.setup(controller);

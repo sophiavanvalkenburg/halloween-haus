@@ -1,4 +1,4 @@
-var Canvas = function(){
+var Renderer = function(){
   this.$container = $("#haus-container");
   this.$text_dialog = $("#haus-main-dialog");
   this.$text_dialog_text = $("#haus-main-dialog .dialog-text");
@@ -6,18 +6,18 @@ var Canvas = function(){
   this.$map = $("#haus-map");
   this.current_map_index = -1;
 };
-Canvas.createImage = function(filename){
+Renderer.createImage = function(filename){
   if (filename !== undefined){
     return $("<img src='"+filename+"'/>");
   }
 };
-Canvas.characterName = function(name){
+Renderer.characterName = function(name){
   return '<span class=character-name>' + name.toUpperCase() + '</span>';
 }
-Canvas.objectName = function(name){
+Renderer.objectName = function(name){
   return '<span class=object-name>' + name.toUpperCase() + '</span>';
 }
-Canvas.prototype.drawMapCell = function(haus, map, map_loc){
+Renderer.prototype.drawMapCell = function(haus, map, map_loc){
   var x = map_loc.X();
   var y = map_loc.Y();
   var $cell = $("<td data-x='"+x+"' data-y='"+y+"'>");
@@ -27,10 +27,10 @@ Canvas.prototype.drawMapCell = function(haus, map, map_loc){
   $cell.append(this.drawCharacter(ch));
   return $cell;
 };
-Canvas.prototype.clearMap = function(){
+Renderer.prototype.clearMap = function(){
   this.$map.html("");
 }
-Canvas.prototype.drawMap = function(haus){
+Renderer.prototype.drawMap = function(haus){
   var map = haus.getCurrentMap();
   if (map.getId() === this.current_map_index){
     return;
@@ -49,7 +49,7 @@ Canvas.prototype.drawMap = function(haus){
   }
   this.$map.append($table);
 };
-Canvas.prototype.drawTile = function(tile){
+Renderer.prototype.drawTile = function(tile){
   var $div = $("<div class='tile'>");
   var graphic_loc;
   if (tile === undefined){
@@ -57,17 +57,17 @@ Canvas.prototype.drawTile = function(tile){
   }else{
     graphic_loc = tile.getGraphic();
   }
-  $div.append(Canvas.createImage(graphic_loc));
+  $div.append(Renderer.createImage(graphic_loc));
   return $div;
 };
-Canvas.prototype.orientObject = function(obj, obj_element){
+Renderer.prototype.orientObject = function(obj, obj_element){
   obj_element.removeClass("orientation-right").removeClass("orientation-left").removeClass("orientation-up").removeClass("orientation-down");
   var orientation_class = this.getOrientationClass(obj.getOrientation());
   if (orientation_class !== undefined){
     obj_element.addClass(orientation_class);
   }
 };
-Canvas.prototype.getOrientationClass = function(orientation){
+Renderer.prototype.getOrientationClass = function(orientation){
   switch(orientation){
     case MapState.UP:
       return "orientation-up";
@@ -79,17 +79,17 @@ Canvas.prototype.getOrientationClass = function(orientation){
       return "orientation-right";
   }
 };
-Canvas.prototype.drawCharacter = function(character){
+Renderer.prototype.drawCharacter = function(character){
   if (character === undefined){
     return;
   }
   var $div = $("<div id='"+character.name+"' class='character'>"); 
-  var image = Canvas.createImage(character.getGraphic());
+  var image = Renderer.createImage(character.getGraphic());
   $div.append(image);
   this.orientObject(character, $div);
   return $div;
 };
-Canvas.prototype.updateCharacter = function(character){
+Renderer.prototype.updateCharacter = function(character){
   if (character === undefined){
     return;
   }
@@ -100,7 +100,7 @@ Canvas.prototype.updateCharacter = function(character){
   $new_td.append($div);
   this.orientObject(character, $div);
 };
-Canvas.prototype.updateTextDialog = function(text_dialog){
+Renderer.prototype.updateTextDialog = function(text_dialog){
   if (text_dialog.hasMessage()){
     this.$text_dialog_text.html(text_dialog.getMessage());
     this.$text_dialog.show();
@@ -109,8 +109,8 @@ Canvas.prototype.updateTextDialog = function(text_dialog){
     this.$text_dialog_text.html("");
   }
 };
-Canvas.prototype.drawChoiceList = function(choice_labels, selected_label){
-  var $selected_icon = Canvas.createImage("resources/images/icons/right-select-arrow.png");;
+Renderer.prototype.drawChoiceList = function(choice_labels, selected_label){
+  var $selected_icon = Renderer.createImage("resources/images/icons/right-select-arrow.png");;
   var $table = $("<table>");
   for (var i=0; i<choice_labels.length; i++){
     var $choice_row = $("<tr>");
@@ -123,7 +123,7 @@ Canvas.prototype.drawChoiceList = function(choice_labels, selected_label){
   this.$choice_dialog.html("");
   this.$choice_dialog.append($table);
 }
-Canvas.prototype.updateChoiceDialog = function(choice_dialog){
+Renderer.prototype.updateChoiceDialog = function(choice_dialog){
   if (choice_dialog.hasChoices()){
     var choice_labels = choice_dialog.getChoiceLabels();
     this.drawChoiceList(choice_labels, choice_dialog.getSelectedLabel());

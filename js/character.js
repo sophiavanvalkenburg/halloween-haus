@@ -8,7 +8,7 @@ Character.makeMessages = function(name, messages){
   if (messages !== undefined){
     return messages.map(
       function(m){ 
-        return Canvas.characterName(name+':') + '"' + m + '"';
+        return Renderer.characterName(name+':') + ' "' + m + '"';
       }
     );
   }
