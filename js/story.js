@@ -73,15 +73,11 @@ Story.prototype.triggerStoryEvent = function(state){
     case StoryStates.PLAYER_RECIEVED_COIN: 
         var player = this.controller.haus.getPlayer();
         player.addToInventory(this.objects.COIN);
-        var tile = this.controller.haus.getTileOnMap(0, 10, 7);
-        player.setLocation(tile.getPortalLoc());
-        this.controller.haus.setCurrentMap(player.mapIndex());
+        this.controller.movePlayer(player, new MapLocation(0, 10, 7));
         break; 
     case StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE:
         var player = this.controller.haus.getPlayer();
-        console.log(player.hasItem(this.objects.COIN));
         player.removeFromInventory(this.objects.COIN);
-        console.log(player.hasItem(this.objects.COIN));
         break;
   }
 }

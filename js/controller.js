@@ -23,24 +23,27 @@ Controller.prototype.setUpEventListener = function(){
   });
 };
 Controller.prototype.movePlayerLeft = function(){
-  this.movePlayer(-1, 0);
+  this.movePlayerByOffset(-1, 0);
 }
 Controller.prototype.movePlayerRight = function(){
-  this.movePlayer(1, 0);
+  this.movePlayerByOffset(1, 0);
 }
 Controller.prototype.movePlayerUp = function(){
-  this.movePlayer(0, -1);
+  this.movePlayerByOffset(0, -1);
 }
 Controller.prototype.movePlayerDown = function(){
-  this.movePlayer(0, 1);
+  this.movePlayerByOffset(0, 1);
 }
-Controller.prototype.movePlayer = function(x_offset, y_offset){
+Controller.prototype.movePlayerByOffset = function(x_offset, y_offset){
   var map = this.haus.getCurrentMap();
   var player = this.haus.getPlayer();
   var tile_x = player.X() + x_offset;
   var tile_y = player.Y() + y_offset;
   player.setOrientationTowards(tile_x, tile_y);
-  var tile = map.getTile(tile_x, tile_y);
+  this.movePlayer(player, new MapLocation(map.getId(), tile_x, tile_y));
+}
+Controller.prototype.movePlayer = function(player, map_loc){
+  var tile = this.haus.getTileOnMap(map_loc.mapIndex(), map_loc.X(), map_loc.Y());
   if (tile !== undefined && 
       tile.isAccessible() && 
       this.haus.getCharacterOnMap(tile.getPortalLoc()) === undefined
