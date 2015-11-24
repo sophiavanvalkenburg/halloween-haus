@@ -35,7 +35,7 @@ Story.prototype.setupStoryModes = function(){
         if (selected_item === "Yes"){
             controller.mode_manager.addModes([ 
               TextDialogMode.createFactory(
-                ["You received a " + Renderer.objectName("coin") + "."],
+                "You received a " + Renderer.objectName("coin") + ".",
                 function(){
                   the_story.addPlayedState(StoryStates.PLAYER_RECIEVED_COIN);
                 }
@@ -45,7 +45,7 @@ Story.prototype.setupStoryModes = function(){
   );
   fountain_tile.addMode(
       StoryStates.PLAYER_RECIEVED_COIN,
-      TextDialogMode.createFactory(["This fountain looks like", "it hasn't been used", "for a long time..."])
+      TextDialogMode.createFactory("This fountain looks like it hasn't been used for a long time...")
   );
 
   var table_tile = the_story.controller.haus.getTileOnMap(11, 7, 8);
@@ -65,7 +65,7 @@ Story.prototype.setupStoryModes = function(){
   var cat = this.controller.haus.getCharacterWithName("Calico");
   cat.addMode(
     StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE,
-    TextDialogMode.createFactory(Character.makeMessages(cat.getName(), ["Purr..."]))
+    TextDialogMode.createCharacterTextFactory(cat.getName(), "Purr...")
   );
 }
 Story.prototype.triggerStoryEvent = function(state){

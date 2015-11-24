@@ -6,16 +6,39 @@ var Renderer = function(){
   this.$map = $("#haus-map");
   this.current_map_index = -1;
 };
+Renderer.TEXT_DIALOG_CHAR_LIMIT = 25; 
 Renderer.createImage = function(filename){
   if (filename !== undefined){
     return $("<img src='"+filename+"'/>");
   }
 };
+Renderer.specialName = function(name, marker){
+  var words = name.split(" ");
+  return words.map(
+    function(w){ 
+        return marker+"("+w.toUpperCase()+")";
+    }
+  ).join(" ");
+}
 Renderer.characterName = function(name){
-  return '<span class=character-name>' + name.toUpperCase() + '</span>';
+  return Renderer.specialName(name, "ch");
 }
 Renderer.objectName = function(name){
-  return '<span class=object-name>' + name.toUpperCase() + '</span>';
+  return Renderer.specialName(name, "obj");
+}
+Renderer.removeSpecialNames = function(str){
+  return str.replace( /(ch|obj)\(([^\)]+)\)\B/g , '$2'); 
+}
+Renderer.replaceSpecialNamesWithHtml = function(str){
+  str = Renderer.replaceCharacterNamesWithHtml(str);
+  str = Renderer.replaceObjectNamesWithHtml(str);
+  return str;
+}
+Renderer.replaceCharacterNamesWithHtml = function(str){
+  return str.replace( /ch\(([^\)]+)\)\B/g , '<span class=character-name>$1</span>'); 
+}
+Renderer.replaceObjectNamesWithHtml = function(str){
+  return str.replace( /obj\(([^\)]+)\)\B/g , '<span class=object-name>$1</span>'); 
 }
 Renderer.prototype.drawMapCell = function(haus, map, map_loc){
   var x = map_loc.X();
@@ -102,7 +125,8 @@ Renderer.prototype.updateCharacter = function(character){
 };
 Renderer.prototype.updateTextDialog = function(text_dialog){
   if (text_dialog.hasMessage()){
-    this.$text_dialog_text.html(text_dialog.getMessage());
+    var message = Renderer.replaceSpecialNamesWithHtml(text_dialog.getMessage());
+    this.$text_dialog_text.html(message);
     this.$text_dialog.show();
   }else{
     this.$text_dialog.hide();

@@ -54,9 +54,33 @@ var TextDialogMode = function(messages, result_fn){
   this.result_fn = result_fn;
   this.mode = Mode.TEXT_DIALOG;
 };
-TextDialogMode.createFactory = function(messages, result_fn){
+TextDialogMode.createFactory = function(message_str, result_fn){
+  var messages = TextDialogMode.messageStringToArray(message_str);
   return function() { return new TextDialogMode(messages, result_fn); };
 }
+TextDialogMode.createCharacterTextFactory = function(name, message_str, result_fn){
+  var messages = TextDialogMode.messageStringToArray(message_str);
+  var messages_with_name = messages.map(
+    function(m){
+        return Renderer.characterName(name) + ': "' + m + '"';
+    }
+  );
+  return function() { return new TextDialogMode(messages_with_name, result_fn) };
+}
+TextDialogMode.messageStringToArray = function(message_str){
+  var words = message_str.split(" "); 
+  var messages = [""];
+  for (var i=0; i<words.length; i++){
+    var last_message = Renderer.removeSpecialNames(messages[messages.length-1]);
+    var next_word = " " + Renderer.removeSpecialNames(words[i]);
+    if ( (last_message + next_word).length <= Renderer.TEXT_DIALOG_CHAR_LIMIT){
+        messages[messages.length-1] += " " + words[i];
+    }else{
+        messages.push(words[i]);
+    }
+  }
+  return messages;
+};
 TextDialogMode.prototype = new Mode();
 TextDialogMode.prototype.constructor = TextDialogMode;
 TextDialogMode.prototype.downArrowButtonHandler = function(controller){
