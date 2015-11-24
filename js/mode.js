@@ -68,9 +68,12 @@ TextDialogMode.createCharacterTextFactory = function(name, message_str, result_f
   return function() { return new TextDialogMode(messages_with_name, result_fn) };
 }
 TextDialogMode.messageStringToArray = function(message_str){
+  if (message_str.length === 0){
+    return [];
+  }
   var words = message_str.split(" "); 
-  var messages = [""];
-  for (var i=0; i<words.length; i++){
+  var messages = [words[0]];
+  for (var i=1; i<words.length; i++){
     var last_message = Renderer.removeSpecialNames(messages[messages.length-1]);
     var next_word = " " + Renderer.removeSpecialNames(words[i]);
     if ( (last_message + next_word).length <= Renderer.TEXT_DIALOG_CHAR_LIMIT){
