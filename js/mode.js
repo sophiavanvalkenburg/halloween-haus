@@ -1,4 +1,10 @@
-var Mode = function(){};
+var Mode = function(){
+  this.type = Mode.MODE;
+};
+Mode.MODE = "mode";
+Mode.TEXT_DIALOG = "text_dialog";
+Mode.CHOICE_DIALOG = "choice_dialog";
+Mode.MAP = "map";
 Mode.LEFT = 37;
 Mode.UP = 38;
 Mode.RIGHT = 39;
@@ -46,6 +52,7 @@ var TextDialogMode = function(messages, result_fn){
   Mode.call(this);
   this.messages = messages;
   this.result_fn = result_fn;
+  this.mode = Mode.TEXT_DIALOG;
 };
 TextDialogMode.createFactory = function(messages, result_fn){
   return function() { return new TextDialogMode(messages, result_fn); };
@@ -86,6 +93,7 @@ var ChoiceDialogMode = function(choices, message, select_fn){
   this.selected = 0;
   this.select_fn = select_fn;
   this.handled = false;
+  this.type = Mode.CHOICE_DIALOG;
 };
 ChoiceDialogMode.createFactory = function(choices, message, select_fn){
   return function(){ return new ChoiceDialogMode(choices, message, select_fn); };
@@ -125,6 +133,7 @@ ChoiceDialogMode.prototype.shouldEndMode = function(){
 var MapMode = function(){
   Mode.call(this); 
   this.handled = false;
+  this.type = Mode.MAP;
 };
 MapMode.createFactory = function(){
   return function() { return new MapMode(); };
