@@ -57,6 +57,9 @@ MapObject.prototype.addMode = function(game_state, mode){
   this.modes[game_state].push(mode);
 };
 MapObject.prototype.addModesForState = function(game_state, modes){
+  if (modes === undefined){
+    return;
+  }
   if (this.modes[game_state] === undefined){
     this.modes[game_state] = [];
   }
@@ -65,6 +68,9 @@ MapObject.prototype.addModesForState = function(game_state, modes){
   }
 }
 MapObject.prototype.addModes = function(modes_per_state){
+  if (modes_per_state === undefined){
+    return;
+  }
   for (var i=0; i<modes_per_state.length; i++){
     var obj = modes_per_state[i];
     this.addModesForState(obj.state, obj.modes);

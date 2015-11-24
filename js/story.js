@@ -43,19 +43,24 @@ Story.prototype.setupStoryModes = function(){
             } 
       })
   );
+  fountain_tile.addMode(
+      StoryStates.PLAYER_RECIEVED_COIN,
+      TextDialogMode.createFactory(["This fountain looks like", "it hasn't been used", "for a long time..."])
+  );
 
   var table_tile = the_story.controller.haus.getTileOnMap(11, 7, 8);
   table_tile.addMode(
-    StoryStates.PLAYER_RECIEVED_COIN,
-    ChoiceDialogMode.createFactory(
-      ["Yes", "No"], 
-      "Place coin on table?",
-      function(controller, selected_item){
-        if (selected_item === "Yes"){
-            the_story.addPlayedState(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE);
-        } 
-      })
+      StoryStates.PLAYER_RECIEVED_COIN,
+      ChoiceDialogMode.createFactory(
+        ["Yes", "No"], 
+        "Place coin on table?",
+        function(controller, selected_item){
+          if (selected_item === "Yes"){
+              the_story.addPlayedState(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE);
+          } 
+        })
   );
+  table_tile.addMode(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE, undefined)
 
   var cat = this.controller.haus.getCharacterWithName("Calico");
   cat.addMode(

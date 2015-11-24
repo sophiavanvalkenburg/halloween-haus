@@ -59,4 +59,3 @@ Character.prototype.removeFromInventory = function(item){
 Character.prototype.hasItem = function(item){
   return this.inventory.indexOf(item) >= 0;
 };
-
