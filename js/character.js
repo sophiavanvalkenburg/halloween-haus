@@ -6,6 +6,9 @@ var Character = function(name, map_loc, graphic, modes){
 };
 Character.prototype = new MapObject();
 Character.prototype.constructor = Character;
+Character.prototype.getName = function(){
+  return this.name;
+};
 Character.prototype.setOrientation = function(orientation){
   this.orientation = orientation;
 };

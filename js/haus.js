@@ -42,6 +42,14 @@ Haus.prototype.getCharacterOnMap = function(map_loc){
     }
   }
 };
+Haus.prototype.getCharacterWithName = function(name){
+  for (var i=0; i<this.characters.length; i++){
+    var ch = this.characters[i];
+    if (ch.getName() == name){
+      return ch;
+    }
+  }
+}
 Haus.prototype.getFacingObjectOnMap = function(map, character){
   if (map.getId() !== character.mapIndex()){
     return undefined;
