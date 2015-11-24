@@ -4,19 +4,23 @@ var StoryStates = {
     PLAYER_PLACED_COIN_ON_KITCHEN_TABLE: "player-placed-coin-on-kitchen-table"
 }
 
-var Story = function(controller){
-  this.controller = controller;
+var Story = function(){
+  this.controller = undefined;
   this.objects = {
     COIN: "coin"
   }
-  this.events = {};
+  this.played_states = [ StoryStates.INIT ];
 }
-Story.prototype.setup = function(){
+Story.prototype.setup = function(controller){
+  this.controller = controller;
   this.setupStoryModes();
 }
-Story.prototype.setCurrentGameState = function(state){
-  this.controller.haus.setCurrentGameState(state);
+Story.prototype.addPlayedState = function(state){
+  this.played_states.push(state);
   this.triggerStoryEvent(state);
+}
+Story.prototype.getPlayedGameStates = function(){
+  return this.played_states;
 }
 Story.prototype.setupStoryModes = function(){
   var the_story = this;
@@ -27,13 +31,13 @@ Story.prototype.setupStoryModes = function(){
     ChoiceDialogMode.createFactory(
       ["Yes", "No"], 
       "Look! There's a coin. Take it?",
-      function(controller, mode_manager, selected_item){
+      function(controller, selected_item){
         if (selected_item === "Yes"){
-            mode_manager.addModes([ 
+            controller.mode_manager.addModes([ 
               TextDialogMode.createFactory(
                 ["You received a COIN."],
                 function(){
-                  the_story.setCurrentGameState(StoryStates.PLAYER_RECIEVED_COIN);
+                  the_story.addPlayedState(StoryStates.PLAYER_RECIEVED_COIN);
                 }
               )]);
             } 
@@ -46,11 +50,17 @@ Story.prototype.setupStoryModes = function(){
     ChoiceDialogMode.createFactory(
       ["Yes", "No"], 
       "Place coin on table?",
-      function(controller, mode_manager, selected_item){
+      function(controller, selected_item){
         if (selected_item === "Yes"){
-            the_story.setCurrentGameState(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE);
+            the_story.addPlayedState(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE);
         } 
       })
+  );
+
+  var cat = this.controller.haus.getCharacterWithName("Calico");
+  cat.addMode(
+    StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE,
+    TextDialogMode.createFactory(["Purr..."])
   );
 }
 Story.prototype.triggerStoryEvent = function(state){

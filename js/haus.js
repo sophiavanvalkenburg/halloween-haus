@@ -6,14 +6,7 @@ var Haus = function(){
   this.text_dialog = new TextDialog();
   this.choice_dialog = new ChoiceDialog();
   this.current_map = -1;
-  this.current_state = StoryStates.INIT;
 };
-Haus.prototype.setCurrentGameState = function(state){
-  this.current_state = state;
-}
-Haus.prototype.getCurrentGameState = function(){
-  return this.current_state;
-}
 Haus.prototype.addMap = function(map){
   this.maps[map.getId()] = map;
 }

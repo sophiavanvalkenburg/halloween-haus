@@ -18,25 +18,25 @@ Mode.prototype.initialize = function(){};
 Mode.prototype.shouldEndMode = function(){
   return true;
 };
-Mode.prototype.eventHandler = function(key_code, controller, mode_manager){
+Mode.prototype.eventHandler = function(key_code, controller){
   switch(key_code){
     case Mode.LEFT:
-      this.leftArrowButtonHandler(controller, mode_manager);
+      this.leftArrowButtonHandler(controller);
       break;
     case Mode.RIGHT:
-      this.rightArrowButtonHandler(controller, mode_manager);
+      this.rightArrowButtonHandler(controller);
       break;
     case Mode.UP:
-      this.upArrowButtonHandler(controller, mode_manager);
+      this.upArrowButtonHandler(controller);
       break;
     case Mode.DOWN:
-      this.downArrowButtonHandler(controller, mode_manager);
+      this.downArrowButtonHandler(controller);
       break;
     case Mode.SELECT:
-      this.selectButtonHandler(controller, mode_manager);
+      this.selectButtonHandler(controller);
       break;
     default:
-      this.defaultHandler(controller, mode_manager);
+      this.defaultHandler(controller);
       break;
   }
 };
@@ -113,8 +113,8 @@ ChoiceDialogMode.prototype.upArrowButtonHandler = function(controller){
   this.selected = this.selected === 0 ? 0 : this.selected - 1;
   controller.choiceDialogSelectItem(this.selected);
 };
-ChoiceDialogMode.prototype.selectButtonHandler = function(controller, mode_manager){
-  this.select_fn(controller, mode_manager, this.choices[this.selected])
+ChoiceDialogMode.prototype.selectButtonHandler = function(controller){
+  this.select_fn(controller, this.choices[this.selected])
   this.handled = true; 
 };
 ChoiceDialogMode.prototype.shouldEndMode = function(){
@@ -147,11 +147,12 @@ MapMode.prototype.upArrowButtonHandler = function(controller){
   controller.movePlayerUp();
   this.handled = true;
 };
-MapMode.prototype.selectButtonHandler = function(controller, mode_manager){
+MapMode.prototype.selectButtonHandler = function(controller){
   var target_obj = controller.selectFacingObject();
   if (target_obj !== undefined){
-    var current_state = controller.haus.getCurrentGameState();
-    mode_manager.addModes(target_obj.getModeSequence(current_state)); 
+    var played_states = controller.the_story.getPlayedGameStates();
+    var mode_seq = target_obj.getModeSequence(played_states);
+    controller.mode_manager.addModes(mode_seq); 
   }
   this.handled = true;
 };

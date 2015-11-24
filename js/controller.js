@@ -1,7 +1,8 @@
-var Controller = function(haus, canvas, mode_manager){
+var Controller = function(haus, canvas, mode_manager, the_story){
   this.haus = haus;
   this.canvas = canvas;
   this.mode_manager = mode_manager;
+  this.the_story = the_story;
 };
 Controller.prototype.setup = function(){
   this.setUpEventListener();
@@ -79,11 +80,11 @@ $(function(){
   var map_loader = new MapLoader(the_haus);
   var canvas = new Canvas();
   var mode_manager = new InputModeManager();
-  var controller = new Controller(the_haus, canvas, mode_manager);
-  var the_story = new Story(controller);
+  var the_story = new Story();
+  var controller = new Controller(the_haus, canvas, mode_manager, the_story);
   map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
-    the_story.setup();
+    the_story.setup(controller);
   }); 
 });
 

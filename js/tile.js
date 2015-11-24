@@ -40,8 +40,15 @@ MapObject.prototype.getOrientationTowardsMe = function(x, y){
   }
   return MapState.DOWN;
 };
-MapObject.prototype.getModeSequence = function(game_state){
-  return this.modes[game_state] === undefined ? []: this.modes[game_state];
+MapObject.prototype.getModeSequence = function(played_states){
+  var last_mode_seq = [];
+  for (var i=0; i<played_states.length; i++){
+    var state = played_states[i];
+    if (this.modes[state] !== undefined){
+      last_mode_seq = this.modes[state];
+    }
+  }
+  return last_mode_seq;
 };
 MapObject.prototype.addMode = function(game_state, mode){
   if (this.modes[game_state] === undefined){
