@@ -82,3 +82,7 @@
     -webkit-transform: rotate(-90deg); /* chrome, safari, opera */
     transform: rotate(-90deg);
 }
+
+.object-name, .character-name {
+    font-weight: bold;
+}

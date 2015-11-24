@@ -19,7 +19,7 @@ var Config = {
         [
           {
             state: StoryStates.INIT, 
-            modes: [TextDialogMode.createFactory(["<b>Calico:</b> \"Meow!\""])]
+            modes: [TextDialogMode.createFactory(Character.makeMessages("Calico", ["Meow!"]))]
           }
         ]
       ),

@@ -4,6 +4,15 @@ var Character = function(name, map_loc, graphic, modes){
   this.inventory = [];
   this.orientation = undefined; 
 };
+Character.makeMessages = function(name, messages){
+  if (messages !== undefined){
+    return messages.map(
+      function(m){ 
+        return Canvas.characterName(name+':') + '"' + m + '"';
+      }
+    );
+  }
+}
 Character.prototype = new MapObject();
 Character.prototype.constructor = Character;
 Character.prototype.getName = function(){

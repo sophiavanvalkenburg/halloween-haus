@@ -6,6 +6,17 @@ var Canvas = function(){
   this.$map = $("#haus-map");
   this.current_map_index = -1;
 };
+Canvas.createImage = function(filename){
+  if (filename !== undefined){
+    return $("<img src='"+filename+"'/>");
+  }
+};
+Canvas.characterName = function(name){
+  return '<span class=character-name>' + name.toUpperCase() + '</span>';
+}
+Canvas.objectName = function(name){
+  return '<span class=object-name>' + name.toUpperCase() + '</span>';
+}
 Canvas.prototype.drawMapCell = function(haus, map, map_loc){
   var x = map_loc.X();
   var y = map_loc.Y();
@@ -46,7 +57,7 @@ Canvas.prototype.drawTile = function(tile){
   }else{
     graphic_loc = tile.getGraphic();
   }
-  $div.append(this.createImage(graphic_loc));
+  $div.append(Canvas.createImage(graphic_loc));
   return $div;
 };
 Canvas.prototype.orientObject = function(obj, obj_element){
@@ -73,7 +84,7 @@ Canvas.prototype.drawCharacter = function(character){
     return;
   }
   var $div = $("<div id='"+character.name+"' class='character'>"); 
-  var image = this.createImage(character.getGraphic());
+  var image = Canvas.createImage(character.getGraphic());
   $div.append(image);
   this.orientObject(character, $div);
   return $div;
@@ -99,7 +110,7 @@ Canvas.prototype.updateTextDialog = function(text_dialog){
   }
 };
 Canvas.prototype.drawChoiceList = function(choice_labels, selected_label){
-  var $selected_icon = this.createImage("resources/images/icons/right-select-arrow.png");;
+  var $selected_icon = Canvas.createImage("resources/images/icons/right-select-arrow.png");;
   var $table = $("<table>");
   for (var i=0; i<choice_labels.length; i++){
     var $choice_row = $("<tr>");
@@ -122,8 +133,4 @@ Canvas.prototype.updateChoiceDialog = function(choice_dialog){
     this.$choice_dialog.html("");
   }
 }
-Canvas.prototype.createImage = function(filename){
-  if (filename !== undefined){
-    return $("<img src='"+filename+"'/>");
-  }
-};
+

@@ -30,12 +30,12 @@ Story.prototype.setupStoryModes = function(){
     StoryStates.INIT,
     ChoiceDialogMode.createFactory(
       ["Yes", "No"], 
-      "Look! There's a coin. Take it?",
+      "Look! There's a " + Canvas.objectName("coin") + ". Take it?",
       function(controller, selected_item){
         if (selected_item === "Yes"){
             controller.mode_manager.addModes([ 
               TextDialogMode.createFactory(
-                ["You received a COIN."],
+                ["You received a " + Canvas.objectName("coin") + "."],
                 function(){
                   the_story.addPlayedState(StoryStates.PLAYER_RECIEVED_COIN);
                 }
@@ -53,7 +53,7 @@ Story.prototype.setupStoryModes = function(){
       StoryStates.PLAYER_RECIEVED_COIN,
       ChoiceDialogMode.createFactory(
         ["Yes", "No"], 
-        "Place coin on table?",
+        "Place " + Canvas.objectName("coin") + " on table?",
         function(controller, selected_item){
           if (selected_item === "Yes"){
               the_story.addPlayedState(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE);
@@ -65,7 +65,7 @@ Story.prototype.setupStoryModes = function(){
   var cat = this.controller.haus.getCharacterWithName("Calico");
   cat.addMode(
     StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE,
-    TextDialogMode.createFactory(["Purr..."])
+    TextDialogMode.createFactory(Character.makeMessages(cat.getName(), ["Purr..."]))
   );
 }
 Story.prototype.triggerStoryEvent = function(state){
