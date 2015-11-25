@@ -71,7 +71,7 @@ MapLoader.prototype.parseTileData = function(tile_data){
   var portal = this.makeMapLocation(tile_data.portal);
   var img_src = this.makeTileImageSrc(tile_data.graphic);
   var modes = this.makeTileModes(tile_data);
-  return new Tile(loc, portal, tile_data.is_accessible, img_src, modes);
+  return new Tile(tile_data.label, loc, portal, tile_data.is_accessible, img_src, modes);
 }
 MapLoader.prototype.loadMap = function(data){
   var meta = this.parseMetaData(data);

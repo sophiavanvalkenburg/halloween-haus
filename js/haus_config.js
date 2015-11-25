@@ -1,3 +1,15 @@
+var Labels = {
+  tiles: {
+    FOUNTAIN: "fountain",
+    KITCHEN_TABLE: "kitchen-table",
+    MOVE_TILE: "player-start"
+  },
+  characters: {
+    CALICO: "calico",
+    SOPHIA: "sophia"
+  }
+}
+
 var Config = {
   mapfiles: [
     "resources/maps/map0.json", 
@@ -7,19 +19,19 @@ var Config = {
     "resources/maps/map7.json"
   ],
   player: new Character(
-      "Sophia", 
+      Labels.characters.SOPHIA,
       new MapLocation(0, 10, 7), 
       "resources/images/characters/player.png"
       ),
   characters: [
     new Character(
-        "Calico", 
+        Labels.characters.CALICO, 
         new MapLocation(0, 13, 1),
         "resources/images/characters/cat-move.gif", 
         [
           {
             state: StoryStates.INIT, 
-            modes: [TextDialogMode.createCharacterTextFactory("Calico", "Meow!")]
+            modes: [TextDialogMode.createCharacterTextFactory(Labels.characters.CALICO, "Meow!")]
           }
         ]
       ),

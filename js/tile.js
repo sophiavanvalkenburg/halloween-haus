@@ -1,5 +1,6 @@
-var MapObject = function(map_loc, is_accessible, graphic, modes){
+var MapObject = function(label, map_loc, is_accessible, graphic, modes){
   this.map_loc = map_loc;
+  this.label = label;
   this.graphic = graphic;
   this.is_accessible = is_accessible;
   this.modes = {};
@@ -7,6 +8,9 @@ var MapObject = function(map_loc, is_accessible, graphic, modes){
     this.addModes(modes);
   }
 }
+MapObject.prototype.getLabel = function(){
+  return this.label;
+};
 MapObject.prototype.getGraphic = function(){
   return this.graphic;
 };
@@ -25,6 +29,9 @@ MapObject.prototype.mapIndex = function(){
 MapObject.prototype.setLocation = function(map_location){
   this.map_loc = map_location;
 };
+MapObject.prototype.getLocation = function(){
+  return this.map_loc.copy();
+}
 MapObject.prototype.getOrientationTowardsMe = function(x, y){
   if (x > this.X()){
     return MapState.RIGHT;
@@ -78,8 +85,8 @@ MapObject.prototype.addModes = function(modes_per_state){
 }
 
 
-var Tile = function(map_loc, portal_loc, is_accessible, graphic, modes){
-  MapObject.call(this, map_loc, is_accessible, graphic, modes);
+var Tile = function(label, map_loc, portal_loc, is_accessible, graphic, modes){
+  MapObject.call(this, label, map_loc, is_accessible, graphic, modes);
   if (portal_loc === undefined){
     this.portal_loc = map_loc;
   }else{

@@ -23,6 +23,14 @@ Haus.prototype.getTileOnMap = function(map_index, tile_x, tile_y){
   var map = this.getMap(map_index);
   return map.getTile(tile_x, tile_y);
 };
+Haus.prototype.getTileWithLabel = function(label){
+  for (var id in this.maps){
+    if (this.maps[id].getTileWithLabel !== undefined &&
+        this.maps[id].getTileWithLabel(label) !== undefined){
+        return this.maps[id].getTileWithLabel(label); 
+    }
+  }  
+};
 Haus.prototype.getPlayer = function(){
   return this.player;
 };
@@ -45,7 +53,7 @@ Haus.prototype.getCharacterOnMap = function(map_loc){
 Haus.prototype.getCharacterWithName = function(name){
   for (var i=0; i<this.characters.length; i++){
     var ch = this.characters[i];
-    if (ch.getName() == name){
+    if (ch.getLabel() == name){
       return ch;
     }
   }

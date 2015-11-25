@@ -12,13 +12,15 @@ MapLocation.prototype.X = function(){
 MapLocation.prototype.Y = function(){
   return this.y;
 };
+MapLocation.prototype.copy = function(){
+  return new MapLocation(this.mapIndex(), this.X(), this.Y());
+}
 
 var MapState = function(id, tiles){
   this.id = id;
-  this.tiles = tiles;
   this.tile_grid = [];
-  this.size = tiles.length;
-  var res = this.mapTilesToGrid();
+  this.labeled_tiles = {};
+  var res = this.mapTilesToGrid(tiles);
   this.max_x = res[0];
   this.max_y = res[1];
 }; 
@@ -38,17 +40,20 @@ MapState.prototype.addTileToGrid = function(tile){
     }
     this.tile_grid[y][x] = tile;
 };
-MapState.prototype.mapTilesToGrid = function(){
+MapState.prototype.mapTilesToGrid = function(tiles){
   var max_x = 0;
   var max_y = 0;
-  for (var i=0; i<this.size; i++){
-    var tile = this.tiles[i];
+  for (var i=0; i<tiles.length; i++){
+    var tile = tiles[i];
     if (tile.mapIndex() !== this.getId()){
       continue;
     }
     max_x = tile.X() > max_x ? tile.X() : max_x;
     max_y = tile.Y() > max_y ? tile.Y() : max_y;
     this.addTileToGrid(tile);
+    if (tile.getLabel()){
+        this.labeled_tiles[tile.getLabel()] = tile;
+    }
   }
   return [max_x, max_y];
 };
@@ -64,4 +69,6 @@ MapState.prototype.getMaxY = function(){
 MapState.prototype.getMaxX = function(){
   return this.max_x;
 };
-
+MapState.prototype.getTileWithLabel = function(label){
+  return this.labeled_tiles[label];
+}

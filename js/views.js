@@ -106,7 +106,7 @@ Renderer.prototype.drawCharacter = function(character){
   if (character === undefined){
     return;
   }
-  var $div = $("<div id='"+character.name+"' class='character'>"); 
+  var $div = $("<div id='"+character.getLabel()+"' class='character'>"); 
   var image = Renderer.createImage(character.getGraphic());
   $div.append(image);
   this.orientObject(character, $div);
@@ -116,7 +116,7 @@ Renderer.prototype.updateCharacter = function(character){
   if (character === undefined){
     return;
   }
-  var $div = $("#"+character.name);
+  var $div = $("#"+character.getLabel());
   var new_x = character.X();
   var new_y = character.Y();
   var $new_td = $("td[data-x='"+new_x+"'][data-y='"+new_y+"']");

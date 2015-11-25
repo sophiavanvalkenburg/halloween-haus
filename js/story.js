@@ -25,7 +25,7 @@ Story.prototype.getPlayedGameStates = function(){
 Story.prototype.setupStoryModes = function(){
   var the_story = this;
 
-  var fountain_tile = this.controller.haus.getTileOnMap(7, 5, 5);
+  var fountain_tile = this.controller.haus.getTileWithLabel(Labels.tiles.FOUNTAIN);
   fountain_tile.addMode(
     StoryStates.INIT,
     ChoiceDialogMode.createFactory(
@@ -48,7 +48,7 @@ Story.prototype.setupStoryModes = function(){
       TextDialogMode.createFactory("This fountain looks like it hasn't been used for a long time...")
   );
 
-  var table_tile = the_story.controller.haus.getTileOnMap(11, 7, 8);
+  var table_tile = the_story.controller.haus.getTileWithLabel(Labels.tiles.KITCHEN_TABLE);
   table_tile.addMode(
       StoryStates.PLAYER_RECIEVED_COIN,
       ChoiceDialogMode.createFactory(
@@ -62,10 +62,10 @@ Story.prototype.setupStoryModes = function(){
   );
   table_tile.addMode(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE, undefined)
 
-  var cat = this.controller.haus.getCharacterWithName("Calico");
+  var cat = this.controller.haus.getCharacterWithName(Labels.characters.CALICO);
   cat.addMode(
     StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE,
-    TextDialogMode.createCharacterTextFactory(cat.getName(), "Purr...")
+    TextDialogMode.createCharacterTextFactory(Labels.characters.CALICO, "Purr...")
   );
 }
 Story.prototype.triggerStoryEvent = function(state){
@@ -73,7 +73,8 @@ Story.prototype.triggerStoryEvent = function(state){
     case StoryStates.PLAYER_RECIEVED_COIN: 
         var player = this.controller.haus.getPlayer();
         player.addToInventory(this.objects.COIN);
-        this.controller.movePlayer(player, new MapLocation(0, 10, 7));
+        var next_tile = this.controller.haus.getTileWithLabel(Labels.tiles.MOVE_TILE);
+        this.controller.movePlayer(player, next_tile.getLocation());
         break; 
     case StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE:
         var player = this.controller.haus.getPlayer();

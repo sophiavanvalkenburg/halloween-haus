@@ -1,6 +1,5 @@
-var Character = function(name, map_loc, graphic, modes){
-  MapObject.call(this, map_loc, false, graphic, modes);
-  this.name = name;
+var Character = function(label, map_loc, graphic, modes){
+  MapObject.call(this, label, map_loc, false, graphic, modes);
   this.inventory = [];
   this.orientation = undefined; 
 };
@@ -15,9 +14,6 @@ Character.makeMessages = function(name, messages){
 }
 Character.prototype = new MapObject();
 Character.prototype.constructor = Character;
-Character.prototype.getName = function(){
-  return this.name;
-};
 Character.prototype.setOrientation = function(orientation){
   this.orientation = orientation;
 };
