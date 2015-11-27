@@ -28,7 +28,16 @@ var Config = {
     "resources/maps/map5.json", 
     "resources/maps/map6.json",
     "resources/maps/map7.json",
-    "resources/maps/map8.json"
+    "resources/maps/map8.json",
+    "resources/maps/map9.json",
+    "resources/maps/map91.json",
+    "resources/maps/map92.json",
+    "resources/maps/map93.json",
+    "resources/maps/map94.json",
+    "resources/maps/map95.json",
+    "resources/maps/map96.json",
+    "resources/maps/map10.json",
+    "resources/maps/map14.json",
   ],
   player: new Character(
       Labels.characters.SOPHIA,
