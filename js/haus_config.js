@@ -6,7 +6,11 @@ var Labels = {
   },
   characters: {
     CALICO: "calico",
-    SOPHIA: "sophia"
+    SOPHIA: "sophia",
+    YOU:    "you",
+    ALULA:  "alula",
+    MARTHA: "martha",
+    BROOKE: "brooke",
   }
 }
 
@@ -53,11 +57,31 @@ var Config = {
     "resources/maps/map147.json"
   ],
   player: new Character(
-      Labels.characters.SOPHIA,
+      Labels.characters.YOU,
       new MapLocation(0, 10, 7), 
       "resources/images/characters/player.png"
       ),
   characters: [
+    new Character(
+      Labels.characters.SOPHIA,
+      new MapLocation(12, 14, 10), 
+      "resources/images/characters/sophia.png"
+      ),
+    new Character(
+      Labels.characters.MARTHA,
+      new MapLocation(11, 7, 5), 
+      "resources/images/characters/martha.png"
+      ),
+    new Character(
+      Labels.characters.BROOKE,
+      new MapLocation(32, 6, 14), 
+      "resources/images/characters/brooke.png"
+      ),
+    new Character(
+      Labels.characters.ALULA,
+      new MapLocation(4, 13, 14), 
+      "resources/images/characters/alula.png"
+      ),
     new Character(
         Labels.characters.CALICO, 
         new MapLocation(0, 13, 1),
