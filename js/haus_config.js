@@ -125,7 +125,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.ADEL, 
-              "Check out the spooky details on this vest that ch(sheri) made for me!"
+              "Check out the spooky details on this vest that ch(SHERI) made for me!"
               )]
           }
         ]
@@ -181,7 +181,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.AMY, 
-              "ch(xiaoyu) and I made the pusheen pumpkin! Check it out!"
+              "ch(XIAOYU) and I made the pusheen pumpkin! Check it out!"
               )]
           }
         ]
@@ -251,7 +251,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.JAE, 
-              "Hi, I'm ch(jae) from konbanwa."
+              "Hi, I'm ch(JAE) from konbanwa."
               )]
           }
         ]
@@ -335,20 +335,6 @@ var Config = {
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.OLIVIA, 
               "Try some of these tarts! I made them myself!"
-              )]
-          }
-        ]
-      ),
-    new Character(
-      Labels.characters.AMY,
-      new MapLocation(22, 3, 9), 
-      "resources/images/characters/amy.png",
-      [
-          {
-            state: StoryStates.INIT, 
-            modes: [TextDialogMode.createCharacterTextFactory(
-              Labels.characters.AMY, 
-              "ch(xiaoyu) and I made the pusheen pumpkin! Check it out!"
               )]
           }
         ]
