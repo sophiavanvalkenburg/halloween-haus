@@ -26,6 +26,7 @@ var Labels = {
     MIRI:     "miri",
     OLIVIA:    "olivia",
     PRODUCE:  "produce",
+    PRODUCE_NAME:  "high priestess produce",
     SHERI:    "sheri",
     SKYLAR:   "skylar",
     SOPHIA:   "sophia",
@@ -83,63 +84,72 @@ var Config = {
     "resources/maps/normal/map147.json"
   ],
   player: new Character(
-      Labels.characters.YOU,
-      new MapLocation(0, 10, 7), 
-      "resources/images/characters/player.png"
+      {
+        label:    Labels.characters.YOU,
+        map_loc:  new MapLocation(0, 10, 7), 
+        graphic:  "resources/images/characters/player.png"
+      }
       ),
   characters: [
     new Character(
-        Labels.characters.CALICO, 
-        new MapLocation(0, 13, 1),
-        "resources/images/characters/cat-move.gif", 
-        [
-          {
-            state: StoryStates.INIT, 
-            modes: [TextDialogMode.createCharacterTextFactory(
-              Labels.characters.CALICO, 
-              "Meow!"
-              )]
-          }
-        ],
-        MapState.DOWN,
-        false
+        {
+          label:    Labels.characters.CALICO, 
+          map_loc:  new MapLocation(0, 13, 1),
+          graphic:  "resources/images/characters/cat-move.gif", 
+          modes:    [
+            {
+              state: StoryStates.INIT, 
+              modes: [TextDialogMode.createCharacterTextFactory(
+                Labels.characters.CALICO, 
+                "Meow!"
+                )]
+            }
+          ],
+          initial_orientation:    MapState.DOWN,
+          interacts_with_player:  false
+        }
       ),
 
     new Character(
-      Labels.characters.ABBY,
-      new MapLocation(4, 11, 14), 
-      "resources/images/characters/abby.png",
-      [
-          {
-            state: StoryStates.INIT, 
-            modes: [TextDialogMode.createCharacterTextFactory(
-              Labels.characters.ABBY, 
-              "... Drat! You made me lose points on love live!"
-              )]
-          }
-        ],
-        MapState.RIGHT,
-        false
+        {
+          label:    Labels.characters.ABBY,
+          map_loc:  new MapLocation(4, 11, 14), 
+          graphic:  "resources/images/characters/abby.png",
+          modes:    [
+              {
+                state: StoryStates.INIT, 
+                modes: [TextDialogMode.createCharacterTextFactory(
+                  Labels.characters.ABBY, 
+                  "... Drat! You made me lose points on love live!"
+                  )]
+              }
+            ],
+          initial_orientation:    MapState.RIGHT,
+          interacts_with_player:  false
+        }
       ),
     new Character(
-      Labels.characters.ADEL,
-      new MapLocation(103, 11, 6), 
-      "resources/images/characters/adel.png",
-      [
-          {
-            state: StoryStates.INIT, 
-            modes: [TextDialogMode.createCharacterTextFactory(
-              Labels.characters.ADEL, 
-              "Check out the spooky details on this vest that ch(SHERI) made for me!"
-              )]
-          }
-        ]
+        {
+          label:    Labels.characters.ADEL,
+          map_loc:  new MapLocation(103, 11, 6), 
+          graphic:  "resources/images/characters/adel.png",
+          modes:  [
+              {
+                state: StoryStates.INIT, 
+                modes: [TextDialogMode.createCharacterTextFactory(
+                  Labels.characters.ADEL, 
+                  "Check out the spooky details on this vest that ch(SHERI) made for me!"
+                  )]
+              }
+            ]
+        }
       ),
     new Character(
-      Labels.characters.ALEKS,
-      new MapLocation(6, 5, 11), 
-      "resources/images/characters/aleks.png",
-      [
+        {
+      label:	Labels.characters.ALEKS,
+      map_loc:	new MapLocation(6, 5, 11), 
+      graphic: "resources/images/characters/aleks.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -148,13 +158,13 @@ var Config = {
               )]
           }
         ],
-        MapState.RIGHT
-      ),
-    new Character(
-      Labels.characters.ALICE,
-      new MapLocation(4, 12, 13), 
-      "resources/images/characters/alice.png",
-      [
+        initial_orientation: MapState.RIGHT
+ }),
+    new Character( {
+      label:	Labels.characters.ALICE,
+      map_loc:	new MapLocation(4, 12, 13), 
+      graphic: "resources/images/characters/alice.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -163,12 +173,12 @@ var Config = {
               )]
           }
         ]
-      ),
-    new Character(
-      Labels.characters.ALULA,
-      new MapLocation(4, 13, 14), 
-      "resources/images/characters/alula.png",
-      [
+ }),
+    new Character( {
+      label:	Labels.characters.ALULA,
+      map_loc:	new MapLocation(4, 13, 14), 
+      graphic: "resources/images/characters/alula.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -177,13 +187,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.AMY,
-      new MapLocation(22, 3, 9), 
-      "resources/images/characters/amy.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.AMY,
+      map_loc:	new MapLocation(22, 3, 9), 
+      graphic: "resources/images/characters/amy.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -192,13 +202,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.ANGELICA,
-      new MapLocation(11, 9, 7), 
-      "resources/images/characters/angelica.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.ANGELICA,
+      map_loc:	new MapLocation(11, 9, 7), 
+      graphic: "resources/images/characters/angelica.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -207,13 +217,13 @@ var Config = {
               )]
           }
         ], 
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.BETHANY,
-      new MapLocation(6, 9, 11), 
-      "resources/images/characters/bethany.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.BETHANY,
+      map_loc:	new MapLocation(6, 9, 11), 
+      graphic: "resources/images/characters/bethany.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -222,13 +232,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.BROOKE,
-      new MapLocation(32, 6, 14), 
-      "resources/images/characters/brooke.png",
-       [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.BROOKE,
+      map_loc:	new MapLocation(32, 6, 14), 
+      graphic: "resources/images/characters/brooke.png",
+       modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -237,12 +247,12 @@ var Config = {
               )]
           }
         ]
-      ),
-    new Character(
-      Labels.characters.FLO,
-      new MapLocation(32, 6, 10), 
-      "resources/images/characters/flo.png",
-      [
+ }),
+    new Character( {
+      label:	Labels.characters.FLO,
+      map_loc:	new MapLocation(32, 6, 10), 
+      graphic: "resources/images/characters/flo.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -251,13 +261,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.JAE,
-      new MapLocation(14, 11, 9), 
-      "resources/images/characters/jae.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.JAE,
+      map_loc:	new MapLocation(14, 11, 9), 
+      graphic: "resources/images/characters/jae.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -266,13 +276,13 @@ var Config = {
               )]
           }
         ],
-        MapState.RIGHT
-      ),
-    new Character(
-      Labels.characters.LANYA,
-      new MapLocation(32, 5, 3), 
-      "resources/images/characters/lanya.png",
-      [
+        initial_orientation: MapState.RIGHT
+ }),
+    new Character( {
+      label:	Labels.characters.LANYA,
+      map_loc:	new MapLocation(32, 5, 3), 
+      graphic: "resources/images/characters/lanya.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createFactory(
@@ -280,14 +290,14 @@ var Config = {
               )]
           }
         ],
-        MapState.RIGHT,
-        false
-      ),
-    new Character(
-      Labels.characters.LEE,
-      new MapLocation(22, 7, 3), 
-      "resources/images/characters/lee.png",
-      [
+        initial_orientation: MapState.RIGHT,
+        interacts_with_player: false
+ }),
+    new Character( {
+      label:	Labels.characters.LEE,
+      map_loc:	new MapLocation(22, 7, 3), 
+      graphic: "resources/images/characters/lee.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -296,12 +306,12 @@ var Config = {
               )]
           }
         ]
-      ),
-    new Character(
-      Labels.characters.LISA,
-      new MapLocation(22, 1, 8), 
-      "resources/images/characters/lisa.png",
-      [
+ }),
+    new Character( {
+      label:	Labels.characters.LISA,
+      map_loc:	new MapLocation(22, 1, 8), 
+      graphic: "resources/images/characters/lisa.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -310,13 +320,13 @@ var Config = {
               )]
           }
         ],
-        MapState.RIGHT
-      ),
-    new Character(
-      Labels.characters.MARTHA,
-      new MapLocation(11, 7, 5), 
-      "resources/images/characters/martha.png",
-      [
+        initial_orientation: MapState.RIGHT
+ }),
+    new Character( {
+      label:	Labels.characters.MARTHA,
+      map_loc:	new MapLocation(11, 7, 5), 
+      graphic: "resources/images/characters/martha.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -325,12 +335,12 @@ var Config = {
               )]
           }
         ]
-      ),
-    new Character(
-      Labels.characters.MIRI,
-      new MapLocation(11, 11, 5), 
-      "resources/images/characters/miri.png",
-      [
+ }),
+    new Character( {
+      label:	Labels.characters.MIRI,
+      map_loc:	new MapLocation(11, 11, 5), 
+      graphic: "resources/images/characters/miri.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -339,13 +349,13 @@ var Config = {
               )]
           }
         ],
-        MapState.RIGHT
-      ),
-    new Character(
-      Labels.characters.OLIVIA,
-      new MapLocation(22, 5, 6), 
-      "resources/images/characters/olivia.png",
-      [
+        initial_orientation: MapState.RIGHT
+ }),
+    new Character( {
+      label:	Labels.characters.OLIVIA,
+      map_loc:	new MapLocation(22, 5, 6), 
+      graphic: "resources/images/characters/olivia.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -354,28 +364,29 @@ var Config = {
               )]
           }
         ],
-        MapState.RIGHT
-      ),
-    new Character(
-      Labels.characters.PRODUCE,
-      new MapLocation(32, 10, 8), 
-      "resources/images/characters/produce.png",
-      [
+        initial_orientation: MapState.RIGHT
+ }),
+    new Character( {
+      label:	Labels.characters.PRODUCE,
+      name:   Labels.characters.PRODUCE_NAME,
+      map_loc:	new MapLocation(32, 10, 8), 
+      graphic: "resources/images/characters/produce.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
-              Labels.characters.PRODUCE, 
+              Labels.characters.PRODUCE_NAME, 
               "Come attend the ritual after dinner tonight!"
               )]
           }
         ],
-        MapState.RIGHT
-      ),
-    new Character(
-      Labels.characters.SHERI,
-      new MapLocation(103, 9, 6), 
-      "resources/images/characters/sheri.png",
-      [
+        initial_orientation: MapState.RIGHT
+ }),
+    new Character( {
+      label:	Labels.characters.SHERI,
+      map_loc:	new MapLocation(103, 9, 6), 
+      graphic: "resources/images/characters/sheri.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -384,13 +395,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.SKYLAR,
-      new MapLocation(22, 10, 5), 
-      "resources/images/characters/skylar.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.SKYLAR,
+      map_loc:	new MapLocation(22, 10, 5), 
+      graphic: "resources/images/characters/skylar.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -399,13 +410,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.SOPHIA,
-      new MapLocation(12, 14, 10), 
-      "resources/images/characters/sophia.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.SOPHIA,
+      map_loc:	new MapLocation(12, 14, 10), 
+      graphic: "resources/images/characters/sophia.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -414,13 +425,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.TAI,
-      new MapLocation(11, 8, 5), 
-      "resources/images/characters/tai.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.TAI,
+      map_loc:	new MapLocation(11, 8, 5), 
+      graphic: "resources/images/characters/tai.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -429,12 +440,12 @@ var Config = {
               )]
           }
         ]
-      ),
-    new Character(
-      Labels.characters.TESS,
-      new MapLocation(22, 9, 9), 
-      "resources/images/characters/tess.png",
-      [
+ }),
+    new Character( {
+      label:	Labels.characters.TESS,
+      map_loc:	new MapLocation(22, 9, 9), 
+      graphic: "resources/images/characters/tess.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -443,12 +454,12 @@ var Config = {
               )]
           }
         ]
-      ),
-    new Character(
-      Labels.characters.TOLA,
-      new MapLocation(11, 9, 6), 
-      "resources/images/characters/tola.png",
-      [
+ }),
+    new Character( {
+      label:	Labels.characters.TOLA,
+      map_loc:	new MapLocation(11, 9, 6), 
+      graphic: "resources/images/characters/tola.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -457,13 +468,13 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
-    new Character(
-      Labels.characters.TORI,
-      new MapLocation(11, 7, 9), 
-      "resources/images/characters/tori.png",
-      [
+        initial_orientation: MapState.LEFT
+ }),
+    new Character( {
+      label:	Labels.characters.TORI,
+      map_loc:	new MapLocation(11, 7, 9), 
+      graphic: "resources/images/characters/tori.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -472,13 +483,13 @@ var Config = {
               )]
           }
         ],
-        MapState.UP
-      ),
-    new Character(
-      Labels.characters.VALERIE,
-      new MapLocation(101, 8, 13), 
-      "resources/images/characters/valerie.png",
-      [
+        initial_orientation: MapState.UP
+ }),
+    new Character( {
+      label:	Labels.characters.VALERIE,
+      map_loc:	new MapLocation(101, 8, 13), 
+      graphic: "resources/images/characters/valerie.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -487,13 +498,13 @@ var Config = {
               )]
           }
         ],
-        MapState.UP
-      ),
-    new Character(
-      Labels.characters.XIAOWEN,
-      new MapLocation(22, 1, 9), 
-      "resources/images/characters/xiaowen.png",
-      [
+        initial_orientation: MapState.UP
+ }),
+    new Character( {
+      label:	Labels.characters.XIAOWEN,
+      map_loc:	new MapLocation(22, 1, 9), 
+      graphic: "resources/images/characters/xiaowen.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -502,13 +513,13 @@ var Config = {
               )]
           }
         ],
-        MapState.RIGHT
-      ),
-    new Character(
-      Labels.characters.XIAOYU,
-      new MapLocation(22, 3, 8), 
-      "resources/images/characters/xiaoyu.png",
-      [
+        initial_orientation: MapState.RIGHT
+ }),
+    new Character( {
+      label:	Labels.characters.XIAOYU,
+      map_loc:	new MapLocation(22, 3, 8), 
+      graphic: "resources/images/characters/xiaoyu.png",
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -517,7 +528,7 @@ var Config = {
               )]
           }
         ],
-        MapState.LEFT
-      ),
+        initial_orientation: MapState.LEFT
+ }),
   ]
 }

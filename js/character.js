@@ -1,9 +1,10 @@
-var Character = function(label, map_loc, graphic, modes, initial_orientation, interacts_with_player){
-  MapObject.call(this, label, map_loc, false, graphic, modes);
+var Character = function(obj){
+  MapObject.call(this, obj.label, obj.map_loc, false, obj.graphic, obj.modes);
+  this.name = obj.name === undefined ? obj.label : obj.name;
   this.inventory = [];
-  this.orientation = initial_orientation; 
-  this.initial_orientation = initial_orientation;
-  this.interacts_with_player = interacts_with_player === undefined ? true : interacts_with_player;
+  this.orientation = obj.initial_orientation; 
+  this.initial_orientation = obj.initial_orientation;
+  this.interacts_with_player = obj.interacts_with_player === undefined ? true : obj.interacts_with_player;
 };
 Character.makeMessages = function(name, messages){
   if (messages !== undefined){
@@ -16,6 +17,9 @@ Character.makeMessages = function(name, messages){
 }
 Character.prototype = new MapObject();
 Character.prototype.constructor = Character;
+Character.prototype.getName = function(){
+  return this.name;
+}
 Character.prototype.resetOrientation = function(){
   this.setOrientation(this.getInitialOrientation());
 }
