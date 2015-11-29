@@ -14,11 +14,11 @@ Character.makeMessages = function(name, messages){
     );
   }
 }
-Character.reset = function(ch){
-  ch.setOrientation(ch.getInitialOrientation());
-}
 Character.prototype = new MapObject();
 Character.prototype.constructor = Character;
+Character.prototype.resetOrientation = function(){
+  this.setOrientation(this.getInitialOrientation());
+}
 Character.prototype.setOrientation = function(orientation){
   this.orientation = orientation;
 };

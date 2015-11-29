@@ -61,7 +61,7 @@ TextDialogMode.createFactory = function(message_str, result_fn){
 }
 TextDialogMode.createCharacterTextFactory = function(name, message_str, result_fn){
   if (result_fn === undefined){
-    result_fn = Character.reset;
+    result_fn = function(ch){ ch.resetOrientation();};
   }
   var messages = TextDialogMode.messageStringToArray(message_str);
   var messages_with_name = messages.map(
