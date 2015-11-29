@@ -62,7 +62,7 @@ Story.prototype.setupStoryModes = function(){
   );
   table_tile.addMode(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE, undefined)
 
-  var cat = this.controller.haus.getCharacterWithName(Labels.characters.CALICO);
+  var cat = this.controller.haus.getCharacterWithLabel(Labels.characters.CALICO);
   cat.addMode(
     StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE,
     TextDialogMode.createCharacterTextFactory(Labels.characters.CALICO, "Purr...")

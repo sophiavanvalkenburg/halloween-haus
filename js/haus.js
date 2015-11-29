@@ -53,10 +53,10 @@ Haus.prototype.getCharacterOnMap = function(map_loc){
     }
   }
 };
-Haus.prototype.getCharacterWithName = function(name){
+Haus.prototype.getCharacterWithLabel = function(label){
   for (var i=0; i<this.characters.length; i++){
     var ch = this.characters[i];
-    if (ch.getLabel() == name){
+    if (ch.getLabel() == label){
       return ch;
     }
   }
