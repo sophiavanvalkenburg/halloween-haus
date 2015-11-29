@@ -25,7 +25,7 @@ var Labels = {
     MARTHA:   "martha",
     MIRI:     "miri",
     OLIVIA:    "olivia",
-    PRODUCE:  "high priestess produce",
+    PRODUCE:  "produce",
     SHERI:    "sheri",
     SKYLAR:   "skylar",
     SOPHIA:   "sophia",
@@ -40,6 +40,7 @@ var Labels = {
 }
 
 var Config = {
+  INITIAL_MAP: 0,
   mapfiles: [
     "resources/maps/map0.json", 
     "resources/maps/map1.json", 
@@ -99,7 +100,9 @@ var Config = {
               "Meow!"
               )]
           }
-        ]
+        ],
+        MapState.DOWN,
+        false
       ),
 
     new Character(
@@ -114,7 +117,9 @@ var Config = {
               "... Drat! You made me lose points on love live!"
               )]
           }
-        ]
+        ],
+        MapState.RIGHT,
+        false
       ),
     new Character(
       Labels.characters.ADEL,
@@ -142,7 +147,8 @@ var Config = {
               "That ... thing ... with the blue eyes is still out there in the world somewhere, I know it ..."
               )]
           }
-        ]
+        ],
+        MapState.RIGHT
       ),
     new Character(
       Labels.characters.ALICE,
@@ -170,7 +176,8 @@ var Config = {
               "Don't judge me for my love of minions!"
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.AMY,
@@ -184,7 +191,8 @@ var Config = {
               "ch(XIAOYU) and I made the pusheen pumpkin! Check it out!"
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.ANGELICA,
@@ -198,7 +206,8 @@ var Config = {
               "Did you meet our cat friend yet? She is sooo cute!"
               )]
           }
-        ]
+        ], 
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.BETHANY,
@@ -212,7 +221,8 @@ var Config = {
               "Sometimes when I'm alone, I can hear footsteps outside my bedroom door ..."
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.BROOKE,
@@ -240,7 +250,8 @@ var Config = {
               "I just flew in from DC."
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.JAE,
@@ -254,7 +265,8 @@ var Config = {
               "Hi, I'm ch(JAE) from konbanwa."
               )]
           }
-        ]
+        ],
+        MapState.RIGHT
       ),
     new Character(
       Labels.characters.LANYA,
@@ -267,7 +279,9 @@ var Config = {
               "&#9834;&#9835;&#9834; It's best not to disturb her while she plays."
               )]
           }
-        ]
+        ],
+        MapState.RIGHT,
+        false
       ),
     new Character(
       Labels.characters.LEE,
@@ -295,7 +309,8 @@ var Config = {
               "Come join our game!"
               )]
           }
-        ]
+        ],
+        MapState.RIGHT
       ),
     new Character(
       Labels.characters.MARTHA,
@@ -323,7 +338,8 @@ var Config = {
               "I'm glad I'm not sleeping in the living room after what happened last year!"
               )]
           }
-        ]
+        ],
+        MapState.RIGHT
       ),
     new Character(
       Labels.characters.OLIVIA,
@@ -337,7 +353,8 @@ var Config = {
               "Try some of these tarts! I made them myself!"
               )]
           }
-        ]
+        ],
+        MapState.RIGHT
       ),
     new Character(
       Labels.characters.PRODUCE,
@@ -351,7 +368,8 @@ var Config = {
               "Come attend the ritual after dinner tonight!"
               )]
           }
-        ]
+        ],
+        MapState.RIGHT
       ),
     new Character(
       Labels.characters.SHERI,
@@ -365,7 +383,8 @@ var Config = {
               "I'm trying my best to be gothic for halloween, but I can't resist a little pink!"
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.SKYLAR,
@@ -379,7 +398,8 @@ var Config = {
               "I'm excited for Sunday Nunday tomorrow!"
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.SOPHIA,
@@ -393,7 +413,8 @@ var Config = {
               "I'm a cat and I looove DDR! Meow!"
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.TAI,
@@ -435,7 +456,8 @@ var Config = {
               "Meet my new friend ch(BUDDY)! He's a little spooky."
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
     new Character(
       Labels.characters.TORI,
@@ -449,7 +471,8 @@ var Config = {
               "AHHH! My throat hurts from all this yelling!"
               )]
           }
-        ]
+        ],
+        MapState.UP
       ),
     new Character(
       Labels.characters.VALERIE,
@@ -463,7 +486,8 @@ var Config = {
               "I heard there's a ghost in our room that keeps opening and closing the closet door."
               )]
           }
-        ]
+        ],
+        MapState.UP
       ),
     new Character(
       Labels.characters.XIAOWEN,
@@ -477,7 +501,8 @@ var Config = {
               "Whatever you do, don't talk to the ghosts."
               )]
           }
-        ]
+        ],
+        MapState.RIGHT
       ),
     new Character(
       Labels.characters.XIAOYU,
@@ -491,7 +516,8 @@ var Config = {
               "... back-to-back ..."
               )]
           }
-        ]
+        ],
+        MapState.LEFT
       ),
   ]
 }

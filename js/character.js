@@ -1,7 +1,9 @@
-var Character = function(label, map_loc, graphic, modes){
+var Character = function(label, map_loc, graphic, modes, initial_orientation, interacts_with_player){
   MapObject.call(this, label, map_loc, false, graphic, modes);
   this.inventory = [];
-  this.orientation = undefined; 
+  this.orientation = initial_orientation; 
+  this.initial_orientation = initial_orientation;
+  this.interacts_with_player = interacts_with_player === undefined ? true : interacts_with_player;
 };
 Character.makeMessages = function(name, messages){
   if (messages !== undefined){
@@ -12,6 +14,9 @@ Character.makeMessages = function(name, messages){
     );
   }
 }
+Character.reset = function(ch){
+  ch.setOrientation(ch.getInitialOrientation());
+}
 Character.prototype = new MapObject();
 Character.prototype.constructor = Character;
 Character.prototype.setOrientation = function(orientation){
@@ -20,6 +25,9 @@ Character.prototype.setOrientation = function(orientation){
 Character.prototype.getOrientation = function(){
   return this.orientation;
 };
+Character.prototype.getInitialOrientation = function(){
+  return this.initial_orientation;
+}
 Character.prototype.setOrientationTowards = function(x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
 }
@@ -64,3 +72,9 @@ Character.prototype.removeFromInventory = function(item){
 Character.prototype.hasItem = function(item){
   return this.inventory.indexOf(item) >= 0;
 };
+Character.prototype.startInteracting = function(controller){
+  if (this.interacts_with_player){
+    var player = controller.haus.getPlayer();
+    this.setOrientationTowards(player.X(), player.Y());
+  }
+}

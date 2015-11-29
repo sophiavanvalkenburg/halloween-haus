@@ -40,6 +40,9 @@ Haus.prototype.getTextDialog = function(){
 Haus.prototype.getChoiceDialog = function(){
   return this.choice_dialog;
 }
+Haus.prototype.getCharacters = function(){
+  return this.characters;
+}
 Haus.prototype.getCharacterOnMap = function(map_loc){
   // don't store a character grid because it's very sparse
   for (var i=0; i<this.num_characters; i++){

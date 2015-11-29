@@ -6,12 +6,12 @@ var Controller = function(haus, renderer, mode_manager, the_story){
 };
 Controller.prototype.setup = function(){
   this.setUpEventListener();
-  this.haus.setCurrentMap(0);
+  this.haus.setCurrentMap(Config.INITIAL_MAP);
   this.renderer.drawMap(this.haus);
 };
 Controller.prototype.updateRenderer = function(){
   this.renderer.drawMap(this.haus);
-  this.renderer.updateCharacter(this.haus.getPlayer());
+  this.renderer.updateCharacters(this.haus.getCharacters());
   this.renderer.updateTextDialog(this.haus.getTextDialog());
   this.renderer.updateChoiceDialog(this.haus.getChoiceDialog());
 };

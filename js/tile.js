@@ -83,6 +83,8 @@ MapObject.prototype.addModes = function(modes_per_state){
     this.addModesForState(obj.state, obj.modes);
   }
 }
+MapObject.prototype.startInteracting = function(controller){}
+MapObject.prototype.endInteracting = function(controller){}
 
 
 var Tile = function(label, map_loc, portal_loc, is_accessible, graphic, modes){

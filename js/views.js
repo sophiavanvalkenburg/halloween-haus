@@ -123,6 +123,11 @@ Renderer.prototype.updateCharacter = function(character){
   $new_td.append($div);
   this.orientObject(character, $div);
 };
+Renderer.prototype.updateCharacters = function(characters){
+  for (var i=0; i<characters.length; i++){
+    this.updateCharacter(characters[i]);
+  }
+}
 Renderer.prototype.updateTextDialog = function(text_dialog){
   if (text_dialog.hasMessage()){
     var message = Renderer.replaceSpecialNamesWithHtml(text_dialog.getMessage());

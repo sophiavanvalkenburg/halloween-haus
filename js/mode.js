@@ -1,5 +1,6 @@
-var Mode = function(){
+var Mode = function(target_obj){
   this.type = Mode.MODE;
+  this.target_obj = target_obj;
 };
 Mode.MODE = "mode";
 Mode.TEXT_DIALOG = "text_dialog";
@@ -11,7 +12,7 @@ Mode.RIGHT = 39;
 Mode.DOWN = 40;
 Mode.SELECT = 90;
 Mode.createFactory = function(){
-  return function() { return new Mode(); };
+  return function(target_obj) { return new Mode(target_obj); };
 }
 Mode.prototype.leftArrowButtonHandler = function(){};
 Mode.prototype.rightArrowButtonHandler = function(){};
@@ -48,24 +49,27 @@ Mode.prototype.eventHandler = function(key_code, controller){
 };
 
 
-var TextDialogMode = function(messages, result_fn){
-  Mode.call(this);
+var TextDialogMode = function(target_obj, messages, result_fn){
+  Mode.call(this, target_obj);
   this.messages = messages;
   this.result_fn = result_fn;
   this.mode = Mode.TEXT_DIALOG;
 };
 TextDialogMode.createFactory = function(message_str, result_fn){
   var messages = TextDialogMode.messageStringToArray(message_str);
-  return function() { return new TextDialogMode(messages, result_fn); };
+  return function(target_obj) { return new TextDialogMode(target_obj, messages, result_fn); };
 }
 TextDialogMode.createCharacterTextFactory = function(name, message_str, result_fn){
+  if (result_fn === undefined){
+    result_fn = Character.reset;
+  }
   var messages = TextDialogMode.messageStringToArray(message_str);
   var messages_with_name = messages.map(
     function(m){
         return Renderer.characterName(name) + ': "' + m + '"';
     }
   );
-  return function() { return new TextDialogMode(messages_with_name, result_fn) };
+  return function(target_obj) { return new TextDialogMode(target_obj, messages_with_name, result_fn) };
 }
 TextDialogMode.messageStringToArray = function(message_str){
   if (message_str.length === 0){
@@ -105,7 +109,7 @@ TextDialogMode.prototype.initialize = function(controller){
   if (!this.shouldEndMode()){
     controller.setTextDialogMessage(this.messages[0]);
   }else if (this.result_fn !== undefined){
-    this.result_fn();
+    this.result_fn(this.target_obj);
   }
 }
 TextDialogMode.prototype.clear = function(controller){
@@ -113,8 +117,8 @@ TextDialogMode.prototype.clear = function(controller){
 }
 
 
-var ChoiceDialogMode = function(choices, message, select_fn){
-  Mode.call(this);
+var ChoiceDialogMode = function(target_obj, choices, message, select_fn){
+  Mode.call(this, target_obj);
   this.choices = choices;
   this.message = message;
   this.selected = 0;
@@ -123,7 +127,7 @@ var ChoiceDialogMode = function(choices, message, select_fn){
   this.type = Mode.CHOICE_DIALOG;
 };
 ChoiceDialogMode.createFactory = function(choices, message, select_fn){
-  return function(){ return new ChoiceDialogMode(choices, message, select_fn); };
+  return function(target_obj){ return new ChoiceDialogMode(target_obj, choices, message, select_fn); };
 }
 ChoiceDialogMode.prototype = new Mode();
 ChoiceDialogMode.prototype.constructor = ChoiceDialogMode;
@@ -149,7 +153,7 @@ ChoiceDialogMode.prototype.upArrowButtonHandler = function(controller){
   controller.choiceDialogSelectItem(this.selected);
 };
 ChoiceDialogMode.prototype.selectButtonHandler = function(controller){
-  this.select_fn(controller, this.choices[this.selected])
+  this.select_fn(controller, target_obj, this.choices[this.selected])
   this.handled = true; 
 };
 ChoiceDialogMode.prototype.shouldEndMode = function(){
@@ -187,8 +191,9 @@ MapMode.prototype.selectButtonHandler = function(controller){
   var target_obj = controller.selectFacingObject();
   if (target_obj !== undefined){
     var played_states = controller.the_story.getPlayedGameStates();
+    target_obj.startInteracting(controller);
     var mode_seq = target_obj.getModeSequence(played_states);
-    controller.mode_manager.addModes(mode_seq); 
+    controller.mode_manager.addModes(mode_seq, target_obj); 
   }
   this.handled = true;
 };
@@ -200,10 +205,10 @@ MapMode.prototype.shouldEndMode = function(){
 var InputModeManager = function(){
   this.mode_queue = [];
 };
-InputModeManager.prototype.addModes = function(mode_factories){
+InputModeManager.prototype.addModes = function(mode_factories, target_obj){
   for (var i=0; i<mode_factories.length; i++){
     var create_mode_fn = mode_factories[i];
-    this.mode_queue.push(create_mode_fn());
+    this.mode_queue.push(create_mode_fn(target_obj));
   }
 };
 InputModeManager.prototype.currentMode = function(){
