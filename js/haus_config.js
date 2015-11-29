@@ -1,8 +1,13 @@
 var Labels = {
   tiles: {
-    FOUNTAIN: "fountain",
-    KITCHEN_TABLE: "kitchen-table",
-    MOVE_TILE: "player-start"
+    FORTUNE_CAKE: "fortune-cake",
+    ALTAR_NORMAL_MODE: "altar-normal-mode",
+    ALTAR_GHOST_MODE: "altar-ghost-mode",
+    IN_FRONT_OF_NORMAL_ALTAR: "in-front-of-normal-altar",
+    IN_FRONT_OF_GHOST_ALTAR: "in-front-of-ghost-altar"
+  },
+  character_names: {
+    PRODUCE: "high priestess produce"
   },
   characters: {
     CALICO:   "calico",
@@ -26,7 +31,6 @@ var Labels = {
     MIRI:     "miri",
     OLIVIA:    "olivia",
     PRODUCE:  "produce",
-    PRODUCE_NAME:  "high priestess produce",
     SHERI:    "sheri",
     SKYLAR:   "skylar",
     SOPHIA:   "sophia",
@@ -43,6 +47,7 @@ var Labels = {
 var Config = {
   INITIAL_MAP: 0,
   mapfiles: [
+    /******** NORMAL MODE **********/
     "resources/maps/normal/map0.json", 
     "resources/maps/normal/map1.json", 
     "resources/maps/normal/map11.json", 
@@ -81,7 +86,48 @@ var Config = {
     "resources/maps/normal/map144.json",
     "resources/maps/normal/map145.json",
     "resources/maps/normal/map146.json",
-    "resources/maps/normal/map147.json"
+    "resources/maps/normal/map147.json",
+    /******** GHOST MODE **********/
+    "resources/maps/ghost/gmap0.json", 
+    "resources/maps/ghost/gmap1.json", 
+    "resources/maps/ghost/gmap11.json", 
+    "resources/maps/ghost/gmap12.json", 
+    "resources/maps/ghost/gmap2.json", 
+    "resources/maps/ghost/gmap21.json",
+    "resources/maps/ghost/gmap22.json",
+    "resources/maps/ghost/gmap23.json",
+    "resources/maps/ghost/gmap24.json",
+    "resources/maps/ghost/gmap31.json",
+    "resources/maps/ghost/gmap32.json",
+    "resources/maps/ghost/gmap33.json",
+    "resources/maps/ghost/gmap4.json",
+    "resources/maps/ghost/gmap5.json", 
+    "resources/maps/ghost/gmap6.json",
+    "resources/maps/ghost/gmap7.json",
+    "resources/maps/ghost/gmap8.json",
+    "resources/maps/ghost/gmap9.json",
+    "resources/maps/ghost/gmap91.json",
+    "resources/maps/ghost/gmap92.json",
+    "resources/maps/ghost/gmap93.json",
+    "resources/maps/ghost/gmap94.json",
+    "resources/maps/ghost/gmap95.json",
+    "resources/maps/ghost/gmap96.json",
+    "resources/maps/ghost/gmap10.json",
+    "resources/maps/ghost/gmap101.json",
+    "resources/maps/ghost/gmap102.json",
+    "resources/maps/ghost/gmap103.json",
+    "resources/maps/ghost/gmap104.json",
+    "resources/maps/ghost/gmap105.json",
+    "resources/maps/ghost/gmap106.json",
+    "resources/maps/ghost/gmap14.json",
+    "resources/maps/ghost/gmap141.json",
+    "resources/maps/ghost/gmap142.json",
+    "resources/maps/ghost/gmap143.json",
+    "resources/maps/ghost/gmap144.json",
+    "resources/maps/ghost/gmap145.json",
+    "resources/maps/ghost/gmap146.json",
+    "resources/maps/ghost/gmap147.json"
+
   ],
   player: new Character(
       {
@@ -368,14 +414,14 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.PRODUCE,
-      name:   Labels.characters.PRODUCE_NAME,
+      name:   Labels.character_names.PRODUCE,
       map_loc:	new MapLocation(32, 10, 8), 
       graphic: "resources/images/characters/produce.png",
       modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
-              Labels.characters.PRODUCE_NAME, 
+              Labels.character_names.PRODUCE, 
               "Come attend the ritual after dinner tonight!"
               )]
           }
