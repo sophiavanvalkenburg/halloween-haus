@@ -153,7 +153,7 @@ ChoiceDialogMode.prototype.upArrowButtonHandler = function(controller){
   controller.choiceDialogSelectItem(this.selected);
 };
 ChoiceDialogMode.prototype.selectButtonHandler = function(controller){
-  this.select_fn(controller, target_obj, this.choices[this.selected])
+  this.select_fn(controller, this.target_obj, this.choices[this.selected])
   this.handled = true; 
 };
 ChoiceDialogMode.prototype.shouldEndMode = function(){

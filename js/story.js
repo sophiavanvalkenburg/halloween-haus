@@ -31,7 +31,7 @@ Story.prototype.setupStoryModes = function(){
     ChoiceDialogMode.createFactory(
       ["Yes", "No"], 
       "Look! There's a " + Renderer.objectName("coin") + ". Take it?",
-      function(controller, selected_item){
+      function(controller, target_obj, selected_item){
         if (selected_item === "Yes"){
             controller.mode_manager.addModes([ 
               TextDialogMode.createFactory(
@@ -54,7 +54,7 @@ Story.prototype.setupStoryModes = function(){
       ChoiceDialogMode.createFactory(
         ["Yes", "No"], 
         "Place " + Renderer.objectName("coin") + " on table?",
-        function(controller, selected_item){
+        function(controller, target_obj, selected_item){
           if (selected_item === "Yes"){
               the_story.addPlayedState(StoryStates.PLAYER_PLACED_COIN_ON_KITCHEN_TABLE);
           } 
