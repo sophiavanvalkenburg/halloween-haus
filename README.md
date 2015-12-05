@@ -10,8 +10,7 @@ $ http-server .
 
 ### To-Do
 - map design / pixel art
-- character design / pixel art
-- story arc design
+- character / tile animations
 - add a removeCharacter function in map
 - should some classes be singletons or static classes?
 - create debug mode (using key combo ?)
