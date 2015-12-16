@@ -11,6 +11,8 @@ $ http-server .
 ### To-Do
 - map design / pixel art
 - character / tile animations
+  - animation mode for player
+  - animation timing for npcs
 - add a removeCharacter function in map
 - should some classes be singletons or static classes?
 - create debug mode (using key combo ?)
