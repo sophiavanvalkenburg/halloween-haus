@@ -237,14 +237,14 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.AMY,
-      map_loc:	new MapLocation(22, 3, 9), 
+      map_loc:	new MapLocation(4, 4, 7), 
       graphic: "resources/images/characters/amy.png",
       modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.AMY, 
-              "ch(XIAOYU) and I made the pusheen pumpkin! Check it out!"
+              "Hey... are you following us??"
               )]
           }
         ],
@@ -355,18 +355,18 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.LISA,
-      map_loc:	new MapLocation(22, 1, 8), 
+      map_loc:	new MapLocation(4, 4, 6), 
       graphic: "resources/images/characters/lisa.png",
       modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.LISA, 
-              "Come join our game!"
+              "We're going to play the board game Haunted House later... come join us!"
               )]
           }
         ],
-        initial_orientation: MapState.RIGHT
+        initial_orientation: MapState.LEFT
  }),
     new Character( {
       label:	Labels.characters.MARTHA,
@@ -548,14 +548,14 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.XIAOWEN,
-      map_loc:	new MapLocation(22, 1, 9), 
+      map_loc:	new MapLocation(22, 1, 8), 
       graphic: "resources/images/characters/xiaowen.png",
       modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.XIAOWEN, 
-              "Whatever you do, don't talk to the ghosts."
+              "Whatever you do, don't talk to the ghosts!"
               )]
           }
         ],
