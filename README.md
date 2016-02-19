@@ -15,6 +15,7 @@ $ http-server .
 - ghost sprites
 - character / tile animations
 - object interaction text
+- start screen pixel art
 
 ### Programming To-Do
 - character movement
@@ -23,6 +24,7 @@ $ http-server .
 - proper placement of dialog box + question box
 - add music
 - image/music pre-loading
+- start screen interaction
   
 ### Nice-To-Haves
 - add a removeCharacter function in map
