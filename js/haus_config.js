@@ -159,7 +159,7 @@ var Config = {
     new Character(
         {
           label:    Labels.characters.ABBY,
-          map_loc:  new MapLocation(4, 11, 14), 
+          map_loc:  new MapLocation(33, 11, 2), 
           graphic:  "resources/images/characters/abby.png",
           modes:    [
               {
@@ -208,7 +208,7 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.ALICE,
-      map_loc:	new MapLocation(4, 12, 13), 
+      map_loc:	new MapLocation(33, 12, 1), 
       graphic: "resources/images/characters/alice.png",
       modes:	[
           {
@@ -222,7 +222,7 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.ALULA,
-      map_loc:	new MapLocation(4, 13, 14), 
+      map_loc:	new MapLocation(33, 13, 2), 
       graphic: "resources/images/characters/alula.png",
       modes:	[
           {
