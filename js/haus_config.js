@@ -362,7 +362,15 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.LISA, 
-              "We're going to play the board game Haunted House later... come join us!"
+              "We're going to play the board game 'Betrayal at the House on the Hill'  later!"
+              ),
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.LISA,
+              "... What?"
+              ),
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.LISA,
+              "... Oh no, it's not about *this* house... At least I don't *think* so..."
               )]
           }
         ],
@@ -525,8 +533,12 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.TORI, 
-              "AHHH! My throat hurts from all this yelling!"
-              )]
+              "AHHH!"
+              ),
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.TORI,
+              "... My throat hurts from all this yelling!"
+              ) ]
           }
         ],
         initial_orientation: MapState.UP
