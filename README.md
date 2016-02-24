@@ -15,12 +15,12 @@ $ http-server .
 - character / tile animations
 - object interaction text
 - start screen pixel art
+- game borders & dialog art
 
 ### Programming To-Do
 - character movement
   - animation mode for player
   - animation timing for npcs
-- proper placement of dialog box + question box
 - add music
 - image/music pre-loading
 - start screen interaction

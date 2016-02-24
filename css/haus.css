@@ -1,3 +1,10 @@
+#haus-container {
+    border: 0px;
+    width: 450px;
+    height: 450px;
+    background-color: black;
+}
+
 #haus-map table {
     border: 2px solid black;
     border-collapse: collapse;
@@ -27,19 +34,22 @@
 }
 
 #haus-main-dialog {
-    width: 377px;
+    width: 320px;
     height: 50px;
-    margin-top: 10px;
+    margin-left: 20px;
+    float: left;
 }
 
 #haus-choice-dialog {
-    min-width: 30px;
-    max-width: 125px;
-    min-height: 30px;
+    min-width: 65px;
+    max-width: 70px;
+    min-height: 50px;
     max-height: 200px;
-    margin-top: 10px;
+    margin-left: 10px;
     font-family: monospace;
     overflow: hidden;
+    float: left;
+    position: relative;
 }
 
 #haus-choice-dialog table {
@@ -47,13 +57,19 @@
     margin: 0px;
 }
 
+#haus-choice-dialog td {
+    padding: 3px;
+}
+
 .dialog {
-    border: 2px solid black;
+    border: 2px solid lightgrey;
     display: none;
 }
 
 .dialog-text{
     font-family: monospace;
+    font-stretch: expanded;
+    color: lightgrey;
     padding: 5px;
 }
 

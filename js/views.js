@@ -146,7 +146,7 @@ Renderer.prototype.drawChoiceList = function(choice_labels, selected_label){
     var label = choice_labels[i];
     $icon = label === selected_label ? $selected_icon : undefined;
     $choice_row.append($("<td>").append($icon));
-    $choice_row.append($("<td>"+label+"</td>"));
+    $choice_row.append($("<td><span class='dialog-text'>"+label+"</span></td>"));
     $table.append($choice_row);
   }
   this.$choice_dialog.html("");
