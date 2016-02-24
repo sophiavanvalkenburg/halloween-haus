@@ -303,10 +303,12 @@ var Config = {
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createFactory(
-              "A cute doll that is some combination of jack o'lantern, devil, and ghost."
+              "A cute doll that is some combination of jack o'lantern, devil, and ghost.",
+              function(){}
               ),
             TextDialogMode.createFactory(
-              "..."
+              "... ... ...",
+              function(){}
               ),
             TextDialogMode.createFactory(
               "It's odd, but you can't help feeling like ch(BUDDY) is listening to every word you say..."
@@ -352,8 +354,12 @@ var Config = {
       modes:	[
           {
             state: StoryStates.INIT, 
-            modes: [TextDialogMode.createFactory(
-              "&#9834;&#9835;&#9834; It's best not to disturb her while she plays."
+            modes: [TextDialogMode.createCharacterTextFactory(
+              Labels.characters.LANYA,
+              "&#9834;&#9835;&#9834; &#9834;&#9835;&#9834; &#9834;&#9835;&#9834;"
+              ),
+            TextDialogMode.createFactory(
+              "... It's best not to disturb her while she plays."
               )]
           }
         ],
@@ -383,11 +389,13 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.LISA, 
-              "We're going to play the board game 'Betrayal at the House on the Hill'  later!"
+              "We're going to play the board game 'Betrayal at the House on the Hill'  later!",
+              function(){}
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.LISA,
-              "... What?"
+              "... What?",
+              function(){}
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.LISA,
@@ -406,7 +414,12 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.MARTHA, 
-              "Welcome to the Haus! Be sure to try the Fortune Cake ... you might find something special."
+              "Welcome to the Haus!",
+              function(){}
+              ),
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.MARTHA,
+              "Be sure to try the Fortune Cake ... you might find something special."
               )]
           }
         ]
@@ -554,7 +567,8 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.TORI, 
-              "AHHH!"
+              "AHHH!",
+              function(){}
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.TORI,

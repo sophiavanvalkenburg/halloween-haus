@@ -56,12 +56,15 @@ var TextDialogMode = function(target_obj, messages, result_fn){
   this.mode = Mode.TEXT_DIALOG;
 };
 TextDialogMode.createFactory = function(message_str, result_fn){
+  if (result_fn === undefined){
+    result_fn = function(obj){ obj.endInteracting();};
+  }
   var messages = TextDialogMode.messageStringToArray(message_str);
   return function(target_obj) { return new TextDialogMode(target_obj, messages, result_fn); };
 }
 TextDialogMode.createCharacterTextFactory = function(name, message_str, result_fn){
   if (result_fn === undefined){
-    result_fn = function(ch){ ch.resetOrientation();};
+    result_fn = function(ch){ ch.endInteracting();};
   }
   var messages = TextDialogMode.messageStringToArray(message_str);
   var messages_with_name = messages.map(

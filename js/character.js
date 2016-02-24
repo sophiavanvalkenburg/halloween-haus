@@ -82,3 +82,8 @@ Character.prototype.startInteracting = function(controller){
     this.setOrientationTowards(player.X(), player.Y());
   }
 }
+Character.prototype.endInteracting = function(controller){
+  if (this.interacts_with_player){
+    this.resetOrientation();
+  }
+}
