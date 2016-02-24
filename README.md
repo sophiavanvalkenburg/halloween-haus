@@ -9,7 +9,6 @@ $ http-server .
 ```
 
 ### Design To-Do
-- final details in pixel art for normal map
 - pixel art for ghost map
 - character orientation sprites
 - ghost sprites
