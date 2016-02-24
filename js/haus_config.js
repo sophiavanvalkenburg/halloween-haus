@@ -22,6 +22,7 @@ var Labels = {
     ANGELICA: "angelica",
     BETHANY:  "bethany",
     BROOKE:   "brooke",
+    BUDDY:    "buddy",
     FLO:      "flo",
     JAE:      "jae",
     LANYA:    "lanya",
@@ -252,7 +253,7 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.ANGELICA,
-      map_loc:	new MapLocation(11, 9, 7), 
+      map_loc:	new MapLocation(11, 9, 8), 
       graphic: "resources/images/characters/angelica.png",
       modes:	[
           {
@@ -293,6 +294,26 @@ var Config = {
               )]
           }
         ]
+ }),
+  new Character( {
+      label:	Labels.characters.BUDDY,
+      map_loc:	new MapLocation(11, 9, 7), 
+      graphic: "resources/images/characters/buddy.png",
+      modes:	[
+          {
+            state: StoryStates.INIT, 
+            modes: [TextDialogMode.createFactory(
+              "A cute doll that is some combination of jack o'lantern, devil, and ghost."
+              ),
+            TextDialogMode.createFactory(
+              "..."
+              ),
+            TextDialogMode.createFactory(
+              "It's odd, but you can't help feeling like ch(BUDDY) is listening to every word you say..."
+              )]
+          }
+        ], 
+        initial_orientation: MapState.LEFT
  }),
     new Character( {
       label:	Labels.characters.FLO,
