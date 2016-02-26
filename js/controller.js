@@ -85,9 +85,11 @@ $(function(){
   var mode_manager = new InputModeManager();
   var the_story = new Story();
   var controller = new Controller(the_haus, renderer, mode_manager, the_story);
+  var animation_manager = new AnimationManager(controller)
   map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
     the_story.setup(controller);
+    animation_manager.startCounter();
   }); 
 });
 

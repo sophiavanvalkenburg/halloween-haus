@@ -81,9 +81,15 @@ Character.prototype.startInteracting = function(controller){
     var player = controller.haus.getPlayer();
     this.setOrientationTowards(player.X(), player.Y());
   }
-}
+};
 Character.prototype.endInteracting = function(controller){
   if (this.interacts_with_player){
     this.resetOrientation();
   }
+};
+Character.prototype.getOrientationAtTime = function(t){
+    return MapState.RIGHT; 
+}
+Character.prototype.getLocationAtTime = function(t){
+    return new MapLocation(0, 1, 2) 
 }

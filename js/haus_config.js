@@ -46,6 +46,8 @@ var Labels = {
 }
 
 var Config = {
+  ANIMATION_COUNTER: 1000,
+  ANIMATION_COUNTER_OVERFLOW: 60,
   INITIAL_MAP: 0,
   mapfiles: [
     /******** NORMAL MODE **********/
