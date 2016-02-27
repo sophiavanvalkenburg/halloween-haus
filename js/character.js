@@ -97,7 +97,18 @@ Character.prototype.getOrientationAtTime = function(t){
 }
 Character.prototype.getLocationAtTime = function(t){
   t = t % this.animation_total_seconds;
-  if (this.animation !== undefined &&  this.animation[t]){
-    return this.animation[t].map_loc;
+  var instruction = this.animation === undefined ? undefined : this.animation[t];
+  if (instruction !== undefined){
+    if (instruction.map_loc !== undefined){
+      return instruction.map_loc;
+    }
+    if (instruction.movement !== undefined){
+      var curr_x = this.map_loc.X();
+      var curr_y = this.map_loc.Y();
+      var curr_map_index = this.map_loc.mapIndex();
+      var new_x = instruction.movement.x === undefined ? curr_x : curr_x + instruction.movement.x;
+      var new_y = instruction.movement.y === undefined ? curr_y : curr_y + instruction.movement.y;
+      return new MapLocation(curr_map_index, new_x, new_y);
+    }
   }
 }
