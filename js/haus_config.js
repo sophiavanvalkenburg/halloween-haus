@@ -155,7 +155,23 @@ var Config = {
             }
           ],
           initial_orientation:    MapState.DOWN,
-          interacts_with_player:  false
+          interacts_with_player:  false,
+          animation: {
+            total_seconds: 20,
+            instructions: {
+              1: { map_loc: new MapLocation(0, 13, 2) },
+              2: { map_loc: new MapLocation(0, 13, 3) },
+              3: { orientation: MapState.LEFT },
+              4: { map_loc: new MapLocation(0, 12, 3) },
+              5: { orientation: MapState.UP },
+              6: { map_loc: new MapLocation(0, 12, 2) },
+              7: { orientation: MapState.RIGHT },
+              8: { map_loc: new MapLocation(0, 13, 2) },
+              9: { orientation: MapState.UP },
+              10: { map_loc: new MapLocation(0, 13, 1) },
+              11: { orientation: MapState.DOWN },
+            }
+          }
         }
       ),
 

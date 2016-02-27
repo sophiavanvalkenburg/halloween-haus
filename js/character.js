@@ -5,6 +5,8 @@ var Character = function(obj){
   this.orientation = obj.initial_orientation; 
   this.initial_orientation = obj.initial_orientation;
   this.interacts_with_player = obj.interacts_with_player === undefined ? true : obj.interacts_with_player;
+  this.animation = obj.animation === undefined ? undefined : obj.animation.instructions;
+  this.animation_total_seconds = obj.animation === undefined ? 0 : obj.animation.total_seconds
 };
 Character.makeMessages = function(name, messages){
   if (messages !== undefined){
@@ -88,8 +90,14 @@ Character.prototype.endInteracting = function(controller){
   }
 };
 Character.prototype.getOrientationAtTime = function(t){
-    return MapState.RIGHT; 
+  t = t % this.animation_total_seconds;
+  if (this.animation !== undefined &&  this.animation[t]){
+    return this.animation[t].orientation;
+  }
 }
 Character.prototype.getLocationAtTime = function(t){
-    return new MapLocation(0, 1, 2) 
+  t = t % this.animation_total_seconds;
+  if (this.animation !== undefined &&  this.animation[t]){
+    return this.animation[t].map_loc;
+  }
 }
