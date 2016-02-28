@@ -13,14 +13,15 @@ AnimationManager.prototype.startCounter = function(){
       self.startCounter();
     }, this.counter_inc);
 }
-
 AnimationManager.prototype.incrementCounter = function(){
   this.counter++;
   if (this.counter % this.counter_max == 0){
-    this.counter = 0
+    this.resetCounter();
   }
 }
-
+AnimationManager.prototype.resetCounter = function(){
+  this.counter = 0;
+}
 AnimationManager.prototype.updateCharacters = function(){
   var characters = this.controller.haus.getCharacters();
   for(var i=0; i<characters.length; i++){

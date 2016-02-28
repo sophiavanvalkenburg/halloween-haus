@@ -50,7 +50,10 @@ Controller.prototype.movePlayer = function(player, map_loc){
       this.haus.getCharacterOnMap(tile.getPortalLoc()) === undefined
      ){
     player.setLocation(tile.getPortalLoc());
-    this.haus.setCurrentMap(player.mapIndex());
+    var change_maps = this.haus.getCurrentMap().getId() !== player.mapIndex()
+    if ( !player.isNPC() && change_maps){
+      this.haus.setCurrentMap(player.mapIndex());
+    }
   }
 }
 Controller.prototype.selectFacingObject = function(){

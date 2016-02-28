@@ -176,7 +176,8 @@ var Config = {
       {
         label:    Labels.characters.YOU,
         map_loc:  new MapLocation(0, 10, 7), 
-        graphic:  "resources/images/characters/player.png"
+        graphic:  "resources/images/characters/player.png",
+        is_player: true
       }
       ),
   characters: [

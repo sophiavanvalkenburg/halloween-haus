@@ -1,5 +1,6 @@
 var Character = function(obj){
   MapObject.call(this, obj.label, obj.map_loc, false, obj.graphic, obj.modes);
+  this.initial_map_loc = obj.map_loc
   this.name = obj.name === undefined ? obj.label : obj.name;
   this.inventory = [];
   this.orientation = obj.initial_orientation; 
@@ -7,6 +8,7 @@ var Character = function(obj){
   this.interacts_with_player = obj.interacts_with_player === undefined ? true : obj.interacts_with_player;
   this.animation = obj.animation === undefined ? undefined : obj.animation.instructions;
   this.animation_total_seconds = obj.animation === undefined ? 0 : obj.animation.total_seconds
+  this.is_npc = obj.is_player === undefined ? true : !obj.is_player;
 };
 Character.makeMessages = function(name, messages){
   if (messages !== undefined){
@@ -19,6 +21,9 @@ Character.makeMessages = function(name, messages){
 }
 Character.prototype = new MapObject();
 Character.prototype.constructor = Character;
+Character.prototype.isNPC = function(){
+  return this.is_npc;
+}
 Character.prototype.getName = function(){
   return this.name;
 }
@@ -36,6 +41,9 @@ Character.prototype.getInitialOrientation = function(){
 }
 Character.prototype.setOrientationTowards = function(x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
+}
+Character.prototype.getInitialLocation = function(){
+  return this.initial_map_loc;
 }
 Character.prototype.getFacingLocation = function(){
   var facing_x;
