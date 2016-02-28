@@ -342,9 +342,9 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.BROOKE,
-      map_loc:	new MapLocation(32, 6, 14), 
+      map_loc:	new MapLocation(32, 7, 15), 
       graphic: "resources/images/characters/brooke.png",
-       modes:	[
+      modes:	[
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
@@ -352,7 +352,25 @@ var Config = {
               "I think the first floor bathroom is haunted ..."
               )]
           }
-        ]
+        ],
+      initial_orientation: MapState.RIGHT,
+      animation: {
+        total_seconds: 20,
+        instructions: {
+          1: { movement: { x: 1 } },
+          2: { movement: { x: 1 } },
+          3: { movement: { x: 1 } },
+          4: { movement: { x: 1 } },
+          5: { movement: { x: 1 } },
+          6: { orientation: MapState.LEFT },
+          7: { movement: { x: -1 } },
+          8: { movement: { x: -1 } },
+          9: { movement: { x: -1 } },
+          10: { movement: { x: -1 } },
+          11: { movement: { x: -1 } },
+          12: { orientation: MapState.RIGHT },
+        }
+      }
  }),
   new Character( {
       label:	Labels.characters.BUDDY,

@@ -111,8 +111,10 @@ TextDialogMode.prototype.shouldEndMode = function(){
 TextDialogMode.prototype.initialize = function(controller){
   if (!this.shouldEndMode()){
     controller.setTextDialogMessage(this.messages[0]);
+    controller.pauseAnimation();
   }else if (this.result_fn !== undefined){
     this.result_fn(this.target_obj);
+    controller.unpauseAnimation();
   }
 }
 TextDialogMode.prototype.clear = function(controller){

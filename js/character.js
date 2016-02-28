@@ -1,10 +1,9 @@
 var Character = function(obj){
   MapObject.call(this, obj.label, obj.map_loc, false, obj.graphic, obj.modes);
-  this.initial_map_loc = obj.map_loc
   this.name = obj.name === undefined ? obj.label : obj.name;
   this.inventory = [];
   this.orientation = obj.initial_orientation; 
-  this.initial_orientation = obj.initial_orientation;
+  this.last_orientation = obj.initial_orientation;
   this.interacts_with_player = obj.interacts_with_player === undefined ? true : obj.interacts_with_player;
   this.animation = obj.animation === undefined ? undefined : obj.animation.instructions;
   this.animation_total_seconds = obj.animation === undefined ? 0 : obj.animation.total_seconds
@@ -28,22 +27,20 @@ Character.prototype.getName = function(){
   return this.name;
 }
 Character.prototype.resetOrientation = function(){
-  this.setOrientation(this.getInitialOrientation());
+  this.setOrientation(this.getLastOrientation());
 }
 Character.prototype.setOrientation = function(orientation){
+  this.last_orientation = this.orientation;
   this.orientation = orientation;
 };
 Character.prototype.getOrientation = function(){
   return this.orientation;
 };
-Character.prototype.getInitialOrientation = function(){
-  return this.initial_orientation;
+Character.prototype.getLastOrientation = function(){
+  return this.last_orientation;
 }
 Character.prototype.setOrientationTowards = function(x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
-}
-Character.prototype.getInitialLocation = function(){
-  return this.initial_map_loc;
 }
 Character.prototype.getFacingLocation = function(){
   var facing_x;

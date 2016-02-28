@@ -1,17 +1,25 @@
-var AnimationManager = function(controller){
+var AnimationManager = function(){
   this.counter = 0;
   this.counter_inc = Config.ANIMATION_COUNTER;
   this.counter_max = Config.ANIMATION_COUNTER_OVERFLOW;
-  this.controller = controller;    
+  this.controller = undefined;    
+  this.stopped = false;
 }
 
+AnimationManager.prototype.setup = function(controller){
+  this.controller = controller;
+  this.startCounter();
+}
 AnimationManager.prototype.startCounter = function(){
+  this.stopped = false;
   self = this
-    setTimeout(function(){
+  setTimeout(function(){
+    if (!self.stopped){
       self.incrementCounter(); 
       self.updateCharacters();
       self.startCounter();
-    }, this.counter_inc);
+    }
+  }, this.counter_inc);
 }
 AnimationManager.prototype.incrementCounter = function(){
   this.counter++;
@@ -21,6 +29,9 @@ AnimationManager.prototype.incrementCounter = function(){
 }
 AnimationManager.prototype.resetCounter = function(){
   this.counter = 0;
+}
+AnimationManager.prototype.stopCounter = function(){
+  this.stopped = true;
 }
 AnimationManager.prototype.updateCharacters = function(){
   var characters = this.controller.haus.getCharacters();
