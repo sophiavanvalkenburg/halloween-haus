@@ -1,4 +1,14 @@
 var Labels = {
+  sounds: {
+    /********* MUSIC ***************/
+    OPENING: "opening",
+    MAIN: "main",
+    GHOST: "ghost"
+  },
+  channels: {
+    MUSIC: "music",
+    EFFECTS: "sound_effects"
+  },
   tiles: {
     FORTUNE_CAKE: "fortune-cake",
     ALTAR_NORMAL_MODE: "altar-normal-mode",
@@ -49,6 +59,36 @@ var Config = {
   ANIMATION_COUNTER: 1000,
   ANIMATION_COUNTER_OVERFLOW: 60,
   INITIAL_MAP: 0,
+  INITIAL_MUSIC: Labels.sounds.MAIN,
+  sounds: {
+    channels: {
+      MUSIC: { 
+        label: Labels.channels.MUSIC,
+        volume: 0.3,
+      },
+      EFFECTS: {
+        label: Labels.channels.EFFECTS,
+      }
+    },
+    files: [
+      /********* MUSIC ***************/
+      { 
+        label: Labels.sounds.MAIN, 
+        src: "resources/sounds/Gunday Monday - This Is Halloween Chiptune.mp3",
+        loop: true
+      },
+      { 
+        label: Labels.sounds.OPENING, 
+        src: "resources/sounds/132-pokemon-tower.mp3",
+        loop: true
+      },
+      { 
+        label: Labels.sounds.GHOST, 
+        src: "resources/sounds/131-lavender-town-s-theme.mp3",
+        loop: true
+      },
+    ]
+  },
   mapfiles: [
     /******** NORMAL MODE **********/
     "resources/maps/normal/map0.json", 

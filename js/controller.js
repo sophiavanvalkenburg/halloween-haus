@@ -1,8 +1,9 @@
-var Controller = function(haus, renderer, mode_manager, the_story){
+var Controller = function(haus, renderer, mode_manager, the_story, sound_manager){
   this.haus = haus;
   this.renderer = renderer;
   this.mode_manager = mode_manager;
   this.the_story = the_story;
+  this.sound_manager = sound_manager;
 };
 Controller.prototype.setup = function(){
   this.setUpEventListener();
@@ -84,12 +85,14 @@ $(function(){
   var renderer = new Renderer();
   var mode_manager = new InputModeManager();
   var the_story = new Story();
-  var controller = new Controller(the_haus, renderer, mode_manager, the_story);
+  var sound_manager = new SoundManager();
+  var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager);
   var animation_manager = new AnimationManager(controller)
   map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
     the_story.setup(controller);
     animation_manager.startCounter();
+    sound_manager.playMusic(Config.INITIAL_MUSIC);
   }); 
 });
 

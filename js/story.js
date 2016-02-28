@@ -103,11 +103,13 @@ Story.prototype.triggerStoryEvent = function(state){
         var player = this.controller.haus.getPlayer();
         var next_tile = this.controller.haus.getTileWithLabel(Labels.tiles.IN_FRONT_OF_GHOST_ALTAR);
         this.controller.movePlayer(player, next_tile.getLocation());
+        this.controller.sound_manager.playMusic(Labels.sounds.GHOST);
         break;
     case StoryStates.RETURNED_TO_LIVING:
         var player = this.controller.haus.getPlayer();
         var next_tile = this.controller.haus.getTileWithLabel(Labels.tiles.IN_FRONT_OF_NORMAL_ALTAR);
         this.controller.movePlayer(player, next_tile.getLocation());
+        this.controller.sound_manager.playMusic(Labels.sounds.MAIN);
         break;
   }
 }
