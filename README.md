@@ -19,9 +19,7 @@ $ http-server .
 
 ### Programming To-Do
 - character movement
-  - animation mode for player
-  - animation timing for npcs
-- add music
+  - NPCs should stop moving if player talks to them
 - image/music pre-loading
 - start screen interaction
   
