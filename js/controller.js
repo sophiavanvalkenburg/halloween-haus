@@ -7,7 +7,7 @@ var Controller = function(haus, renderer, mode_manager, the_story, sound_manager
   this.animation_manager = animation_manager;
 };
 Controller.prototype.setup = function(){
-  this.setUpEventListener();
+  this.setUpEventListeners();
   this.haus.setCurrentMap(Config.INITIAL_MAP);
   this.renderer.drawMap(this.haus);
 };
@@ -17,13 +17,25 @@ Controller.prototype.updateRenderer = function(){
   this.renderer.updateTextDialog(this.haus.getTextDialog());
   this.renderer.updateChoiceDialog(this.haus.getChoiceDialog());
 };
-Controller.prototype.setUpEventListener = function(){
+Controller.prototype.setUpEventListeners = function(){
   var controller = this; 
   window.addEventListener("keydown", function(e){
     controller.mode_manager.handleKeyEvent(e.which, controller);
     controller.updateRenderer();
   });
+  window.addEventListener("tick", function(e){
+    controller.handleTimeTickEvent();
+  });
 };
+Controller.prototype.handleTimeTickEvent = function(){
+  var currentTime = this.animation_manager.getCounter();
+  var characters = this.haus.getCharacters();
+  for(var i=0; i<characters.length; i++){
+    var ch = characters[i]
+    ch.animate(this, currentTime);
+  }  
+  this.updateRenderer();
+}
 Controller.prototype.movePlayerLeft = function(){
   this.movePlayerByOffset(-1, 0);
 }
@@ -101,8 +113,8 @@ $(function(){
   map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
     the_story.setup(controller);
-    animation_manager.setup(controller);
     sound_manager.playMusic(Config.INITIAL_MUSIC);
+    animation_manager.startCounter();
   }); 
 });
 

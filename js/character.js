@@ -117,3 +117,13 @@ Character.prototype.getLocationAtTime = function(t){
     }
   }
 }
+Character.prototype.animate = function(controller, currentTime){
+  var new_orientation = this.getOrientationAtTime(currentTime);
+  var new_map_loc = this.getLocationAtTime(currentTime);
+  if (new_map_loc !== undefined){
+    controller.movePlayer(this, new_map_loc);
+  }
+  if (new_orientation !== undefined){
+    this.setOrientation(new_orientation);
+  }
+}
