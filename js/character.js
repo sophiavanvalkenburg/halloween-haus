@@ -1,48 +1,30 @@
-var Character = function(obj){
+var MoveableObject = function(obj){
+  obj = obj === undefined ? {} : obj
   MapObject.call(this, obj.label, obj.map_loc, false, obj.graphic, obj.modes);
-  this.name = obj.name === undefined ? obj.label : obj.name;
-  this.inventory = [];
   this.orientation = obj.initial_orientation; 
   this.last_orientation = obj.initial_orientation;
   this.interacts_with_player = obj.interacts_with_player === undefined ? true : obj.interacts_with_player;
-  this.animation = obj.animation === undefined ? undefined : obj.animation.instructions;
-  this.animation_total_seconds = obj.animation === undefined ? 0 : obj.animation.total_seconds
-  this.is_npc = obj.is_player === undefined ? true : !obj.is_player;
+  this.animation = obj.animation === undefined ? undefined : new Animation(obj.animation);
 };
-Character.makeMessages = function(name, messages){
-  if (messages !== undefined){
-    return messages.map(
-      function(m){ 
-        return Renderer.characterName(name+':') + ' "' + m + '"';
-      }
-    );
-  }
-}
-Character.prototype = new MapObject();
-Character.prototype.constructor = Character;
-Character.prototype.isNPC = function(){
-  return this.is_npc;
-}
-Character.prototype.getName = function(){
-  return this.name;
-}
-Character.prototype.resetOrientation = function(){
+MoveableObject.prototype = new MapObject();
+MoveableObject.prototype.constructor = MoveableObject;
+MoveableObject.prototype.resetOrientation = function(){
   this.setOrientation(this.getLastOrientation());
 }
-Character.prototype.setOrientation = function(orientation){
+MoveableObject.prototype.setOrientation = function(orientation){
   this.last_orientation = this.orientation;
   this.orientation = orientation;
 };
-Character.prototype.getOrientation = function(){
+MoveableObject.prototype.getOrientation = function(){
   return this.orientation;
 };
-Character.prototype.getLastOrientation = function(){
+MoveableObject.prototype.getLastOrientation = function(){
   return this.last_orientation;
 }
-Character.prototype.setOrientationTowards = function(x, y){
+MoveableObject.prototype.setOrientationTowards = function(x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
 }
-Character.prototype.getFacingLocation = function(){
+MoveableObject.prototype.getFacingLocation = function(){
   var facing_x;
   var facing_y;
   switch(this.orientation){
@@ -69,6 +51,72 @@ Character.prototype.getFacingLocation = function(){
   }
   return new MapLocation(this.mapIndex(), facing_x, facing_y);
 }
+MoveableObject.prototype.startInteracting = function(controller){
+  if (this.interacts_with_player){
+    var player = controller.haus.getPlayer();
+    this.setOrientationTowards(player.X(), player.Y());
+  }
+};
+MoveableObject.prototype.endInteracting = function(controller){
+  if (this.interacts_with_player){
+    this.resetOrientation();
+  }
+};
+MoveableObject.prototype.getNewLocation = function(ins){
+  if (ins.map_loc !== undefined){
+    return ins.map_loc;
+  }
+  if (ins.movement !== undefined){
+    var curr_x = this.map_loc.X();
+    var curr_y = this.map_loc.Y();
+    var curr_map_index = this.map_loc.mapIndex();
+    var new_x = ins.movement.x === undefined ? curr_x : curr_x + ins.movement.x;
+    var new_y = ins.movement.y === undefined ? curr_y : curr_y + ins.movement.y;
+    return new MapLocation(curr_map_index, new_x, new_y);
+  }
+}
+MoveableObject.prototype.animate = function(controller){
+  if (this.animation === undefined){
+    return;
+  }
+  var instruction = this.animation.getNextInstruction();
+  if (instruction.wait !== undefined){
+    return;
+  }
+  var new_orientation = instruction.orientation;
+  var new_map_loc = this.getNewLocation(instruction);
+  if (new_map_loc !== undefined){
+    controller.movePlayer(this, new_map_loc);
+  }
+  if (new_orientation !== undefined){
+    this.setOrientation(new_orientation);
+  }
+}
+
+
+var Character = function(obj){
+  MoveableObject.call(this, obj);
+  this.name = obj.name === undefined ? obj.label : obj.name;
+  this.inventory = [];
+  this.is_npc = obj.is_player === undefined ? true : !obj.is_player;
+}
+Character.makeMessages = function(name, messages){
+  if (messages !== undefined){
+    return messages.map(
+      function(m){ 
+        return Renderer.characterName(name+':') + ' "' + m + '"';
+      }
+    );
+  }
+}
+Character.prototype = new MoveableObject();
+Character.prototype.constructor = Character;
+Character.prototype.isNPC = function(){
+  return this.is_npc;
+}
+Character.prototype.getName = function(){
+  return this.name;
+}
 Character.prototype.addToInventory = function(item){
   this.inventory.push(item);
 };
@@ -83,47 +131,4 @@ Character.prototype.removeFromInventory = function(item){
 Character.prototype.hasItem = function(item){
   return this.inventory.indexOf(item) >= 0;
 };
-Character.prototype.startInteracting = function(controller){
-  if (this.interacts_with_player){
-    var player = controller.haus.getPlayer();
-    this.setOrientationTowards(player.X(), player.Y());
-  }
-};
-Character.prototype.endInteracting = function(controller){
-  if (this.interacts_with_player){
-    this.resetOrientation();
-  }
-};
-Character.prototype.getOrientationAtTime = function(t){
-  t = t % this.animation_total_seconds;
-  if (this.animation !== undefined &&  this.animation[t]){
-    return this.animation[t].orientation;
-  }
-}
-Character.prototype.getLocationAtTime = function(t){
-  t = t % this.animation_total_seconds;
-  var instruction = this.animation === undefined ? undefined : this.animation[t];
-  if (instruction !== undefined){
-    if (instruction.map_loc !== undefined){
-      return instruction.map_loc;
-    }
-    if (instruction.movement !== undefined){
-      var curr_x = this.map_loc.X();
-      var curr_y = this.map_loc.Y();
-      var curr_map_index = this.map_loc.mapIndex();
-      var new_x = instruction.movement.x === undefined ? curr_x : curr_x + instruction.movement.x;
-      var new_y = instruction.movement.y === undefined ? curr_y : curr_y + instruction.movement.y;
-      return new MapLocation(curr_map_index, new_x, new_y);
-    }
-  }
-}
-Character.prototype.animate = function(controller, currentTime){
-  var new_orientation = this.getOrientationAtTime(currentTime);
-  var new_map_loc = this.getLocationAtTime(currentTime);
-  if (new_map_loc !== undefined){
-    controller.movePlayer(this, new_map_loc);
-  }
-  if (new_orientation !== undefined){
-    this.setOrientation(new_orientation);
-  }
-}
+

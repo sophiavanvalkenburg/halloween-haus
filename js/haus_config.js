@@ -56,8 +56,8 @@ var Labels = {
 }
 
 var Config = {
-  ANIMATION_COUNTER: 1000,
-  ANIMATION_COUNTER_OVERFLOW: 60,
+  TIME_COUNTER: 1000,
+  TIME_COUNTER_OVERFLOW: 60,
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.MAIN,
   sounds: {
@@ -198,20 +198,21 @@ var Config = {
           initial_orientation:    MapState.DOWN,
           interacts_with_player:  false,
           animation: {
-            total_seconds: 20,
-            instructions: {
-              1: { movement: { y: 1 } },
-              2: { movement: { y: 1 } },
-              3: { orientation: MapState.LEFT },
-              4: { movement: { x: -1 } },
-              5: { orientation: MapState.UP },
-              6: { movement: { y: -1 } },
-              7: { orientation: MapState.RIGHT },
-              8: { movement: { x: 1 } },
-              9: { orientation: MapState.UP },
-              10: { map_loc: new MapLocation(0, 13, 1) },
-              11: { orientation: MapState.DOWN },
-            }
+            loop: true,
+            instructions: [
+              { movement: { y: 1 } },
+              { movement: { y: 1 } },
+              { orientation: MapState.LEFT },
+              { movement: { x: -1 } },
+              { orientation: MapState.UP },
+              { movement: { y: -1 } },
+              { orientation: MapState.RIGHT },
+              { movement: { x: 1 } },
+              { orientation: MapState.UP },
+              { map_loc: new MapLocation(0, 13, 1) },
+              { orientation: MapState.DOWN },
+              { wait: 10 },
+            ]
           }
         }
       ),
@@ -355,21 +356,21 @@ var Config = {
         ],
       initial_orientation: MapState.RIGHT,
       animation: {
-        total_seconds: 20,
-        instructions: {
-          1: { movement: { x: 1 } },
-          2: { movement: { x: 1 } },
-          3: { movement: { x: 1 } },
-          4: { movement: { x: 1 } },
-          5: { movement: { x: 1 } },
-          6: { orientation: MapState.LEFT },
-          7: { movement: { x: -1 } },
-          8: { movement: { x: -1 } },
-          9: { movement: { x: -1 } },
-          10: { movement: { x: -1 } },
-          11: { movement: { x: -1 } },
-          12: { orientation: MapState.RIGHT },
-        }
+        loop: true,
+        instructions: [
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { orientation: MapState.LEFT },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { orientation: MapState.RIGHT },
+        ]
       }
  }),
   new Character( {

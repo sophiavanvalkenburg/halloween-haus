@@ -1,10 +1,10 @@
-var Controller = function(haus, renderer, mode_manager, the_story, sound_manager, animation_manager){
+var Controller = function(haus, renderer, mode_manager, the_story, sound_manager, time_manager){
   this.haus = haus;
   this.renderer = renderer;
   this.mode_manager = mode_manager;
   this.the_story = the_story;
   this.sound_manager = sound_manager;
-  this.animation_manager = animation_manager;
+  this.time_manager = time_manager;
 };
 Controller.prototype.setup = function(){
   this.setUpEventListeners();
@@ -28,7 +28,7 @@ Controller.prototype.setUpEventListeners = function(){
   });
 };
 Controller.prototype.handleTimeTickEvent = function(){
-  var currentTime = this.animation_manager.getCounter();
+  var currentTime = this.time_manager.getCounter();
   var characters = this.haus.getCharacters();
   for(var i=0; i<characters.length; i++){
     var ch = characters[i]
@@ -94,11 +94,11 @@ Controller.prototype.choiceDialogSelectItem = function(item_index){
   var dialog = this.haus.getChoiceDialog();
   dialog.selectChoice(item_index);
 }
-Controller.prototype.pauseAnimation = function(){
-  this.animation_manager.stopCounter();
+Controller.prototype.pauseTime = function(){
+  this.time_manager.stopCounter();
 }
-Controller.prototype.unpauseAnimation = function(){
-  this.animation_manager.startCounter();
+Controller.prototype.unpauseTime = function(){
+  this.time_manager.startCounter();
 }
 
 $(function(){
@@ -108,13 +108,13 @@ $(function(){
   var mode_manager = new InputModeManager();
   var the_story = new Story();
   var sound_manager = new SoundManager();
-  var animation_manager = new AnimationManager()
-  var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager, animation_manager);
+  var time_manager = new TimeManager()
+  var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager, time_manager);
   map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
     the_story.setup(controller);
     sound_manager.playMusic(Config.INITIAL_MUSIC);
-    animation_manager.startCounter();
+    time_manager.startCounter();
   }); 
 });
 
