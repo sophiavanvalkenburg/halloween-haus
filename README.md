@@ -18,8 +18,6 @@ $ http-server .
 - game borders & dialog art
 
 ### Programming To-Do
-- character movement
-  - NPCs should stop moving if player talks to them
 - image/music pre-loading
 - start screen interaction
   
