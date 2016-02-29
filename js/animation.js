@@ -35,3 +35,11 @@ Animation.prototype.update = function(){
     }
   }
 }
+Animation.prototype.getLastOrientation = function(){
+  for (var i=this.next_instruction-1; i>=0; i--){
+    var ins = this.queue[i];
+    if (ins.orientation !== undefined){
+      return ins.orientation;
+    }
+  }
+}

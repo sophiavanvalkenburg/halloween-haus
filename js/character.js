@@ -2,7 +2,7 @@ var MoveableObject = function(obj){
   obj = obj === undefined ? {} : obj
   MapObject.call(this, obj.label, obj.map_loc, false, obj.graphic, obj.modes);
   this.orientation = obj.initial_orientation; 
-  this.last_orientation = obj.initial_orientation;
+  this.initial_orientation = obj.initial_orientation;
   this.interacts_with_player = obj.interacts_with_player === undefined ? true : obj.interacts_with_player;
   this.animation = obj.animation === undefined ? undefined : new Animation(obj.animation);
 };
@@ -12,14 +12,17 @@ MoveableObject.prototype.resetOrientation = function(){
   this.setOrientation(this.getLastOrientation());
 }
 MoveableObject.prototype.setOrientation = function(orientation){
-  this.last_orientation = this.orientation;
   this.orientation = orientation;
 };
 MoveableObject.prototype.getOrientation = function(){
   return this.orientation;
 };
 MoveableObject.prototype.getLastOrientation = function(){
-  return this.last_orientation;
+  if (this.animation === undefined){
+    return this.initial_orientation;
+  }
+  var last_orientation = this.animation.getLastOrientation();
+  return last_orientation === undefined ? this.initial_orientation : last_orientation;
 }
 MoveableObject.prototype.setOrientationTowards = function(x, y){
   this.setOrientation(this.getOrientationTowardsMe(x, y));
