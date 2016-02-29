@@ -23,10 +23,9 @@ Animation.prototype.getNextInstruction = function(){
     return undefined;
   }
   var ins = this.queue[this.next_instruction];
-  this.updateInstructionCounter();
   return ins;
 }
-Animation.prototype.updateInstructionCounter = function(){
+Animation.prototype.update = function(){
   this.next_instruction++;
   if (this.next_instruction >= this.queue.length){
     if (this.loop){

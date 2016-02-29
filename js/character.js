@@ -81,15 +81,20 @@ MoveableObject.prototype.animate = function(controller){
   }
   var instruction = this.animation.getNextInstruction();
   if (instruction.wait !== undefined){
+    this.animation.update();
     return;
   }
   var new_orientation = instruction.orientation;
   var new_map_loc = this.getNewLocation(instruction);
   if (new_map_loc !== undefined){
-    controller.movePlayer(this, new_map_loc);
+    success = controller.movePlayer(this, new_map_loc);
   }
   if (new_orientation !== undefined){
     this.setOrientation(new_orientation);
+    success = true;
+  }
+  if (success){
+    this.animation.update();
   }
 }
 

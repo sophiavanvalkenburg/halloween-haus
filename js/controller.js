@@ -37,16 +37,16 @@ Controller.prototype.handleTimeTickEvent = function(){
   this.updateRenderer();
 }
 Controller.prototype.movePlayerLeft = function(){
-  this.movePlayerByOffset(-1, 0);
+  return this.movePlayerByOffset(-1, 0);
 }
 Controller.prototype.movePlayerRight = function(){
-  this.movePlayerByOffset(1, 0);
+  return this.movePlayerByOffset(1, 0);
 }
 Controller.prototype.movePlayerUp = function(){
-  this.movePlayerByOffset(0, -1);
+  return this.movePlayerByOffset(0, -1);
 }
 Controller.prototype.movePlayerDown = function(){
-  this.movePlayerByOffset(0, 1);
+  return this.movePlayerByOffset(0, 1);
 }
 Controller.prototype.movePlayerByOffset = function(x_offset, y_offset){
   var map = this.haus.getCurrentMap();
@@ -54,7 +54,7 @@ Controller.prototype.movePlayerByOffset = function(x_offset, y_offset){
   var tile_x = player.X() + x_offset;
   var tile_y = player.Y() + y_offset;
   player.setOrientationTowards(tile_x, tile_y);
-  this.movePlayer(player, new MapLocation(map.getId(), tile_x, tile_y));
+  return this.movePlayer(player, new MapLocation(map.getId(), tile_x, tile_y));
 }
 Controller.prototype.movePlayer = function(player, map_loc){
   var tile = this.haus.getTileOnMap(map_loc.mapIndex(), map_loc.X(), map_loc.Y());
@@ -67,7 +67,9 @@ Controller.prototype.movePlayer = function(player, map_loc){
     if ( !player.isNPC() && change_maps){
       this.haus.setCurrentMap(player.mapIndex());
     }
+    return true;
   }
+  return false;
 }
 Controller.prototype.selectFacingObject = function(){
   var map = this.haus.getCurrentMap();

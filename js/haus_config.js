@@ -192,7 +192,8 @@ var Config = {
               modes: [TextDialogMode.createCharacterTextFactory(
                 Labels.characters.CALICO, 
                 "Meow!"
-                )]
+                )
+              ]
             }
           ],
           initial_orientation:    MapState.DOWN,
