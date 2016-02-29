@@ -36,7 +36,15 @@ Animation.prototype.update = function(){
   }
 }
 Animation.prototype.getLastOrientation = function(){
-  for (var i=this.next_instruction-1; i>=0; i--){
+  if (this.next_instruction == 0){
+    return undefined;
+  }
+  if (this.next_instruction < 0 || this.next_instruction >= this.queue.length){
+    last_instruction = this.queue.length - 1;
+  }else{
+    last_instruction = this.next_instruction - 1;
+  }
+  for (var i=last_instruction; i>=0; i--){
     var ins = this.queue[i];
     if (ins.orientation !== undefined){
       return ins.orientation;

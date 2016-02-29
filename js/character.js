@@ -83,6 +83,9 @@ MoveableObject.prototype.animate = function(controller){
     return;
   }
   var instruction = this.animation.getNextInstruction();
+  if (instruction === undefined){
+    return;
+  }
   if (instruction.wait !== undefined){
     this.animation.update();
     return;
