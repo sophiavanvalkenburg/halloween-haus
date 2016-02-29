@@ -1,10 +1,9 @@
-var Controller = function(haus, renderer, mode_manager, the_story, sound_manager, time_manager){
+var Controller = function(haus, renderer, mode_manager, the_story, sound_manager){
   this.haus = haus;
   this.renderer = renderer;
   this.mode_manager = mode_manager;
   this.the_story = the_story;
   this.sound_manager = sound_manager;
-  this.time_manager = time_manager;
 };
 Controller.prototype.setup = function(){
   this.setUpEventListeners();
@@ -28,11 +27,10 @@ Controller.prototype.setUpEventListeners = function(){
   });
 };
 Controller.prototype.handleTimeTickEvent = function(){
-  var currentTime = this.time_manager.getCounter();
   var characters = this.haus.getCharacters();
   for(var i=0; i<characters.length; i++){
     var ch = characters[i]
-    ch.animate(this, currentTime);
+    ch.animate(this);
   }  
   this.updateRenderer();
 }
@@ -96,12 +94,6 @@ Controller.prototype.choiceDialogSelectItem = function(item_index){
   var dialog = this.haus.getChoiceDialog();
   dialog.selectChoice(item_index);
 }
-Controller.prototype.pauseTime = function(){
-  this.time_manager.stopCounter();
-}
-Controller.prototype.unpauseTime = function(){
-  this.time_manager.startCounter();
-}
 
 $(function(){
   var the_haus = new Haus();
@@ -111,7 +103,7 @@ $(function(){
   var the_story = new Story();
   var sound_manager = new SoundManager();
   var time_manager = new TimeManager()
-  var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager, time_manager);
+  var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager);
   map_loader.loadAllMaps(Config.mapfiles, function(){
     controller.setup();
     the_story.setup(controller);

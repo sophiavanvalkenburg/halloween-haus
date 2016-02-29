@@ -57,7 +57,6 @@ var Labels = {
 
 var Config = {
   TIME_COUNTER: 1000,
-  TIME_COUNTER_OVERFLOW: 60,
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.MAIN,
   sounds: {
@@ -409,7 +408,18 @@ var Config = {
               )]
           }
         ],
-        initial_orientation: MapState.LEFT
+      initial_orientation: MapState.LEFT,
+      animation: {
+        loop: true,
+        instructions: [
+          { orientation: MapState.DOWN },
+          { movement: { y: 1 } },
+          { wait: 5 },
+          { orientation: MapState.UP },
+          { movement: { y: -1} },
+          { wait: 5 }
+        ]
+      }
  }),
     new Character( {
       label:	Labels.characters.JAE,

@@ -5,6 +5,7 @@ var MoveableObject = function(obj){
   this.initial_orientation = obj.initial_orientation;
   this.interacts_with_player = obj.interacts_with_player === undefined ? true : obj.interacts_with_player;
   this.animation = obj.animation === undefined ? undefined : new Animation(obj.animation);
+  this.is_interacting = false;
 };
 MoveableObject.prototype = new MapObject();
 MoveableObject.prototype.constructor = MoveableObject;
@@ -59,11 +60,13 @@ MoveableObject.prototype.startInteracting = function(controller){
     var player = controller.haus.getPlayer();
     this.setOrientationTowards(player.X(), player.Y());
   }
+  this.is_interacting = true;
 };
 MoveableObject.prototype.endInteracting = function(controller){
   if (this.interacts_with_player){
     this.resetOrientation();
   }
+  this.is_interacting = false;
 };
 MoveableObject.prototype.getNewLocation = function(ins){
   if (ins.map_loc !== undefined){
@@ -79,7 +82,7 @@ MoveableObject.prototype.getNewLocation = function(ins){
   }
 }
 MoveableObject.prototype.animate = function(controller){
-  if (this.animation === undefined){
+  if (this.animation === undefined || this.is_interacting){
     return;
   }
   var instruction = this.animation.getNextInstruction();
