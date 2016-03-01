@@ -3,7 +3,8 @@ var GameLoader = function(haus){
   this.load_jobs = 0;
   this.preloaded_graphics = [];
 }
-GameLoader.prototype.loadAllMaps = function(callback){
+GameLoader.prototype.loadGame = function(callback){
+  this.preloadGraphicsFromList();
   var mapfile_list = Config.mapfiles;
   for (var i = 0; i<mapfile_list.length; i++){
     this.startLoadMap(mapfile_list[i], callback);
@@ -89,9 +90,18 @@ GameLoader.prototype.loadMap = function(data){
 }
 GameLoader.prototype.preloadTiles = function(tiles){
   for (var i=0; i<tiles.length; i++){
-    var graphic = new Image();
-    graphic.src = tiles[i].getGraphic();
-    this.preloaded_graphics.push(graphic);
+    var src = tiles[i].getGraphic();
+    this.preloadGraphic(src);
   }
+}
+GameLoader.prototype.preloadGraphicsFromList = function(){
+  for (var i=0; i<Config.preload.length; i++){
+    this.preloadGraphic(Config.preload[i]);
+  }
+}
+GameLoader.prototype.preloadGraphic = function(url){
+  var graphic = new Image();
+  graphic.src = url;
+  this.preloaded_graphics.push(graphic);
 }
   

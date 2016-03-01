@@ -88,6 +88,9 @@ var Config = {
       },
     ]
   },
+  preload: [
+    "resources/images/icons/right-select-arrow.png",
+  ],
   mapfiles: [
     /******** NORMAL MODE **********/
     "resources/maps/normal/map0.json", 
