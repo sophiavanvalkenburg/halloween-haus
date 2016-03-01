@@ -5,6 +5,7 @@ var GameLoader = function(haus){
 }
 GameLoader.prototype.loadGame = function(callback){
   this.preloadGraphicsFromList();
+  this.preloadMapObjects(Config.characters);
   var mapfile_list = Config.mapfiles;
   for (var i = 0; i<mapfile_list.length; i++){
     this.startLoadMap(mapfile_list[i], callback);
@@ -85,12 +86,12 @@ GameLoader.prototype.loadMap = function(data){
   for (var i=0; i<data.tiles.length; i++){
     tiles.push(this.parseTileData(data.tiles[i]));
   }
-  this.preloadTiles(tiles);
+  this.preloadMapObjects(tiles);
   this.haus.addMap( new MapState(meta.map_id, tiles));
 }
-GameLoader.prototype.preloadTiles = function(tiles){
-  for (var i=0; i<tiles.length; i++){
-    var src = tiles[i].getGraphic();
+GameLoader.prototype.preloadMapObjects = function(objs){
+  for (var i=0; i<objs.length; i++){
+    var src = objs[i].getGraphic();
     this.preloadGraphic(src);
   }
 }
