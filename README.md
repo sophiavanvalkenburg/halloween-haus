@@ -18,12 +18,10 @@ $ http-server .
 - game borders & dialog art
 
 ### Programming To-Do
-- image/music pre-loading
 - start screen interaction
   
 ### Nice-To-Haves
-- add a removeCharacter function in map
-- should some classes be singletons or static classes?
+- music pre-loading
 - create debug mode (using key combo ?)
   - toggle gridlines
   - mouseover coordinates
