@@ -199,6 +199,7 @@ var Config = {
           interacts_with_player:  false,
           animation: {
             loop: true,
+            length: 20,
             instructions: [
               { movement: { y: 1 } },
               { movement: { y: 1 } },
@@ -211,7 +212,6 @@ var Config = {
               { orientation: MapState.UP },
               { map_loc: new MapLocation(0, 13, 1) },
               { orientation: MapState.DOWN },
-              { wait: 10 },
             ]
           }
         }
