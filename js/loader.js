@@ -101,6 +101,9 @@ GameLoader.prototype.preloadGraphicsFromList = function(){
   }
 }
 GameLoader.prototype.preloadGraphic = function(url){
+  if (Config.DEBUG === true){
+    return;
+  }
   var graphic = new Image();
   graphic.src = url;
   this.preloaded_graphics.push(graphic);

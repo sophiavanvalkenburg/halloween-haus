@@ -56,6 +56,7 @@ var Labels = {
 }
 
 var Config = {
+  DEBUG: true,
   TIME_COUNTER: 1000,
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.MAIN,
