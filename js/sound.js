@@ -7,15 +7,17 @@ SoundManager.prototype.setupChannels = function(){
   var channels = {};
   var music_conf = Config.sounds.channels.MUSIC;
   effects_conf = Config.sounds.channels.EFFECTS;
-  channels[music_conf.label] = new SoundChannel("#music", music_conf);
-  channels[effects_conf.label] = new SoundChannel("#sound-effects", effects_conf);
+  channels[music_conf.label] = new SoundChannel(music_conf);
+  channels[effects_conf.label] = new SoundChannel(effects_conf);
   return channels;
 }
 SoundManager.prototype.loadSounds = function(sounds){
   var sound_obj = {};
   for (var i=0; i<sounds.length; i++){
-    var sound = sounds[i];
-    sound_obj[sound.label] = { src: sound.src, loop: sound.loop };
+    var $sound = new Audio(sounds[i].src);
+    $sound.loop = sounds[i].loop;
+    //sound_obj[sound.label] = { src: sound.src, loop: sound.loop, obj: $sound_element};
+    sound_obj[sounds[i].label] = $sound;
   }
   return sound_obj;
 }
@@ -33,15 +35,21 @@ SoundManager.prototype.playSound = function(label, channel){
   }
 }
 
-
-var SoundChannel = function(element_id, conf){
-  this.$player = $(element_id)[0];
-  this.$player.volume = conf.volume === undefined ? 1.0 : conf.volume;
+var SoundChannel = function(conf){
+  this.volume = conf.volume === undefined ? 1.0 : conf.volume;
+  this.current_sound = undefined;
 }
 
 SoundChannel.prototype.play = function(sound){
-  this.$player.src = sound.src;
-  this.$player.loop = sound.loop;
-  this.$player.load();
-  this.$player.play();
+  if (this.current_sound != undefined){
+    this.stop();
+  }
+  this.current_sound = sound;
+  sound.volume = this.volume;
+  sound.load();
+  sound.play();
+}
+SoundChannel.prototype.stop = function(){
+  this.current_sound.pause();
+  this.current_sound = undefined;
 }
