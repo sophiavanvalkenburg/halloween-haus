@@ -8,11 +8,8 @@ var Haus = function(){
   this.current_map = -1;
   this.graphics = [];
 };
-Haus.prototype.addMap = function(map, graphics){
+Haus.prototype.addMap = function(map){
   this.maps[map.getId()] = map;
-  if (graphics !== undefined){
-    Array.prototype.push.apply(this.graphics, graphics);
-  }
 }
 Haus.prototype.getCurrentMap = function(){
   return this.getMap(this.current_map);

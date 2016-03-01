@@ -97,14 +97,14 @@ Controller.prototype.choiceDialogSelectItem = function(item_index){
 
 $(function(){
   var the_haus = new Haus();
-  var map_loader = new MapLoader(the_haus);
+  var game_loader = new GameLoader(the_haus);
   var renderer = new Renderer();
   var mode_manager = new InputModeManager();
   var the_story = new Story();
   var sound_manager = new SoundManager();
   var time_manager = new TimeManager()
   var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager);
-  map_loader.loadAllMaps(Config.mapfiles, function(){
+  game_loader.loadAllMaps(function(){
     controller.setup();
     the_story.setup(controller);
     sound_manager.playMusic(Config.INITIAL_MUSIC);

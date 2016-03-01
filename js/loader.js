@@ -1,13 +1,15 @@
-var MapLoader = function(haus){
+var GameLoader = function(haus){
   this.haus = haus;
   this.load_jobs = 0;
+  this.preloaded_graphics = [];
 }
-MapLoader.prototype.loadAllMaps = function(mapfile_list, callback){
+GameLoader.prototype.loadAllMaps = function(callback){
+  var mapfile_list = Config.mapfiles;
   for (var i = 0; i<mapfile_list.length; i++){
     this.startLoadMap(mapfile_list[i], callback);
-  }
+  } 
 }
-MapLoader.prototype.startLoadMap = function(file, callback){
+GameLoader.prototype.startLoadMap = function(file, callback){
   this.load_jobs++;
   the_loader = this;
   $.getJSON(file, function(json){
@@ -18,18 +20,18 @@ MapLoader.prototype.startLoadMap = function(file, callback){
     }
   });
 }
-MapLoader.prototype.convertToInt = function(str){
+GameLoader.prototype.convertToInt = function(str){
   var new_int = parseInt(str);
   if (isNaN(new_int)){
     return -1;
   }
   return new_int;
 }
-MapLoader.prototype.makeTileImageSrc = function(src){
+GameLoader.prototype.makeTileImageSrc = function(src){
   var png = src.split("/").slice(-1)[0];
   return "resources/images/tiles/"+png;
 }
-MapLoader.prototype.parseMetaData = function(data){
+GameLoader.prototype.parseMetaData = function(data){
   if (data === undefined || data.meta === undefined){
     return;
   }
@@ -42,7 +44,7 @@ MapLoader.prototype.parseMetaData = function(data){
   }
   return {resolution: res, num_columns: cols, num_rows: rows, map_id: map};
 }
-MapLoader.prototype.makeMapLocation = function(loc){
+GameLoader.prototype.makeMapLocation = function(loc){
   if (loc === undefined){
     return;
   }
@@ -54,7 +56,7 @@ MapLoader.prototype.makeMapLocation = function(loc){
   }
   return new MapLocation(map, x, y);
 }
-MapLoader.prototype.makeTileModes = function(tile_data){
+GameLoader.prototype.makeTileModes = function(tile_data){
   if (tile_data.messages.length > 0){
     return [
             {
@@ -66,14 +68,14 @@ MapLoader.prototype.makeTileModes = function(tile_data){
     return [];
   }
 }
-MapLoader.prototype.parseTileData = function(tile_data){
+GameLoader.prototype.parseTileData = function(tile_data){
   var loc = this.makeMapLocation(tile_data.loc);
   var portal = this.makeMapLocation(tile_data.portal);
   var img_src = this.makeTileImageSrc(tile_data.graphic);
   var modes = this.makeTileModes(tile_data);
   return new Tile(tile_data.label, loc, portal, tile_data.is_accessible, img_src, modes);
 }
-MapLoader.prototype.loadMap = function(data){
+GameLoader.prototype.loadMap = function(data){
   var meta = this.parseMetaData(data);
   if (meta === undefined){
     return;
@@ -82,16 +84,14 @@ MapLoader.prototype.loadMap = function(data){
   for (var i=0; i<data.tiles.length; i++){
     tiles.push(this.parseTileData(data.tiles[i]));
   }
-  var graphics = this.preloadTiles(tiles);
-  this.haus.addMap( new MapState(meta.map_id, tiles), graphics );
+  this.preloadTiles(tiles);
+  this.haus.addMap( new MapState(meta.map_id, tiles));
 }
-MapLoader.prototype.preloadTiles = function(tiles){
-  var graphics = [];
+GameLoader.prototype.preloadTiles = function(tiles){
   for (var i=0; i<tiles.length; i++){
     var graphic = new Image();
     graphic.src = tiles[i].getGraphic();
-    graphics.push(graphic);
+    this.preloaded_graphics.push(graphic);
   }
-  return graphics;
 }
   
