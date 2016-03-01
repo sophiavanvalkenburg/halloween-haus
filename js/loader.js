@@ -82,6 +82,16 @@ MapLoader.prototype.loadMap = function(data){
   for (var i=0; i<data.tiles.length; i++){
     tiles.push(this.parseTileData(data.tiles[i]));
   }
-  this.haus.addMap( new MapState(meta.map_id, tiles) );
+  var graphics = this.preloadTiles(tiles);
+  this.haus.addMap( new MapState(meta.map_id, tiles), graphics );
+}
+MapLoader.prototype.preloadTiles = function(tiles){
+  var graphics = [];
+  for (var i=0; i<tiles.length; i++){
+    var graphic = new Image();
+    graphic.src = tiles[i].getGraphic();
+    graphics.push(graphic);
+  }
+  return graphics;
 }
   

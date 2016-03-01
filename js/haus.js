@@ -6,9 +6,13 @@ var Haus = function(){
   this.text_dialog = new TextDialog();
   this.choice_dialog = new ChoiceDialog();
   this.current_map = -1;
+  this.graphics = [];
 };
-Haus.prototype.addMap = function(map){
+Haus.prototype.addMap = function(map, graphics){
   this.maps[map.getId()] = map;
+  if (graphics !== undefined){
+    Array.prototype.push.apply(this.graphics, graphics);
+  }
 }
 Haus.prototype.getCurrentMap = function(){
   return this.getMap(this.current_map);
