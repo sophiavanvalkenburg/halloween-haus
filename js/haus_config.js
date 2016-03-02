@@ -225,7 +225,7 @@ var Config = {
         {
           label:    Labels.characters.ABBY,
           map_loc:  new MapLocation(33, 11, 2), 
-          graphic:  "resources/images/characters/abby.png",
+          graphic:  "resources/images/characters/abby-move.gif",
           modes:    [
               {
                 state: StoryStates.INIT, 
@@ -243,7 +243,7 @@ var Config = {
         {
           label:    Labels.characters.ADEL,
           map_loc:  new MapLocation(103, 11, 6), 
-          graphic:  "resources/images/characters/adel.png",
+          graphic:  "resources/images/characters/adel-move.gif",
           modes:  [
               {
                 state: StoryStates.INIT, 
@@ -259,7 +259,7 @@ var Config = {
         {
       label:	Labels.characters.ALEKS,
       map_loc:	new MapLocation(6, 5, 11), 
-      graphic: "resources/images/characters/aleks.png",
+      graphic: "resources/images/characters/aleks-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
