@@ -274,7 +274,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.ALICE,
       map_loc:	new MapLocation(33, 12, 1), 
-      graphic: "resources/images/characters/alice.png",
+      graphic: "resources/images/characters/alice-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -288,7 +288,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.ALULA,
       map_loc:	new MapLocation(33, 13, 2), 
-      graphic: "resources/images/characters/alula.png",
+      graphic: "resources/images/characters/alula-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -303,7 +303,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.AMY,
       map_loc:	new MapLocation(4, 4, 7), 
-      graphic: "resources/images/characters/amy.png",
+      graphic: "resources/images/characters/amy-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -318,7 +318,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.ANGELICA,
       map_loc:	new MapLocation(11, 9, 8), 
-      graphic: "resources/images/characters/angelica.png",
+      graphic: "resources/images/characters/angelica-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -333,7 +333,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.BETHANY,
       map_loc:	new MapLocation(6, 9, 11), 
-      graphic: "resources/images/characters/bethany.png",
+      graphic: "resources/images/characters/bethany-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -348,7 +348,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.BROOKE,
       map_loc:	new MapLocation(32, 7, 15), 
-      graphic: "resources/images/characters/brooke.png",
+      graphic: "resources/images/characters/brooke-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 

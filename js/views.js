@@ -6,7 +6,7 @@ var Renderer = function(){
   this.$map = $("#haus-map");
   this.current_map_index = -1;
 };
-Renderer.TEXT_DIALOG_CHAR_LIMIT = 100; 
+Renderer.TEXT_DIALOG_CHAR_LIMIT = 115; 
 Renderer.createImage = function(filename){
   if (filename !== undefined){
     return $("<img src='"+filename+"'/>");
