@@ -179,7 +179,7 @@ var Config = {
       {
         label:    Labels.characters.YOU,
         map_loc:  new MapLocation(0, 10, 7), 
-        graphic:  "resources/images/characters/player.png",
+        graphic:  "resources/images/characters/player-move.gif",
         is_player: true
       }
       ),
@@ -380,7 +380,7 @@ var Config = {
   new Character( {
       label:	Labels.characters.BUDDY,
       map_loc:	new MapLocation(11, 9, 7), 
-      graphic: "resources/images/characters/buddy.png",
+      graphic: "resources/images/characters/buddy-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -402,7 +402,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.FLO,
       map_loc:	new MapLocation(32, 6, 10), 
-      graphic: "resources/images/characters/flo.png",
+      graphic: "resources/images/characters/flo-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -428,7 +428,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.JAE,
       map_loc:	new MapLocation(14, 11, 9), 
-      graphic: "resources/images/characters/jae.png",
+      graphic: "resources/images/characters/jae-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -443,7 +443,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.LANYA,
       map_loc:	new MapLocation(32, 5, 3), 
-      graphic: "resources/images/characters/lanya.png",
+      graphic: "resources/images/characters/lanya-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -462,7 +462,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.LEE,
       map_loc:	new MapLocation(22, 7, 3), 
-      graphic: "resources/images/characters/lee.png",
+      graphic: "resources/images/characters/lee-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -476,7 +476,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.LISA,
       map_loc:	new MapLocation(4, 4, 6), 
-      graphic: "resources/images/characters/lisa.png",
+      graphic: "resources/images/characters/lisa-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -501,7 +501,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.MARTHA,
       map_loc:	new MapLocation(11, 7, 5), 
-      graphic: "resources/images/characters/martha.png",
+      graphic: "resources/images/characters/martha-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -520,7 +520,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.MIRI,
       map_loc:	new MapLocation(11, 11, 5), 
-      graphic: "resources/images/characters/miri.png",
+      graphic: "resources/images/characters/miri-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -535,7 +535,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.OLIVIA,
       map_loc:	new MapLocation(22, 5, 6), 
-      graphic: "resources/images/characters/olivia.png",
+      graphic: "resources/images/characters/olivia-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -551,7 +551,7 @@ var Config = {
       label:	Labels.characters.PRODUCE,
       name:   Labels.character_names.PRODUCE,
       map_loc:	new MapLocation(32, 10, 8), 
-      graphic: "resources/images/characters/produce.png",
+      graphic: "resources/images/characters/produce-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -566,7 +566,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.SHERI,
       map_loc:	new MapLocation(103, 9, 6), 
-      graphic: "resources/images/characters/sheri.png",
+      graphic: "resources/images/characters/sheri-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -581,7 +581,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.SKYLAR,
       map_loc:	new MapLocation(22, 10, 5), 
-      graphic: "resources/images/characters/skylar.png",
+      graphic: "resources/images/characters/skylar-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -596,7 +596,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.SOPHIA,
       map_loc:	new MapLocation(12, 14, 10), 
-      graphic: "resources/images/characters/sophia.png",
+      graphic: "resources/images/characters/sophia-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -611,7 +611,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.TAI,
       map_loc:	new MapLocation(11, 8, 5), 
-      graphic: "resources/images/characters/tai.png",
+      graphic: "resources/images/characters/tai-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -625,7 +625,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.TESS,
       map_loc:	new MapLocation(22, 9, 9), 
-      graphic: "resources/images/characters/tess.png",
+      graphic: "resources/images/characters/tess-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -639,7 +639,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.TOLA,
       map_loc:	new MapLocation(11, 9, 6), 
-      graphic: "resources/images/characters/tola.png",
+      graphic: "resources/images/characters/tola-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -654,7 +654,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.TORI,
       map_loc:	new MapLocation(11, 7, 9), 
-      graphic: "resources/images/characters/tori.png",
+      graphic: "resources/images/characters/tori-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -674,7 +674,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.VALERIE,
       map_loc:	new MapLocation(101, 8, 13), 
-      graphic: "resources/images/characters/valerie.png",
+      graphic: "resources/images/characters/valerie-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -689,7 +689,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.XIAOWEN,
       map_loc:	new MapLocation(22, 1, 8), 
-      graphic: "resources/images/characters/xiaowen.png",
+      graphic: "resources/images/characters/xiaowen-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
@@ -704,7 +704,7 @@ var Config = {
     new Character( {
       label:	Labels.characters.XIAOYU,
       map_loc:	new MapLocation(22, 3, 8), 
-      graphic: "resources/images/characters/xiaoyu.png",
+      graphic: "resources/images/characters/xiaoyu-move.gif",
       modes:	[
           {
             state: StoryStates.INIT, 
