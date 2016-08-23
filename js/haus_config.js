@@ -252,7 +252,28 @@ var Config = {
                   "Check out the spooky details on this vest that ch(SHERI) made for me!"
                   )]
               }
+            ],
+          animation: {
+            loop: true,
+            instructions: [
+              { orientation: MapState.LEFT },
+              { movement: { x: -1 } },
+              { wait: 1 },
+              { orientation: MapState.RIGHT },
+              { movement: { x: 1} },
+              { wait: 1 },
+              { movement: { x: 1} },
+              { wait: 1 },
+              { orientation: MapState.LEFT },
+              { movement: { x: -1} },
+              { orientation: MapState.DOWN },
+              { wait: 3 },
+              { movement: { y: 1} },
+              { orientation: MapState.UP },
+              { movement: { y: -1} },
+              { wait: 3 }
             ]
+          }
         }
       ),
     new Character(
@@ -343,7 +364,34 @@ var Config = {
               )]
           }
         ],
-        initial_orientation: MapState.LEFT
+      initial_orientation: MapState.UP,
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+          { orientation: MapState.LEFT },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { orientation: MapState.DOWN },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { orientation: MapState.RIGHT },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { orientation: MapState.UP },
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+        ]
+      }
  }),
     new Character( {
       label:	Labels.characters.BROOKE,
@@ -438,7 +486,32 @@ var Config = {
               )]
           }
         ],
-        initial_orientation: MapState.RIGHT
+      initial_orientation: MapState.RIGHT,
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { orientation: MapState.DOWN },
+          { movement: { y: 1 } },
+          { orientation: MapState.LEFT },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { orientation: MapState.UP },
+          { movement: { y: -1 } },
+          { orientation: MapState.RIGHT },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+        ]
+      }
  }),
     new Character( {
       label:	Labels.characters.LANYA,
@@ -530,7 +603,24 @@ var Config = {
               )]
           }
         ],
-        initial_orientation: MapState.RIGHT
+        initial_orientation: MapState.UP,
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { y: -1 } },
+          { wait: 5 },
+          { orientation: MapState.LEFT },
+          { orientation: MapState.DOWN },
+          { movement: { y: 1} },
+          { movement: { y: 1} },
+          { movement: { y: 1} },
+          { wait: 5 },
+          { orientation: MapState.LEFT },
+          { orientation: MapState.UP },
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+        ]
+      }
  }),
     new Character( {
       label:	Labels.characters.OLIVIA,
@@ -606,7 +696,14 @@ var Config = {
               )]
           }
         ],
-        initial_orientation: MapState.LEFT
+      initial_orientation: MapState.LEFT,
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { y: -1} },
+          { movement: { y: 1} },
+        ]
+      }
  }),
     new Character( {
       label:	Labels.characters.TAI,
@@ -634,7 +731,44 @@ var Config = {
               "Dinner will be ready soon~"
               )]
           }
+        ],
+      animation: {
+        loop: true,
+        instructions: [
+          { wait: 3 },
+          { orientation: MapState.LEFT },
+          { movement: { x: -1 } },
+          { orientation: MapState.DOWN },
+          { wait: 3 },
+          { orientation: MapState.LEFT },
+          { movement: { x: -1 } },
+          { orientation: MapState.DOWN },
+          { wait: 3 },
+          { orientation: MapState.LEFT },
+          { movement: { x: -1 } },
+          { orientation: MapState.DOWN },
+          { wait: 3 },
+          { orientation: MapState.LEFT },
+          { movement: { x: -1 } },
+          { orientation: MapState.DOWN },
+          { wait: 3 },
+          { orientation: MapState.RIGHT },
+          { movement: { x: 1 } },
+          { orientation: MapState.DOWN },
+          { wait: 3 },
+          { orientation: MapState.RIGHT },
+          { movement: { x: 1 } },
+          { orientation: MapState.DOWN },
+          { wait: 3 },
+          { orientation: MapState.RIGHT },
+          { movement: { x: 1 } },
+          { orientation: MapState.DOWN },
+          { wait: 3 },
+          { orientation: MapState.RIGHT },
+          {  movement: { x: 1 } },
+          { orientation: MapState.DOWN },
         ]
+      }
  }),
     new Character( {
       label:	Labels.characters.TOLA,
@@ -673,7 +807,7 @@ var Config = {
  }),
     new Character( {
       label:	Labels.characters.VALERIE,
-      map_loc:	new MapLocation(101, 8, 13), 
+      map_loc:	new MapLocation(101, 9, 11), 
       graphic: "resources/images/characters/valerie-move.gif",
       modes:	[
           {
@@ -683,8 +817,7 @@ var Config = {
               "I heard there's a ghost in our room that keeps opening and closing the closet door."
               )]
           }
-        ],
-        initial_orientation: MapState.UP
+        ]
  }),
     new Character( {
       label:	Labels.characters.XIAOWEN,
