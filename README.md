@@ -9,10 +9,8 @@ $ http-server .
 ```
 
 ### Design To-Do
-- pixel art for ghost map
-- character orientation sprites
 - ghost sprites
-- character / tile animations
+- character movement
 - object interaction text
 - start screen pixel art
 - game borders & dialog art
@@ -21,6 +19,9 @@ $ http-server .
 - start screen interaction
   
 ### Nice-To-Haves
+- pixel art for ghost map
+- character orientation sprites
+- tile animation
 - music pre-loading
 - create debug mode (using key combo ?)
   - toggle gridlines
