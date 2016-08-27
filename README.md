@@ -10,7 +10,6 @@ $ http-server .
 
 ### Design To-Do
 - ghost sprites
-- character movement
 - object interaction text
 - start screen pixel art
 - game borders & dialog art
