@@ -252,8 +252,14 @@ var Config = {
                 state: StoryStates.INIT, 
                 modes: [TextDialogMode.createCharacterTextFactory(
                   Labels.characters.ABBY, 
-                  "... Drat! You made me lose points on love live!"
-                  )]
+                  "...",
+                  function(){}
+                  ),
+                  TextDialogMode.createCharacterTextFactory(
+                    Labels.characters.ABBY,
+                    "Drat! You made me lose points on love live!"
+                  )
+                    ]
               }
             ],
           initial_orientation:    MapState.RIGHT,
@@ -351,7 +357,12 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.AMY, 
-              "Hey... are you following us??"
+              "Hey...",
+              function(){}
+              ),
+              TextDialogMode.createCharacterTextFactory(
+                Labels.characters.AMY,
+                "Are you following us??"
               )]
           }
         ],
@@ -862,38 +873,22 @@ var Config = {
       animation: {
         loop: true,
         instructions: [
-          { wait: 3 },
-          { orientation: MapState.LEFT },
+          { wait: 1 },
           { movement: { x: -1 } },
-          { orientation: MapState.DOWN },
-          { wait: 3 },
-          { orientation: MapState.LEFT },
+          { wait: 1 },
           { movement: { x: -1 } },
-          { orientation: MapState.DOWN },
-          { wait: 3 },
-          { orientation: MapState.LEFT },
+          { wait: 1 },
           { movement: { x: -1 } },
-          { orientation: MapState.DOWN },
-          { wait: 3 },
-          { orientation: MapState.LEFT },
+          { wait: 1 },
           { movement: { x: -1 } },
-          { orientation: MapState.DOWN },
-          { wait: 3 },
-          { orientation: MapState.RIGHT },
+          { wait: 1 },
           { movement: { x: 1 } },
-          { orientation: MapState.DOWN },
-          { wait: 3 },
-          { orientation: MapState.RIGHT },
+          { wait: 1 },
           { movement: { x: 1 } },
-          { orientation: MapState.DOWN },
-          { wait: 3 },
-          { orientation: MapState.RIGHT },
+          { wait: 1 },
           { movement: { x: 1 } },
-          { orientation: MapState.DOWN },
-          { wait: 3 },
-          { orientation: MapState.RIGHT },
-          {  movement: { x: 1 } },
-          { orientation: MapState.DOWN },
+          { wait: 1 },
+          { movement: { x: 1 } },
         ]
       }
  }),
