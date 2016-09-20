@@ -19,6 +19,10 @@ SoundManager.prototype.loadSounds = function(sounds){
   }
   return sound_obj;
 }
+SoundManager.prototype.toggleMute = function(){
+  this.channels[Labels.channels.MUSIC].toggleMute();
+  this.channels[Labels.channels.EFFECTS].toggleMute();
+}
 SoundManager.prototype.playMusic = function(label){
   this.playSound(label, Labels.channels.MUSIC);
 }
@@ -44,4 +48,8 @@ SoundChannel.prototype.play = function(sound){
   this.$player.loop = sound.loop;
   this.$player.load();
   this.$player.play();
+}
+SoundChannel.prototype.toggleMute = function(){
+  var muteVal = this.$player.muted;
+  this.$player.muted = !muteVal;
 }

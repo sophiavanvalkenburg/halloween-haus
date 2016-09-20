@@ -25,7 +25,26 @@ Controller.prototype.setUpEventListeners = function(){
   window.addEventListener("tick", function(e){
     controller.handleTimeTickEvent();
   });
+  $("#mute-btn").on("click", function(){
+    controller.handleMuteButtonClickEvent();
+  });
+  $("#credits-btn").on("click", function(){
+    controller.handleCreditsButtonClickEvent();
+  });
 };
+Controller.prototype.handleCreditsButtonClickEvent = function(){
+  if (this.mode_manager.modeQueueIsEmpty()){
+    //this.mode_manager.handleButtonEvent(this.credits);
+    //this.mode_manager.addModes(this.credits)
+    //console.log(this.haus.getTextDialog().getMessage());
+    //console.log(this.mode_manager.currentMode());
+  }//else{
+  //  this.mode_manager.handleKeyEvent(
+  //}
+}
+Controller.prototype.handleMuteButtonClickEvent = function(){
+  this.sound_manager.toggleMute();
+}
 Controller.prototype.handleTimeTickEvent = function(){
   var characters = this.haus.getCharacters();
   for(var i=0; i<characters.length; i++){
