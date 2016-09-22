@@ -60,11 +60,17 @@ var Config = {
   TIME_COUNTER: 1000,
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.MAIN,
+  CREDITS: [
+    "~~Credits~~",
+    "Programming and graphics by Sophia", 
+    "~Music~",
+    "\"This Is Halloween Chiptune\" by Gunday Monday"
+  ], 
   sounds: {
     channels: {
       MUSIC: { 
         label: Labels.channels.MUSIC,
-        volume: 0.3,
+        volume: 0.5,
       },
       EFFECTS: {
         label: Labels.channels.EFFECTS,

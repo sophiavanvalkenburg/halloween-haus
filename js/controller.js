@@ -4,6 +4,7 @@ var Controller = function(haus, renderer, mode_manager, the_story, sound_manager
   this.mode_manager = mode_manager;
   this.the_story = the_story;
   this.sound_manager = sound_manager;
+  this.credits = this.makeCredits();
 };
 Controller.prototype.setup = function(){
   this.setUpEventListeners();
@@ -34,13 +35,10 @@ Controller.prototype.setUpEventListeners = function(){
 };
 Controller.prototype.handleCreditsButtonClickEvent = function(){
   if (this.mode_manager.modeQueueIsEmpty()){
-    //this.mode_manager.handleButtonEvent(this.credits);
-    //this.mode_manager.addModes(this.credits)
-    //console.log(this.haus.getTextDialog().getMessage());
-    //console.log(this.mode_manager.currentMode());
-  }//else{
-  //  this.mode_manager.handleKeyEvent(
-  //}
+    this.mode_manager.addModes(this.credits);
+    this.mode_manager.handleKeyEvent(Mode.SELECT, this);
+    this.updateRenderer();
+  }
 }
 Controller.prototype.handleMuteButtonClickEvent = function(){
   this.sound_manager.toggleMute();
@@ -52,6 +50,14 @@ Controller.prototype.handleTimeTickEvent = function(){
     ch.animate(this);
   }  
   this.updateRenderer();
+}
+Controller.prototype.makeCredits = function(){
+  var credits = Config.CREDITS;
+  var modes = [Mode.createFactory()];
+  for (var i=0; i<credits.length; i++){
+    modes.push(TextDialogMode.createFactory(credits[i], function(){}))
+  }
+  return modes;
 }
 Controller.prototype.movePlayerLeft = function(){
   return this.movePlayerByOffset(-1, 0);
