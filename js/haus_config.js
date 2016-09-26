@@ -17,10 +17,16 @@ var Labels = {
     IN_FRONT_OF_GHOST_ALTAR: "in-front-of-ghost-altar"
   },
   character_names: {
-    PRODUCE: "high priestess produce"
+    PRODUCE:  "high priestess produce",
+
+    GHOST: "ghost",
+    BRIDE: "bride",
+    GROOM: "groom",
+    CHEF: "chef"
   },
   characters: {
     CALICO:   "calico",
+    CALICO_GHOST: "calico_ghost",
     YOU:      "you",
 
     ABBY:     "abby",
@@ -51,7 +57,42 @@ var Labels = {
     TORI:     "tori",
     VALERIE:  "valerie",
     XIAOWEN:  "xiaowen",
-    XIAOYU:   "xiaoyu"
+    XIAOYU:   "xiaoyu",
+
+    GHOST_01: "ghost_01",
+    GHOST_02: "ghost_02",
+    GHOST_03: "ghost_03",
+    GHOST_04: "ghost_04",
+    GHOST_05: "ghost_05",
+    GHOST_06: "ghost_06",
+    GHOST_07: "ghost_07",
+    GHOST_08: "ghost_08",
+    GHOST_09: "ghost_09",
+    GHOST_10: "ghost_10",
+    GHOST_11: "ghost_11",
+    GHOST_12: "ghost_12",
+    GHOST_13: "ghost_13",
+    GHOST_14: "ghost_14",
+    GHOST_15: "ghost_15",
+    GHOST_16: "ghost_16",
+    GHOST_17: "ghost_17",
+    GHOST_18: "ghost_18",
+    GHOST_19: "ghost_19",
+    GHOST_20: "ghost_20",
+    GHOST_21: "ghost_21",
+    GHOST_22: "ghost_22",
+    GHOST_23: "ghost_23",
+    GHOST_24: "ghost_24",
+    GHOST_25: "ghost_25",
+    GHOST_26: "ghost_26",
+    GHOST_27: "ghost_27",
+    GHOST_28: "ghost_28",
+    GHOST_29: "ghost_29",
+    GHOST_30: "ghost_30",
+    GHOST_31: "ghost_31",
+    GHOST_32: "ghost_32",
+    GHOST_33: "ghost_33",
+    GHOST_34: "ghost_34",
   }
 }
 
@@ -977,5 +1018,566 @@ var Config = {
         ],
         initial_orientation: MapState.LEFT
  }),
+    new Character( {
+      label: Labels.characters.GHOST_01,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(624, 4, 15),
+      graphic: "resources/images/characters/ghost-fat.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "mmm ... tasty waist ties ..."
+            )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_02,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(60, 5, 1),
+      graphic: "resources/images/characters/ghost-happy.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "It was me!",
+            function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I blew open the windows last year."
+            )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_03,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(60, 12, 4),
+      graphic: "resources/images/characters/ghost-impish.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Heeeere kitty kitty!"
+          )]
+        }
+      ]
+ }),
+     new Character(
+        {
+          label:    Labels.characters.CALICO_GHOST, 
+          map_loc:  new MapLocation(60, 13, 1),
+          graphic:  "resources/images/characters/cat-move.gif", 
+          modes:    [
+            {
+              state: StoryStates.INIT, 
+              modes: [TextDialogMode.createCharacterTextFactory(
+                Labels.characters.CALICO, 
+                "..."
+                ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.CALICO,
+                "Don't you know? This place burned down 30 years ago ..."
+                )
+              ]
+            }
+          ],
+}),
+    new Character( {
+      label: Labels.characters.GHOST_04,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(632, 11, 10),
+      graphic: "resources/images/characters/ghost-cat.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Welcome to the land of the dead! nya~!"
+          )]
+        }
+      ]
+}),
+    new Character( {
+      label: Labels.characters.GHOST_05,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(632, 7, 4),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "This music reminds me of years long past..."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_06,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(631, 14, 5),
+      graphic: "resources/images/characters/ghost-bored.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I wish I could carve pumpkins."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_07,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(631, 16, 9),
+      graphic: "resources/images/characters/ghost-angry.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "No!"
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "You are not allowed up there."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_08,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(622, 5, 9),
+      graphic: "resources/images/characters/ghost-fat.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "*buuuuurp*",
+            function(){}
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Wow, this wedding buffet is delicious!"
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_09,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(67, 5, 4),
+      graphic: "resources/images/characters/ghost-bored.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "When I was alive, I would come to this fountain to pray."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_10,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(67, 5, 6),
+      graphic: "resources/images/characters/ghost-unimpressed.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "You want to know why these pillars are here?",
+            function(){}
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "... Don't ask me, I'm just a ghost."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_11,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(68, 12, 9),
+      graphic: "resources/images/characters/ghost-tongue.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "BOO!"
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_12,
+      name: Labels.character_names.GROOM,
+      map_loc: new MapLocation(68, 11, 2),
+      graphic: "resources/images/characters/ghost-groom.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GROOM,
+            "We got married here 30 years ago."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_13,
+      name: Labels.character_names.BRIDE,
+      map_loc: new MapLocation(68, 12, 2),
+      graphic: "resources/images/characters/ghost-bride.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.BRIDE,
+            "It was an unforgettable day..."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_14,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(68, 7, 9),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I told them I didn't know how to swim..."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_15,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(64, 9, 4),
+      graphic: "resources/images/characters/ghost-unimpressed.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "The hilltop glowed red and our anguished cries could be heard all the way down in the valley below."
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_16,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(66, 7, 8),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I'm terrified of fire!!"
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_17,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(621, 9, 14),
+      graphic: "resources/images/characters/ghost-fat.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "My favorite snack is chocopie!"
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_18,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(611, 7, 10),
+      graphic: "resources/images/characters/ghost-impish.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Someone should carve ME on a pumpkin!"
+          )]
+        }
+      ]
+ }),
+    new Character( {
+      label: Labels.characters.GHOST_19,
+      name: Labels.character_names.CHEF,
+      map_loc: new MapLocation(611, 5, 7),
+      graphic: "resources/images/characters/ghost-chef.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.CHEF,
+            "Go away! Shoo!",
+            function(){}
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.CHEF,
+            "I have to finish making the food for the wedding banquet before the guests arrive!"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_20,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(612, 14, 11),
+      graphic: "resources/images/characters/ghost-happy.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "My favorite game is Super Mario Bros!"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_21,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(612, 15, 8),
+      graphic: "resources/images/characters/ghost-impish.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I just bought a new NES!"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_22,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(612, 15, 10),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "c-come play with us..."
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_23,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(633, 12, 3),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I wish I could play too..."
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_24,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6101, 12, 13),
+      graphic: "resources/images/characters/ghost-happy.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "The closet is where all my stuff is, so of course I need to open the door sometimes!"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_25,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(693, 5, 11),
+      graphic: "resources/images/characters/ghost-bored.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I have to go help my dad prepare the food downstairs..."
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_26,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(691, 4, 4),
+      graphic: "resources/images/characters/ghost-sleepy.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "...zZzZzZzZz..."
+          )]
+        }
+      ],
+      interacts_with_player: false
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_27,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(692, 6, 6),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "OUCH!",
+            function(){}
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "The floor is HOT!!"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_28,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6141, 13, 6),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Don't look under the bed."
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_29,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6143, 4, 12),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Have you seen my roommate?"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_30,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(614, 14, 8),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "They took me out of my room, and now I can't find my way back..."
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_31,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6105, 4, 7),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Why won't you touch me?"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_32,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6142, 4, 8),
+      graphic: "resources/images/characters/ghost-bored.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I died in this room.",
+            function(){}
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Was it ... 30 years ago already?"
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_33,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(610, 2, 10),
+      graphic: "resources/images/characters/ghost-sleepy.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "..."
+          )]
+        }
+      ]
+ }),
+  new Character( {
+      label: Labels.characters.GHOST_34,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(614, 10, 9),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "...",
+            function(){}
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Do you want to wear the red dress?"
+          )]
+        }
+      ]
+ })
   ]
 }
