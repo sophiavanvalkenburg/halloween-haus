@@ -27,6 +27,7 @@ var Labels = {
   characters: {
     CALICO:   "calico",
     CALICO_GHOST: "calico_ghost",
+    BUDDY_GHOST: "buddy_ghost",
     YOU:      "you",
 
     ABBY:     "abby",
@@ -1716,6 +1717,25 @@ var Config = {
       },
       interacts_with_player:  false
 
- })
+ }),
+  new Character( {
+      label:	Labels.characters.BUDDY_GHOST,
+      map_loc:	new MapLocation(611, 9, 7), 
+      graphic: "resources/images/characters/buddy-move.gif",
+      modes:	[
+          {
+            state: StoryStates.INIT, 
+            modes: [TextDialogMode.createCharacterTextFactory(
+              Labels.characters.BUDDY,
+              "...",
+              function(){}
+              ), TextDialogMode.createCharacterTextFactory(
+              Labels.characters.BUDDY,
+              "Why hello, new friend ..."
+              )]
+          }
+        ], 
+        initial_orientation: MapState.LEFT
+ }),
   ]
 }
