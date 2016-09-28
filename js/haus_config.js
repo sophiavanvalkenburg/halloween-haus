@@ -1031,7 +1031,8 @@ var Config = {
             "mmm ... tasty waist ties ..."
             )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_02,
@@ -1050,7 +1051,8 @@ var Config = {
             "I blew open the windows last year."
             )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_03,
@@ -1065,7 +1067,23 @@ var Config = {
             "Heeeere kitty kitty!"
           )]
         }
-      ]
+      ],
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+        ]
+      },
+      interacts_with_player:  false
  }),
      new Character(
         {
@@ -1077,7 +1095,8 @@ var Config = {
               state: StoryStates.INIT, 
               modes: [TextDialogMode.createCharacterTextFactory(
                 Labels.characters.CALICO, 
-                "..."
+                "...",
+                function(){}
                 ), TextDialogMode.createCharacterTextFactory(
                 Labels.characters.CALICO,
                 "Don't you know? This place burned down 30 years ago ..."
@@ -1085,6 +1104,7 @@ var Config = {
               ]
             }
           ],
+         interacts_with_player: false
 }),
     new Character( {
       label: Labels.characters.GHOST_04,
@@ -1099,7 +1119,8 @@ var Config = {
             "Welcome to the land of the dead! nya~!"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
 }),
     new Character( {
       label: Labels.characters.GHOST_05,
@@ -1114,7 +1135,8 @@ var Config = {
             "This music reminds me of years long past..."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_06,
@@ -1129,7 +1151,8 @@ var Config = {
             "I wish I could carve pumpkins."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_07,
@@ -1147,7 +1170,8 @@ var Config = {
             "You are not allowed up there."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_08,
@@ -1166,7 +1190,19 @@ var Config = {
             "Wow, this wedding buffet is delicious!"
           )]
         }
-      ]
+      ],
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+        ]
+      },
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_09,
@@ -1181,7 +1217,8 @@ var Config = {
             "When I was alive, I would come to this fountain to pray."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_10,
@@ -1200,7 +1237,8 @@ var Config = {
             "... Don't ask me, I'm just a ghost."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_11,
@@ -1215,7 +1253,8 @@ var Config = {
             "BOO!"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_12,
@@ -1230,7 +1269,8 @@ var Config = {
             "We got married here 30 years ago."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_13,
@@ -1245,7 +1285,8 @@ var Config = {
             "It was an unforgettable day..."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_14,
@@ -1260,7 +1301,8 @@ var Config = {
             "I told them I didn't know how to swim..."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_15,
@@ -1275,7 +1317,8 @@ var Config = {
             "The hilltop glowed red and our anguished cries could be heard all the way down in the valley below."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_16,
@@ -1290,7 +1333,37 @@ var Config = {
             "I'm terrified of fire!!"
           )]
         }
-      ]
+      ],
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+          { movement: { y: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } }
+        ]
+      },
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_17,
@@ -1305,12 +1378,13 @@ var Config = {
             "My favorite snack is chocopie!"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_18,
       name: Labels.character_names.GHOST,
-      map_loc: new MapLocation(611, 7, 10),
+      map_loc: new MapLocation(611, 8, 9),
       graphic: "resources/images/characters/ghost-impish.gif",
       modes: [
         {
@@ -1320,7 +1394,8 @@ var Config = {
             "Someone should carve ME on a pumpkin!"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
     new Character( {
       label: Labels.characters.GHOST_19,
@@ -1339,7 +1414,18 @@ var Config = {
             "I have to finish making the food for the wedding banquet before the guests arrive!"
           )]
         }
-      ]
+      ],
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { y: -1 } },
+          { movement: { y: 1 } },
+          { movement: { y: 1 } },
+          { movement: { y: -1 } },
+        ]
+      },
+      interacts_with_player:  false
+
  }),
   new Character( {
       label: Labels.characters.GHOST_20,
@@ -1354,7 +1440,8 @@ var Config = {
             "My favorite game is Super Mario Bros!"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_21,
@@ -1369,7 +1456,8 @@ var Config = {
             "I just bought a new NES!"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_22,
@@ -1384,7 +1472,8 @@ var Config = {
             "c-come play with us..."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_23,
@@ -1399,7 +1488,8 @@ var Config = {
             "I wish I could play too..."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_24,
@@ -1414,7 +1504,8 @@ var Config = {
             "The closet is where all my stuff is, so of course I need to open the door sometimes!"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_25,
@@ -1429,7 +1520,8 @@ var Config = {
             "I have to go help my dad prepare the food downstairs..."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_26,
@@ -1464,7 +1556,16 @@ var Config = {
             "The floor is HOT!!"
           )]
         }
-      ]
+      ],
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { y: 1 } },
+          { movement: { y: -1 } },
+        ]
+      },
+      interacts_with_player:  false
+
  }),
   new Character( {
       label: Labels.characters.GHOST_28,
@@ -1479,7 +1580,8 @@ var Config = {
             "Don't look under the bed."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_29,
@@ -1494,7 +1596,8 @@ var Config = {
             "Have you seen my roommate?"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_30,
@@ -1509,7 +1612,8 @@ var Config = {
             "They took me out of my room, and now I can't find my way back..."
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_31,
@@ -1524,7 +1628,8 @@ var Config = {
             "Why won't you touch me?"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_32,
@@ -1543,7 +1648,8 @@ var Config = {
             "Was it ... 30 years ago already?"
           )]
         }
-      ]
+      ],
+      interacts_with_player:  false
  }),
   new Character( {
       label: Labels.characters.GHOST_33,
@@ -1558,7 +1664,18 @@ var Config = {
             "..."
           )]
         }
-      ]
+      ],
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+        ]
+      },
+      interacts_with_player:  false
+
  }),
   new Character( {
       label: Labels.characters.GHOST_34,
@@ -1577,7 +1694,28 @@ var Config = {
             "Do you want to wear the red dress?"
           )]
         }
-      ]
+      ],
+      animation: {
+        loop: true,
+        instructions: [
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: 1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+          { movement: { x: -1 } },
+        ]
+      },
+      interacts_with_player:  false
+
  })
   ]
 }
