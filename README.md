@@ -9,15 +9,14 @@ $ http-server .
 ```
 
 ### Design To-Do
-- ghost sprites
 - object interaction text
 - start screen pixel art
-- game borders & dialog art
 
 ### Programming To-Do
 - start screen interaction
   
 ### Nice-To-Haves
+- game borders & dialog art
 - pixel art for ghost map
 - character orientation sprites
 - tile animation
