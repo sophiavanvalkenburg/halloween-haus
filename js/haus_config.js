@@ -251,7 +251,6 @@ var Config = {
           interacts_with_player:  false,
           animation: {
             loop: true,
-            length: 20,
             instructions: [
               { movement: { y: 1, x: -1 } },
               { movement: { y: -1, x: -1 } },
@@ -1058,7 +1057,7 @@ var Config = {
     new Character( {
       label: Labels.characters.GHOST_03,
       name: Labels.character_names.GHOST,
-      map_loc: new MapLocation(60, 12, 4),
+      map_loc: new MapLocation(60, 14, 5),
       graphic: "resources/images/characters/ghost-impish.gif",
       modes: [
         {
@@ -1072,24 +1071,46 @@ var Config = {
       animation: {
         loop: true,
         instructions: [
-          { movement: { x: -1 } },
-          { movement: { x: -1 } },
-          { movement: { x: -1 } },
-          { movement: { x: 1 } },
-          { movement: { x: 1 } },
-          { movement: { x: 1 } },
-          { movement: { x: 1 } },
-          { movement: { x: 1 } },
-          { movement: { x: -1 } },
-          { movement: { x: -1 } },
-        ]
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: 1, x: -1 } },
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: 1, x: -1 } },
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: 1, x: -1 } },
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: 1, x: -1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: 1, x: -1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: 1, x: -1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: 1, x: -1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: 1, x: 1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: -1, x: 1 } },
+            { movement: { y: -1, x: -1 } },
+            { movement: { y: 1, x: -1 } },
+         ]
       },
       interacts_with_player:  false
  }),
      new Character(
         {
           label:    Labels.characters.CALICO_GHOST, 
-          map_loc:  new MapLocation(60, 13, 1),
+          map_loc:  new MapLocation(60, 13, 4),
           graphic:  "resources/images/characters/cat-move.gif", 
           modes:    [
             {
@@ -1105,6 +1126,43 @@ var Config = {
               ]
             }
           ],
+          animation: {
+            loop: true,
+            instructions: [
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: -1, x: -1 } },
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: -1, x: -1 } },
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: -1, x: -1 } },
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: 1, x: 1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: -1, x: -1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: -1, x: -1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: -1, x: -1 } },
+              { movement: { y: -1, x: 1 } },
+              { movement: { y: -1, x: -1 } },
+              { movement: { y: 1, x: -1 } },
+              { movement: { y: -1, x: -1 } },
+            ]
+          },
          interacts_with_player: false
 }),
     new Character( {
