@@ -13,6 +13,7 @@ $ http-server .
 - start screen pixel art
 
 ### Programming To-Do
+- bug: need a way to get out if player is trapped by an npc
 - start screen interaction
   
 ### Nice-To-Haves
