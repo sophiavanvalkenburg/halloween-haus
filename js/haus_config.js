@@ -94,6 +94,10 @@ var Labels = {
     GHOST_32: "ghost_32",
     GHOST_33: "ghost_33",
     GHOST_34: "ghost_34",
+    GHOST_35: "ghost_35",
+    GHOST_36: "ghost_36",
+    GHOST_37: "ghost_37",
+    GHOST_38: "ghost_38",
   }
 }
 
@@ -1200,7 +1204,7 @@ var Config = {
     new Character( {
       label: Labels.characters.GHOST_06,
       name: Labels.character_names.GHOST,
-      map_loc: new MapLocation(631, 14, 5),
+      map_loc: new MapLocation(631, 15, 5),
       graphic: "resources/images/characters/ghost-bored.gif",
       modes: [
         {
@@ -1630,7 +1634,7 @@ var Config = {
       label: Labels.characters.GHOST_28,
       name: Labels.character_names.GHOST,
       map_loc: new MapLocation(6141, 13, 6),
-      graphic: "resources/images/characters/ghost-sad.gif",
+      graphic: "resources/images/characters/ghost-unimpressed.gif",
       modes: [
         {
           state: StoryStates.INIT,
@@ -1795,5 +1799,72 @@ var Config = {
         ], 
         initial_orientation: MapState.LEFT
  }),
+  new Character( {
+      label: Labels.characters.GHOST_35,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(611, 4, 3),
+      graphic: "resources/images/characters/ghost-cat.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "MEOW!"
+          )]
+        }
+      ],
+      interacts_with_player:  false
+}),
+  new Character( {
+      label: Labels.characters.GHOST_36,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6103, 11, 3),
+      graphic: "resources/images/characters/ghost-cat.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "nya~"
+          )]
+        }
+      ],
+      interacts_with_player:  false
+}),
+  new Character( {
+      label: Labels.characters.GHOST_37,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(694, 12, 8),
+      graphic: "resources/images/characters/ghost-cat.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "nya~"
+          )]
+        }
+      ],
+      interacts_with_player:  false
+}),
+  new Character( {
+      label: Labels.characters.GHOST_38,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6141, 10, 7),
+      graphic: "resources/images/characters/ghost-sad.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "HELP ME!"
+          )]
+        }
+      ],
+      interacts_with_player:  false
+}),
+
+
+
   ]
 }
