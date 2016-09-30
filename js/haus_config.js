@@ -1179,7 +1179,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "Welcome to the land of the dead! nya~!"
+            "Welcome to the land of the dead! If you want to go back to the land of the living, talk to the skull again."
           )]
         }
       ],
