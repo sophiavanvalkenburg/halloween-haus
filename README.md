@@ -9,14 +9,13 @@ $ http-server .
 ```
 
 ### Design To-Do
-- object interaction text
 - start screen pixel art
 
 ### Programming To-Do
-- bug: need a way to get out if player is trapped by an npc
 - start screen interaction
   
 ### Nice-To-Haves
+- bug: need a way to get out if player is trapped by an npc
 - game borders & dialog art
 - pixel art for ghost map
 - character orientation sprites
