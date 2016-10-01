@@ -80,6 +80,9 @@ Renderer.prototype.drawTile = function(tile){
   }else{
     graphic_loc = tile.getGraphic();
   }
+  if (tile.isGhostTile()){
+    $div.addClass("ghost-mode");
+  }
   $div.append(Renderer.createImage(graphic_loc));
   return $div;
 };

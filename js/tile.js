@@ -87,17 +87,21 @@ MapObject.prototype.startInteracting = function(controller){}
 MapObject.prototype.endInteracting = function(controller){}
 
 
-var Tile = function(label, map_loc, portal_loc, is_accessible, graphic, modes){
+var Tile = function(label, map_loc, portal_loc, is_accessible, graphic, modes, is_ghost_tile){
   MapObject.call(this, label, map_loc, is_accessible, graphic, modes);
   if (portal_loc === undefined){
     this.portal_loc = map_loc;
   }else{
     this.portal_loc = portal_loc;
   }
+  this.is_ghost_tile = is_ghost_tile ? true : false;
 };
 Tile.prototype = new MapObject();
 Tile.prototype.constructor = Tile;
 Tile.prototype.getPortalLoc = function(){
   return this.portal_loc; 
 };
+Tile.prototype.isGhostTile = function(){
+  return this.is_ghost_tile;
+}
 

@@ -23,6 +23,10 @@
     background-color: lightgray;
 }
 
+#haus-map .ghost-mode img {
+    -webkit-filter: sepia(100%);
+}
+
 #haus-map .character {
     width: 20px;
     height: 20px;

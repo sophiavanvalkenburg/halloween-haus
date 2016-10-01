@@ -44,7 +44,7 @@ GameLoader.prototype.parseMetaData = function(data){
   if (res === -1 || cols === -1 || rows === -1 || map === -1){
     return;
   }
-  return {resolution: res, num_columns: cols, num_rows: rows, map_id: map};
+  return {resolution: res, num_columns: cols, num_rows: rows, map_id: map, is_ghost_map: data.meta.is_ghost_map};
 }
 GameLoader.prototype.makeMapLocation = function(loc){
   if (loc === undefined){
@@ -70,12 +70,12 @@ GameLoader.prototype.makeTileModes = function(tile_data){
     return [];
   }
 }
-GameLoader.prototype.parseTileData = function(tile_data){
+GameLoader.prototype.parseTileData = function(tile_data, is_ghost_map){
   var loc = this.makeMapLocation(tile_data.loc);
   var portal = this.makeMapLocation(tile_data.portal);
   var img_src = this.makeTileImageSrc(tile_data.graphic);
   var modes = this.makeTileModes(tile_data);
-  return new Tile(tile_data.label, loc, portal, tile_data.is_accessible, img_src, modes);
+  return new Tile(tile_data.label, loc, portal, tile_data.is_accessible, img_src, modes, is_ghost_map);
 }
 GameLoader.prototype.loadMap = function(data){
   var meta = this.parseMetaData(data);
@@ -84,9 +84,9 @@ GameLoader.prototype.loadMap = function(data){
   }
   var tiles = [];
   for (var i=0; i<data.tiles.length; i++){
-    tiles.push(this.parseTileData(data.tiles[i]));
+    tiles.push(this.parseTileData(data.tiles[i], meta.is_ghost_map));
   }
-  this.preloadMapObjects(tiles);
+  //this.preloadMapObjects(tiles);
   this.haus.addMap( new MapState(meta.map_id, tiles));
 }
 GameLoader.prototype.preloadMapObjects = function(objs){
