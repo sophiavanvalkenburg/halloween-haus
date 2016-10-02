@@ -1,5 +1,9 @@
+body {
+    background-color: black;
+}
+
 #haus-container {
-    border: 0px;
+    border: 1px solid lightgrey;
     display: inline-block;
     height: 450px;
     background-color: black;
