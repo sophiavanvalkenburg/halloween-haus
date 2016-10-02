@@ -84,12 +84,26 @@
 }
 
 #footer-container{
-    margin-top: 10px;
     margin-right: 5px;
 }
 
 .footer-btn{
     float: right;
+    border: 1px solid lightgrey;
+    background-color: #000000;
+    color: lightgrey;
+    margin: 2px;
+    border-radius: 12px;
+    font-family: monospace;
+}
+
+.footer-btn:hover{
+    color: grey;
+    border: 1px solid grey;
+}
+
+.footer-btn:active{
+    background-color: #555555;
 }
 
 .orientation-up{
