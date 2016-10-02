@@ -110,7 +110,9 @@ var Config = {
     "~~Credits~~",
     "Programming and graphics by Sophia", 
     "~Music~",
-    "\"This Is Halloween Chiptune\" by Gunday Monday"
+    "\"Pokemon Tower Theme\" - Pokemon",
+    "\"This Is Halloween\" -  Nightmare Before Christmas (Gunday Monday Chiptune Version)",
+    "\"Lavender Town Theme\" - Pokemon"
   ], 
   sounds: {
     channels: {
