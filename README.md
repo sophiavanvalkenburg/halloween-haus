@@ -13,6 +13,7 @@ $ http-server .
 
 ### Programming To-Do
 - start screen interaction
+- how-to button
   
 ### Nice-To-Haves
 - bug: need a way to get out if player is trapped by an npc
