@@ -1,16 +1,21 @@
-var Controller = function(haus, renderer, mode_manager, the_story, sound_manager){
+var Controller = function(haus, renderer, mode_manager, the_story, sound_manager, time_manager){
   this.haus = haus;
   this.renderer = renderer;
   this.mode_manager = mode_manager;
   this.the_story = the_story;
   this.sound_manager = sound_manager;
-  this.credits = this.makeCredits();
+  this.time_manager = time_manager;
 };
 Controller.prototype.setup = function(){
   this.setUpEventListeners();
   this.haus.setCurrentMap(Config.INITIAL_MAP);
-  this.renderer.drawMap(this.haus);
-};
+  this.mode_manager.addModesAndHandleEvent(
+      this,
+      undefined, 
+      [Mode.createFactory(), StartScreenMode.createFactory()]
+  );
+  this.updateRenderer();
+}
 Controller.prototype.updateRenderer = function(){
   this.renderer.drawMap(this.haus);
   this.renderer.updateCharacters(this.haus.getCharacters());
@@ -35,8 +40,9 @@ Controller.prototype.setUpEventListeners = function(){
 };
 Controller.prototype.handleCreditsButtonClickEvent = function(){
   if (this.mode_manager.modeQueueIsEmpty()){
-    this.mode_manager.addModes(this.credits);
-    this.mode_manager.handleKeyEvent(Mode.SELECT, this);
+    this.mode_manager.addModes([Mode.createFactory()]);
+    var credits = TextDialogMode.textArrayToModes(Config.CREDITS);
+    this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, credits);
     this.updateRenderer();
   }
 }
@@ -50,14 +56,6 @@ Controller.prototype.handleTimeTickEvent = function(){
     ch.animate(this);
   }  
   this.updateRenderer();
-}
-Controller.prototype.makeCredits = function(){
-  var credits = Config.CREDITS;
-  var modes = [Mode.createFactory()];
-  for (var i=0; i<credits.length; i++){
-    modes.push(TextDialogMode.createFactory(credits[i], function(){}))
-  }
-  return modes;
 }
 Controller.prototype.movePlayerLeft = function(){
   return this.movePlayerByOffset(-1, 0);
@@ -119,6 +117,12 @@ Controller.prototype.choiceDialogSelectItem = function(item_index){
   var dialog = this.haus.getChoiceDialog();
   dialog.selectChoice(item_index);
 }
+Controller.prototype.startGame = function(){
+  this.renderer.hideStartScreen();
+  this.renderer.showMap();
+  this.sound_manager.playMusic(Labels.sounds.MAIN);
+  this.time_manager.startCounter();
+}
 
 $(function(){
   var the_haus = new Haus();
@@ -128,12 +132,11 @@ $(function(){
   var the_story = new Story();
   var sound_manager = new SoundManager();
   var time_manager = new TimeManager()
-  var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager);
+  var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager, time_manager);
   game_loader.loadGame(function(){
     controller.setup();
     the_story.setup(controller);
     sound_manager.playMusic(Config.INITIAL_MUSIC);
-    time_manager.startCounter();
   }); 
 });
 

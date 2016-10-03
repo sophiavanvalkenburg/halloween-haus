@@ -9,6 +9,15 @@ body {
     background-color: black;
 }
 
+#start-screen {
+    height: 350px;
+}
+
+#haus-map {
+    display: none;
+    height: 350px;
+}
+
 #haus-map table {
     border: 2px solid black;
     border-collapse: collapse;
@@ -88,7 +97,7 @@ body {
 }
 
 #footer-container{
-    margin-right: 5px;
+    margin-right: 1px;
 }
 
 .footer-btn{

@@ -165,4 +165,9 @@ Renderer.prototype.updateChoiceDialog = function(choice_dialog){
     this.$choice_dialog.html("");
   }
 }
-
+Renderer.prototype.hideStartScreen = function(){
+  $("#start-screen").css("display", "none");
+}
+Renderer.prototype.showMap = function(){
+  $("#haus-map").css("display", "block");
+}

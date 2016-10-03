@@ -105,7 +105,7 @@ var Config = {
   DEBUG: true,
   TIME_COUNTER: 1000,
   INITIAL_MAP: 0,
-  INITIAL_MUSIC: Labels.sounds.MAIN,
+  INITIAL_MUSIC: Labels.sounds.OPENING,
   CREDITS: [
     "~~Credits~~",
     "Programming and graphics by Sophia", 
@@ -114,6 +114,12 @@ var Config = {
     "\"This Is Halloween\" -  Nightmare Before Christmas (Gunday Monday Chiptune Version)",
     "\"Lavender Town Theme\" - Pokemon"
   ], 
+  HOW_TO: [
+    "~~How To Play~~",
+    "Movement: Arrow Buttons",
+    "Select / Object Interaction: `Z` Button",
+    "This is an exploration game. Talk to characters and objects to see if you can uncover the dark secrets of the Haus!"
+  ],
   sounds: {
     channels: {
       MUSIC: { 

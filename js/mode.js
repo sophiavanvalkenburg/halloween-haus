@@ -6,6 +6,7 @@ Mode.MODE = "mode";
 Mode.TEXT_DIALOG = "text_dialog";
 Mode.CHOICE_DIALOG = "choice_dialog";
 Mode.MAP = "map";
+Mode.START_SCREEN = "start_screen";
 Mode.LEFT = 37;
 Mode.UP = 38;
 Mode.RIGHT = 39;
@@ -91,6 +92,13 @@ TextDialogMode.messageStringToArray = function(message_str){
   }
   return messages;
 };
+TextDialogMode.textArrayToModes = function(text_array){
+  var modes = [];
+  for (var i=0; i<text_array.length; i++){
+    modes.push(TextDialogMode.createFactory(text_array[i], function(){}))
+  }
+  return modes;
+}
 TextDialogMode.prototype = new Mode();
 TextDialogMode.prototype.constructor = TextDialogMode;
 TextDialogMode.prototype.downArrowButtonHandler = function(controller){
@@ -205,6 +213,31 @@ MapMode.prototype.shouldEndMode = function(){
 }
 
 
+var StartScreenMode = function(){
+  var choices = ["Start Game", "How To Play", "Credits"];
+  var select_fn = function(controller, target, choice){
+    if (choice == "Start Game"){
+      controller.startGame();
+    } else if (choice == "How To Play"){
+      var instructions = TextDialogMode.textArrayToModes(Config.HOW_TO);
+      controller.mode_manager.addModes(instructions);
+      controller.mode_manager.addModes([StartScreenMode.createFactory()]);
+    } else if (choice == "Credits"){
+      var credits = TextDialogMode.textArrayToModes(Config.CREDITS);
+      controller.mode_manager.addModes(credits);
+      controller.mode_manager.addModes([StartScreenMode.createFactory()]);
+    }
+  }
+  ChoiceDialogMode.call(this, undefined, choices, undefined, select_fn); 
+  this.type = Mode.START_SCREEN;
+}
+StartScreenMode.createFactory = function(){
+  return function() { return new StartScreenMode(); };
+}
+StartScreenMode.prototype = new ChoiceDialogMode();
+StartScreenMode.prototype.constructor = StartScreenMode;
+
+
 var InputModeManager = function(){
   this.mode_queue = [];
 };
@@ -214,6 +247,10 @@ InputModeManager.prototype.addModes = function(mode_factories, target_obj){
     this.mode_queue.push(create_mode_fn(target_obj));
   }
 };
+InputModeManager.prototype.addModesAndHandleEvent = function(controller, mode_event, mode_factories, target_obj){
+  this.addModes(mode_factories, target_obj);
+  this.handleKeyEvent(mode_event, controller);
+}
 InputModeManager.prototype.currentMode = function(){
   if (!this.modeQueueIsEmpty()){
     return this.mode_queue[0];
