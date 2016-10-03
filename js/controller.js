@@ -37,7 +37,18 @@ Controller.prototype.setUpEventListeners = function(){
   $("#credits-btn").on("click", function(){
     controller.handleCreditsButtonClickEvent();
   });
+  $("#how-to-btn").on("click", function(){
+    controller.handleHowToButtonClickEvent();
+  });
 };
+Controller.prototype.handleHowToButtonClickEvent = function(){
+  if (this.mode_manager.modeQueueIsEmpty()){
+    this.mode_manager.addModes([Mode.createFactory()]);
+    var instructions = TextDialogMode.textArrayToModes(Config.HOW_TO);
+    this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, instructions);
+    this.updateRenderer();
+  }
+}
 Controller.prototype.handleCreditsButtonClickEvent = function(){
   if (this.mode_manager.modeQueueIsEmpty()){
     this.mode_manager.addModes([Mode.createFactory()]);
