@@ -596,7 +596,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.FLO, 
-              "I just flew in from DC."
+              "I'm a RAVENCLAW. What's YOUR House??"
               )]
           }
         ],
