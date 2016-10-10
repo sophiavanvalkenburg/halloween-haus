@@ -9,7 +9,6 @@ $ http-server .
 ```
 
 ### Design To-Do
-- start screen pixel art
 
 ### Programming To-Do
   
@@ -19,7 +18,7 @@ $ http-server .
 - pixel art for ghost map
 - character orientation sprites
 - tile animation
-- music pre-loading
+- music/tile pre-loading
 - create debug mode (using key combo ?)
   - toggle gridlines
   - mouseover coordinates
