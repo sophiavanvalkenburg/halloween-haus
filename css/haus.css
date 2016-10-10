@@ -2,6 +2,7 @@ body {
     background-color: black;
 }
 
+
 #haus-container {
     border: 1px solid lightgrey;
     display: inline-block;
@@ -11,6 +12,13 @@ body {
 
 #start-screen {
     height: 350px;
+    width: 364px;
+}
+
+#start-screen img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #haus-map {

@@ -116,6 +116,7 @@ var Config = {
   ], 
   HOW_TO: [
     "~~How To Play~~",
+    "This game is best played on Google Chrome.",
     "Movement: Arrow Buttons",
     "Select / Object Interaction: `Z` Button",
     "This is an exploration game. Talk to characters and objects to see if you can uncover the dark secrets of the Haus!"
