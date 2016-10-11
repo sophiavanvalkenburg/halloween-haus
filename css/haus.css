@@ -2,12 +2,13 @@ body {
     background-color: black;
 }
 
-
 #haus-container {
     border: 1px solid lightgrey;
     display: inline-block;
     height: 450px;
     background-color: black;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 #start-screen {
