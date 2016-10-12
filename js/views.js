@@ -60,7 +60,7 @@ Renderer.prototype.drawMap = function(haus){
   }
   this.current_map_index = map.getId();
   this.clearMap();
-  var $table = $("<table>");
+  var $table = $("<table class='centered'>");
   for (var y=0; y<=map.getMaxY(); y++){
     var $row = $("<tr>");
     for (var x=0; x<=map.getMaxX(); x++){

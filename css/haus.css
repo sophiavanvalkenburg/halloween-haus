@@ -3,14 +3,21 @@ body {
 }
 
 #haus-container {
-    border: 1px solid lightgrey;
+    border: 10px;
+    border-image: url(../resources/images/icons/border-skull.png) 33% repeat;
     display: inline-block;
-    height: 450px;
+    height: 480px;
+    width: 400px;
     background-color: black;
     margin-left: 50%;
     #transform-origin: 0 0;
     #transform: scale(1.2) translateX(-50%);
     transform: translateX(-50%);
+}
+
+.centered {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #start-screen {
@@ -20,8 +27,6 @@ body {
 
 #start-screen img {
     display: block;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 #haus-map {
@@ -90,7 +95,8 @@ body {
 }
 
 .dialog {
-    border: 2px solid lightgrey;
+    border: 10px;
+    border-image: url(../resources/images/icons/border-skull.png) 33% repeat;
     display: none;
 }
 
@@ -109,6 +115,7 @@ body {
 
 #footer-container{
     margin-right: 1px;
+    margin-top: 25px;
 }
 
 .footer-btn{
