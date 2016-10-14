@@ -3,7 +3,12 @@ var Labels = {
     /********* MUSIC ***************/
     OPENING: "opening",
     MAIN: "main",
-    GHOST: "ghost"
+    GHOST: "ghost",
+    GET_ITEM: "get_item",
+    MENU_NAV: "menu_nav",
+    MENU_SELECT: "menu_select",
+    ENTER_GHOST_MODE: "enter_ghost_mode",
+    EXIT_GHOST_MODE: "exit_ghost_mode"
   },
   channels: {
     MUSIC: "music",
@@ -129,25 +134,51 @@ var Config = {
       },
       EFFECTS: {
         label: Labels.channels.EFFECTS,
+        volume: 0.2
       }
     },
     files: [
       /********* MUSIC ***************/
       { 
         label: Labels.sounds.MAIN, 
-        src: "resources/sounds/Gunday Monday - This Is Halloween Chiptune.mp3",
+        src: "resources/sounds/music/Gunday Monday - This Is Halloween Chiptune.mp3",
         loop: true
       },
       { 
         label: Labels.sounds.OPENING, 
-        src: "resources/sounds/132-pokemon-tower.mp3",
+        src: "resources/sounds/music/132-pokemon-tower.mp3",
         loop: true
       },
       { 
         label: Labels.sounds.GHOST, 
-        src: "resources/sounds/131-lavender-town-s-theme.mp3",
+        src: "resources/sounds/music/131-lavender-town-s-theme.mp3",
         loop: true
       },
+      {
+        label: Labels.sounds.GET_ITEM,
+        src: "resources/sounds/effects/Collect_Point_00.mp3",
+        loop: false
+      },
+      {
+        label: Labels.sounds.MENU_NAV,
+        src: "resources/sounds/effects/Menu_Navigate_03.mp3",
+        loop:false
+      },
+      {
+        label: Labels.sounds.MENU_SELECT,
+        src: "resources/sounds/effects/Collect_Point_02.mp3",
+        loop: false
+      },
+      {
+        label: Labels.sounds.ENTER_GHOST_MODE,
+        src: "resources/sounds/effects/LA_Dungeon_Teleport_Appear.mp3",
+        loop: false
+      },
+      {
+        label: Labels.sounds.EXIT_GHOST_MODE,
+        src: "resources/sounds/effects/LA_GreatFairy_Vanish.mp3",
+        loop: false
+      }
     ]
   },
   preload: [

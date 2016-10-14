@@ -102,9 +102,11 @@ TextDialogMode.textArrayToModes = function(text_array){
 TextDialogMode.prototype = new Mode();
 TextDialogMode.prototype.constructor = TextDialogMode;
 TextDialogMode.prototype.downArrowButtonHandler = function(controller){
+  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
   this.gotoNextMessage(controller);
 };
 TextDialogMode.prototype.selectButtonHandler = function(controller){
+  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
   this.gotoNextMessage(controller);
 };
 TextDialogMode.prototype.gotoNextMessage = function(controller){
@@ -156,14 +158,17 @@ ChoiceDialogMode.prototype.clear = function(controller){
   controller.unsetChoiceDialogLabels();
 }
 ChoiceDialogMode.prototype.downArrowButtonHandler = function(controller){
+  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
   this.selected = this.selected === this.choices.length - 1 ? this.selected : this.selected + 1;
   controller.choiceDialogSelectItem(this.selected);
 };
 ChoiceDialogMode.prototype.upArrowButtonHandler = function(controller){
+  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
   this.selected = this.selected === 0 ? 0 : this.selected - 1;
   controller.choiceDialogSelectItem(this.selected);
 };
 ChoiceDialogMode.prototype.selectButtonHandler = function(controller){
+  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_SELECT);
   this.select_fn(controller, this.target_obj, this.choices[this.selected])
   this.handled = true; 
 };
@@ -204,7 +209,10 @@ MapMode.prototype.selectButtonHandler = function(controller){
     var played_states = controller.the_story.getPlayedGameStates();
     target_obj.startInteracting(controller);
     var mode_seq = target_obj.getModeSequence(played_states);
-    controller.mode_manager.addModes(mode_seq, target_obj); 
+    if (mode_seq.length > 0){
+      controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
+      controller.mode_manager.addModes(mode_seq, target_obj); 
+    }
   }
   this.handled = true;
 };

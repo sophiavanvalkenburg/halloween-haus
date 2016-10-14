@@ -96,6 +96,7 @@ Story.prototype.setupStoryModes = function(){
 Story.prototype.triggerStoryEvent = function(state){
   switch(state){
     case StoryStates.RECIEVED_COIN: 
+        this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
         var player = this.controller.haus.getPlayer();
         player.addToInventory(this.objects.COIN);
         break; 
@@ -104,12 +105,14 @@ Story.prototype.triggerStoryEvent = function(state){
         var next_tile = this.controller.haus.getTileWithLabel(Labels.tiles.IN_FRONT_OF_GHOST_ALTAR);
         this.controller.movePlayer(player, next_tile.getLocation());
         this.controller.sound_manager.playMusic(Labels.sounds.GHOST);
+        this.controller.sound_manager.playSoundEffect(Labels.sounds.ENTER_GHOST_MODE);
         break;
     case StoryStates.RETURNED_TO_LIVING:
         var player = this.controller.haus.getPlayer();
         var next_tile = this.controller.haus.getTileWithLabel(Labels.tiles.IN_FRONT_OF_NORMAL_ALTAR);
         this.controller.movePlayer(player, next_tile.getLocation());
         this.controller.sound_manager.playMusic(Labels.sounds.MAIN);
+        this.controller.sound_manager.playSoundEffect(Labels.sounds.EXIT_GHOST_MODE);
         break;
   }
 }
