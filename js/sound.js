@@ -33,21 +33,42 @@ SoundManager.prototype.playSound = function(label, channel){
   var sound = this.sounds[label];
   var channel = this.channels[channel];
   if (sound !== undefined && channel !== undefined){
-    channel.play(sound);
+    channel.fadeOutAndPlay(sound);
   }
 }
 
 
 var SoundChannel = function(element_id, conf){
+  this.volume = conf.volume === undefined ? 1.0 : conf.volume;
   this.$player = $(element_id)[0];
-  this.$player.volume = conf.volume === undefined ? 1.0 : conf.volume;
+  var channel = this;
+  this.$player.addEventListener("canplaythrough", function(){
+    channel.play();
+  }, false)
 }
-
-SoundChannel.prototype.play = function(sound){
+SoundChannel.prototype.play = function(){
+  this.$player.volume = this.volume;
+  this.$player.play();
+}
+SoundChannel.prototype.load = function(sound){
   this.$player.src = sound.src;
   this.$player.loop = sound.loop;
   this.$player.load();
-  this.$player.play();
+}
+SoundChannel.prototype.fadeOutAndPlay = function(sound){
+  var channel = this
+  if (!this.$player.paused){
+    var fadeout = setInterval(function(){
+      if (channel.$player.volume > 0.05){
+        channel.$player.volume -= 0.05;
+      }else{
+        clearInterval(fadeout);
+        channel.load(sound);
+      }
+    }, 150);
+  }else{
+    this.load(sound);
+  }
 }
 SoundChannel.prototype.toggleMute = function(){
   var muteVal = this.$player.muted;
