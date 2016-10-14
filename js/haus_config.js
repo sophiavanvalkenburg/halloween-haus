@@ -103,6 +103,7 @@ var Labels = {
     GHOST_36: "ghost_36",
     GHOST_37: "ghost_37",
     GHOST_38: "ghost_38",
+    GHOST_38: "ghost_39",
   }
 }
 
@@ -264,7 +265,13 @@ var Config = {
     "resources/maps/ghost/map144.json",
     "resources/maps/ghost/map145.json",
     "resources/maps/ghost/map146.json",
-    "resources/maps/ghost/map147.json"
+    "resources/maps/ghost/map147.json",
+    "resources/maps/ghost/map15.json",
+    "resources/maps/ghost/map16.json",
+    "resources/maps/ghost/map17.json",
+    "resources/maps/ghost/map18.json",
+    "resources/maps/ghost/map19.json",
+    "resources/maps/ghost/map20.json",
 
   ],
   player: new Character(
@@ -1755,7 +1762,7 @@ var Config = {
   new Character( {
       label: Labels.characters.GHOST_33,
       name: Labels.character_names.GHOST,
-      map_loc: new MapLocation(610, 2, 10),
+      map_loc: new MapLocation(610, 3, 10),
       graphic: "resources/images/characters/ghost-sleepy.gif",
       modes: [
         {
@@ -1766,15 +1773,6 @@ var Config = {
           )]
         }
       ],
-      animation: {
-        loop: true,
-        instructions: [
-          { movement: { x: 1 } },
-          { movement: { x: 1 } },
-          { movement: { x: -1 } },
-          { movement: { x: -1 } },
-        ]
-      },
       interacts_with_player:  false
 
  }),
@@ -1901,6 +1899,26 @@ var Config = {
       ],
       interacts_with_player:  false
 }),
+  new Character( {
+      label: Labels.characters.GHOST_39,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(614, 16, 14),
+      graphic: "resources/images/characters/ghost-angry.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "No!"
+          ), TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "You are not allowed down there."
+          )]
+        }
+      ],
+      interacts_with_player:  false
+}),
+
 
 
 
