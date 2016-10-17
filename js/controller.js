@@ -93,7 +93,8 @@ Controller.prototype.movePlayer = function(player, map_loc){
   var tile = this.haus.getTileOnMap(map_loc.mapIndex(), map_loc.X(), map_loc.Y());
   if (tile !== undefined && 
       tile.isAccessible() && 
-      this.haus.getCharacterOnMap(tile.getPortalLoc()) === undefined
+      this.haus.getCharacterOnMap(tile.getPortalLoc()) === undefined &&
+      this.haus.getItemOnMap(tile.getPortalLoc()) === undefined
      ){
     player.setLocation(tile.getPortalLoc());
     var change_maps = this.haus.getCurrentMap().getId() !== player.mapIndex()
