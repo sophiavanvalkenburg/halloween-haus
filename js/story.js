@@ -6,7 +6,8 @@ var StoryStates = {
     RECEIVED_KEY: "received-key",
     RECEIVED_MUSHROOM: "received-mushroom",
     GAVE_MUSHROOM_TO_TESS: "gave-mushroom-to-tess",
-    RECEIVED_BUTTON: "received-button"
+    RECEIVED_BUTTON: "received-button",
+    RECEIVED_BONES: "received-bones",
 }
 
 var Story = function(){
@@ -169,6 +170,42 @@ Story.prototype.setupStoryModes = function(){
           "Thank you for the mushroom!"
       )
   );
+
+  var bones_tile = this.controller.haus.getTileWithLabel(Labels.tiles.BONES);
+  bones_tile.addMode(
+    StoryStates.INIT,
+    ChoiceDialogMode.createFactory(
+      ["Yes", "No"], 
+      "Should you take some as a souvenir?",
+      function(controller, target_obj, selected_item){
+        if (selected_item === "Yes"){
+            controller.mode_manager.addModes([ 
+              TextDialogMode.createFactory(
+                "You took some " + Renderer.objectName("bones") + ".",
+                function(){
+                  the_story.addPlayedState(StoryStates.RECEIVED_BONES);
+                }
+              )]);
+        }else{
+            controller.mode_manager.addModes([
+              TextDialogMode.createFactory(
+                "Well ... that would be a bit morally questionable ... Right?",
+                function(){}
+              ),
+              TextDialogMode.createFactory(
+                "... ...",
+                function(){ target_obj.endInteracting();}
+              )
+            ])
+        } 
+    })
+  )
+  bones_tile.addMode(
+    StoryStates.RECEIVED_BONES,
+    TextDialogMode.createFactory(
+      "It's best not to disturb the " + Renderer.objectName("bones") + " any more."
+    )
+  );
 }
 Story.prototype.addItemToInventory = function(item){
   this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
@@ -215,6 +252,9 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_BUTTON:
         this.addItemToInventory(Labels.items.BUTTON);
+        break;
+    case StoryStates.RECEIVED_BONES:
+        this.addItemToInventory(Labels.items.BONES);
         break;
   }
 }

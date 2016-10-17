@@ -22,12 +22,14 @@ var Labels = {
     IN_FRONT_OF_GHOST_ALTAR: "in-front-of-ghost-altar",
     LOCKED_DOOR: "locked-door",
     LOCKED_DOOR_PORTAL: "locked-door-portal",
+    BONES: "bones",
   },
   items: {
     COIN: "coin",
     KEY: "key",
     MUSHROOM: "mushroom",
     BUTTON: "button",
+    BONES: "bones",
   },
   character_names: {
     PRODUCE:  "high priestess produce",
