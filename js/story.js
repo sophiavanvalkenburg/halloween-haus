@@ -2,14 +2,12 @@ var StoryStates = {
     INIT: "init",
     RECIEVED_COIN: "recieved-coin",
     PLACED_COIN_ON_ALTAR: "placed-coin-on-altar",
-    RETURNED_TO_LIVING:   "returned-to-living"
+    RETURNED_TO_LIVING:   "returned-to-living",
+    RECEIVED_KEY: "received-key"
 }
 
 var Story = function(){
   this.controller = undefined;
-  this.objects = {
-    COIN: "coin"
-  }
   this.played_states = [ StoryStates.INIT ];
 }
 Story.prototype.setup = function(controller){
@@ -92,13 +90,29 @@ Story.prototype.setupStoryModes = function(){
         }
       )
   );
+
+  var key_item = the_story.controller.haus.getItemWithLabel(Labels.items.KEY);
+  key_item.addMode(
+      StoryStates.INIT,
+      TextDialogMode.createFactory(
+        "It's an old rusty " + Renderer.objectName("key") + ". Looks like it hasn't been used in a very long time ...",
+        function(){
+          the_story.addPlayedState(StoryStates.RECEIVED_KEY);
+        }
+      )
+  );
+}
+Story.prototype.addItemToInventory = function(item){
+  this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
+  var player = this.controller.haus.getPlayer();
+  player.addToInventory(item);
+  this.controller.haus.removeItemFromMap(item);
+  this.controller.updateRenderer();
 }
 Story.prototype.triggerStoryEvent = function(state){
   switch(state){
     case StoryStates.RECIEVED_COIN: 
-        this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
-        var player = this.controller.haus.getPlayer();
-        player.addToInventory(this.objects.COIN);
+        this.addItemToInventory(Labels.items.COIN);
         break; 
     case StoryStates.PLACED_COIN_ON_ALTAR:
         var player = this.controller.haus.getPlayer();
@@ -113,6 +127,11 @@ Story.prototype.triggerStoryEvent = function(state){
         this.controller.movePlayer(player, next_tile.getLocation());
         this.controller.sound_manager.playMusic(Labels.sounds.MAIN);
         this.controller.sound_manager.playSoundEffect(Labels.sounds.EXIT_GHOST_MODE);
+        break;
+    case StoryStates.RECEIVED_KEY:
+        this.addItemToInventory(Labels.items.KEY);
+        locked_door_tile = this.controller.haus.getTileWithLabel(Labels.tiles.LOCKED_DOOR);
+        locked_door_portal_tile = this.controller.haus.getTileWithLabel(Labels.tiles.LOCKED_DOOR_PORTAL);
         break;
   }
 }

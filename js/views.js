@@ -40,13 +40,21 @@ Renderer.replaceCharacterNamesWithHtml = function(str){
 Renderer.replaceObjectNamesWithHtml = function(str){
   return str.replace( /obj\(([^\)]+)\)\B/g , '<span class=object-name>$1</span>'); 
 }
+Renderer.newCell = function(x, y){
+  return $("<td data-x='"+x+"' data-y='"+y+"'>");
+}
+Renderer.findCell = function(x, y){
+  return $("td[data-x='"+x+"'][data-y='"+y+"']");
+}
 Renderer.prototype.drawMapCell = function(haus, map, map_loc){
   var x = map_loc.X();
   var y = map_loc.Y();
-  var $cell = $("<td data-x='"+x+"' data-y='"+y+"'>");
+  var $cell = Renderer.newCell(x, y);
   var tile = map.getTile(x, y);
   var ch = haus.getCharacterOnMap(map_loc);
+  var item = haus.getItemOnMap(map_loc);
   $cell.append(this.drawTile(tile));
+  $cell.append(this.drawItem(item));
   $cell.append(this.drawCharacter(ch));
   return $cell;
 };
@@ -109,12 +117,21 @@ Renderer.prototype.drawCharacter = function(character){
   if (character === undefined){
     return;
   }
-  var $div = $("<div id='"+character.getLabel()+"' class='character'>"); 
+  var $div = $("<div id='"+character.getLabel()+"' class='map-object character'>"); 
   var image = Renderer.createImage(character.getGraphic());
   $div.append(image);
   this.orientObject(character, $div);
   return $div;
 };
+Renderer.prototype.drawItem = function(item){
+  if (item == undefined){
+    return;
+  }
+  var $div = $("<div id='"+item.getLabel()+"' class='map-object item'>");
+  var image = Renderer.createImage(item.getGraphic());
+  $div.append(image);
+  return $div;
+}
 Renderer.prototype.updateCharacter = function(character){
   if (character === undefined){
     return;
@@ -122,13 +139,31 @@ Renderer.prototype.updateCharacter = function(character){
   var $div = $("#"+character.getLabel());
   var new_x = character.X();
   var new_y = character.Y();
-  var $new_td = $("td[data-x='"+new_x+"'][data-y='"+new_y+"']");
+  var $new_td = Renderer.findCell(new_x, new_y);
   $new_td.append($div);
   this.orientObject(character, $div);
 };
 Renderer.prototype.updateCharacters = function(characters){
   for (var i=0; i<characters.length; i++){
     this.updateCharacter(characters[i]);
+  }
+}
+Renderer.prototype.updateItem = function(item){
+  if (item === undefined){
+    return;
+  }
+  var $div = $("#"+item.getLabel());
+  var new_map_loc = item.getLocation();
+  if (new_map_loc === undefined){
+    $div.remove();
+  }else{
+    var $new_td = Renderer.findCell(new_map_loc.X(), new_map_loc.Y());
+    $new_td.append($div);
+  }
+}
+Renderer.prototype.updateItems = function(items){
+  for (var i=0; i<items.length; i++){
+    this.updateItem(items[i]);
   }
 }
 Renderer.prototype.updateTextDialog = function(text_dialog){

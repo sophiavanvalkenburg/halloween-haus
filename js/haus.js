@@ -2,6 +2,7 @@ var Haus = function(){
   this.player = Config.player;
   this.characters = Config.characters.concat(this.player);
   this.num_characters = this.characters.length;
+  this.items = Config.items;
   this.maps = {};
   this.text_dialog = new TextDialog();
   this.choice_dialog = new ChoiceDialog();
@@ -44,6 +45,9 @@ Haus.prototype.getChoiceDialog = function(){
 Haus.prototype.getCharacters = function(){
   return this.characters;
 }
+Haus.prototype.getItems = function(){
+  return this.items;
+}
 Haus.prototype.getCharacterOnMap = function(map_loc){
   // don't store a character grid because it's very sparse
   for (var i=0; i<this.num_characters; i++){
@@ -73,6 +77,45 @@ Haus.prototype.getCharacterWithLabel = function(label){
     }
   }
 }
+
+Haus.prototype.getItemOnMap = function(map_loc){
+  // don't store an item grid because it's very sparse
+  for (var i=0; i<this.items.length; i++){
+    var item = this.items[i];
+    if (item.mapIndex() == map_loc.mapIndex() && 
+        item.X() === map_loc.X() && item.Y() === map_loc.Y()){
+      return item;
+    }
+  }
+};
+Haus.prototype.getItemsOnMap = function(map_index){
+  var items = []
+  for (var i=0; i<this.items.length; i++){
+    var item = this.items[i];
+    if (item.mapIndex() == map_index){ 
+      items.push(item);
+    }
+  }
+  return items;
+};
+
+Haus.prototype.getItemWithLabel = function(label){
+  for (var i=0; i<this.items.length; i++){
+    var item = this.items[i];
+    if (item.getLabel() == label){
+      return item;
+    }
+  }
+}
+
+Haus.prototype.removeItemFromMap = function(label){
+  var item = this.getItemWithLabel(label);
+  if (item === undefined){
+    return;
+  }
+  item.removeFromMap();
+}
+
 Haus.prototype.getFacingObjectOnMap = function(map, character){
   if (map.getId() !== character.mapIndex()){
     return undefined;
@@ -80,7 +123,10 @@ Haus.prototype.getFacingObjectOnMap = function(map, character){
   var facing_loc = character.getFacingLocation();
   var facing_obj = this.getCharacterOnMap(facing_loc);
   if (facing_obj === undefined){    
-    facing_obj = map.getTile(facing_loc.X(), facing_loc.Y());
+    facing_obj = this.getItemOnMap(facing_loc);
+    if (facing_obj === undefined){
+      facing_obj = map.getTile(facing_loc.X(), facing_loc.Y());
+    }
   }
   return facing_obj;
 };

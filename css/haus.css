@@ -56,13 +56,20 @@ body {
     -webkit-filter: sepia(100%);
 }
 
-#haus-map .character {
+#haus-map .map-object {
     width: 20px;
     height: 20px;
     padding: 0px;
     position: absolute;
     top: 0px;
     left: 0px;
+}
+
+#haus-map .character {
+    z-index: 1;
+}
+
+#haus-map .item {
     z-index: 0;
 }
 

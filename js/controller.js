@@ -19,6 +19,7 @@ Controller.prototype.setup = function(){
 Controller.prototype.updateRenderer = function(){
   this.renderer.drawMap(this.haus);
   this.renderer.updateCharacters(this.haus.getCharacters());
+  this.renderer.updateItems(this.haus.getItems());
   this.renderer.updateTextDialog(this.haus.getTextDialog());
   this.renderer.updateChoiceDialog(this.haus.getChoiceDialog());
 };

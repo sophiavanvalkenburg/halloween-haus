@@ -19,7 +19,13 @@ var Labels = {
     ALTAR_NORMAL_MODE: "altar-normal-mode",
     ALTAR_GHOST_MODE: "altar-ghost-mode",
     IN_FRONT_OF_NORMAL_ALTAR: "in-front-of-normal-altar",
-    IN_FRONT_OF_GHOST_ALTAR: "in-front-of-ghost-altar"
+    IN_FRONT_OF_GHOST_ALTAR: "in-front-of-ghost-altar",
+    LOCKED_DOOR: "locked-door",
+    LOCKED_DOOR_PORTAL: "locked-door-portal",
+  },
+  items: {
+    COIN: "coin",
+    KEY: "key",
   },
   character_names: {
     PRODUCE:  "high priestess produce",
@@ -273,6 +279,15 @@ var Config = {
     "resources/maps/ghost/map19.json",
     "resources/maps/ghost/map20.json",
 
+  ],
+  items: [
+    new Item(
+        {
+          label: Labels.items.KEY,
+          map_loc: new MapLocation(622, 15, 11),
+          graphic: "resources/images/items/key.png"
+        }
+      )
   ],
   player: new Character(
       {

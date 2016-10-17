@@ -18,19 +18,22 @@ MapObject.prototype.isAccessible = function(){
   return this.is_accessible;
 }
 MapObject.prototype.X = function(){
-  return this.map_loc.X();
+  return this.map_loc ? this.map_loc.X() : undefined;
 };
 MapObject.prototype.Y = function(){
-  return this.map_loc.Y();
+  return this.map_loc ? this.map_loc.Y() : undefined;
 };
 MapObject.prototype.mapIndex = function(){
-  return this.map_loc.mapIndex();
+  return this.map_loc ? this.map_loc.mapIndex() : undefined;
 }
 MapObject.prototype.setLocation = function(map_location){
   this.map_loc = map_location;
 };
 MapObject.prototype.getLocation = function(){
-  return this.map_loc.copy();
+  return this.map_loc ? this.map_loc.copy() : undefined;
+}
+MapObject.prototype.removeFromMap = function(){
+  this.setLocation(undefined);
 }
 MapObject.prototype.getOrientationTowardsMe = function(x, y){
   if (x > this.X()){
@@ -86,6 +89,11 @@ MapObject.prototype.addModes = function(modes_per_state){
 MapObject.prototype.startInteracting = function(controller){}
 MapObject.prototype.endInteracting = function(controller){}
 
+var Item = function(obj){
+  MapObject.call(this, obj.label, obj.map_loc, false, obj.graphic, obj.modes);
+};
+Item.prototype = new MapObject();
+Item.prototype.constructor = Item;
 
 var Tile = function(label, map_loc, portal_loc, is_accessible, graphic, modes, is_ghost_tile){
   MapObject.call(this, label, map_loc, is_accessible, graphic, modes);
