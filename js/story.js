@@ -8,6 +8,8 @@ var StoryStates = {
     GAVE_MUSHROOM_TO_TESS: "gave-mushroom-to-tess",
     RECEIVED_BUTTON: "received-button",
     RECEIVED_BONES: "received-bones",
+    GAVE_BONES_TO_PRODUCE: "gave-bones-to-produce",
+    RECEIVED_CREEPY_DOLL: "received-creepy-doll",
 }
 
 var Story = function(){
@@ -52,13 +54,65 @@ Story.prototype.setupStoryModes = function(){
   );
 
   var produce = this.controller.haus.getCharacterWithLabel(Labels.characters.PRODUCE);
-  produce.addMode(
-    StoryStates.RECIEVED_COIN,
-    TextDialogMode.createCharacterTextFactory(
-      Labels.character_names.PRODUCE,
-      "Oh! I can't take the " + Renderer.objectName("coin") + ". Place it at the altar of the dead as an offering."
-    )
-  );
+  produce.addModes([
+    {
+        state: StoryStates.RECIEVED_COIN,
+        modes: [
+            TextDialogMode.createCharacterTextFactory(
+              Labels.character_names.PRODUCE,
+              "Oh! I can't take the " + Renderer.objectName("coin") + ". Place it at the altar of the dead as an offering."
+            )
+        ]
+    },
+    {
+        state: StoryStates.RECEIVED_BONES,
+        modes: [
+            TextDialogMode.createCharacterTextFactory(
+              Labels.character_names.PRODUCE,
+              "Woah ... where did you get those " + Renderer.objectName("bones") + "!?",
+              function(){}
+            ),
+            ChoiceDialogMode.createFactory(
+              [ "OK", "Nope" ],
+              Renderer.characterName(Labels.character_names.PRODUCE) + ": Let's place them on the table for our ritual.",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "OK"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.PRODUCE,
+                      "Great! ... Here, you can take this " + Renderer.objectName("creepy doll") + " we found in the woods.",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_BONES_TO_PRODUCE);
+                        the_story.addPlayedState(StoryStates.RECEIVED_CREEPY_DOLL);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.PRODUCE,
+                      "OK, well, maybe later!",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+        ]
+    },
+    {
+        state: StoryStates.GAVE_BONES_TO_PRODUCE,
+        modes: [
+          TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.PRODUCE,
+            "Come attend the ritual later tonight!"
+          )
+        ]
+    }
+  ]);
 
   var altar_tile = the_story.controller.haus.getTileWithLabel(Labels.tiles.ALTAR_NORMAL_MODE);
   altar_tile.addMode(
@@ -255,6 +309,12 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_BONES:
         this.addItemToInventory(Labels.items.BONES);
+        break;
+    case StoryStates.GAVE_BONES_TO_PRODUCE:
+        this.removeItemFromInventory(Labels.items.BONES);
+        break;
+    case StoryStates.RECEIVED_CREEPY_DOLL:
+        this.addItemToInventory(Labels.items.CREEPY_DOLL);
         break;
   }
 }

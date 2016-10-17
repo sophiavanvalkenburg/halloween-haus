@@ -30,6 +30,7 @@ var Labels = {
     MUSHROOM: "mushroom",
     BUTTON: "button",
     BONES: "bones",
+    CREEPY_DOLL: "creepy doll",
   },
   character_names: {
     PRODUCE:  "high priestess produce",
