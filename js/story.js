@@ -117,8 +117,8 @@ Story.prototype.setupStoryModes = function(){
       )
   );
 
-  var tess_after_player_received_mushroom = this.controller.haus.getCharacterWithLabel(Labels.characters.TESS);
-  tess_after_player_received_mushroom.addModes(
+  var tess = this.controller.haus.getCharacterWithLabel(Labels.characters.TESS);
+  tess.addModes(
       [
         {
           state: StoryStates.RECEIVED_MUSHROOM,
@@ -158,17 +158,17 @@ Story.prototype.setupStoryModes = function(){
               }
             )
           ]
+        },
+        {
+            state: StoryStates.GAVE_MUSHROOM_TO_TESS,
+            modes: [
+                TextDialogMode.createCharacterTextFactory(
+                  Labels.characters.TESS,
+                  "Thank you for the mushroom!"
+              )
+            ]
         }
       ]
-  );
-
-  var tess_after_received_mushroom = this.controller.haus.getCharacterWithLabel(Labels.characters.TESS);
-  tess_after_received_mushroom.addMode(
-      StoryStates.GAVE_MUSHROOM_TO_TESS,
-      TextDialogMode.createCharacterTextFactory(
-          Labels.characters.TESS,
-          "Thank you for the mushroom!"
-      )
   );
 
   var bones_tile = this.controller.haus.getTileWithLabel(Labels.tiles.BONES);
