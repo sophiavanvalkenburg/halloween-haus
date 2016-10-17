@@ -26,6 +26,8 @@ var Labels = {
   items: {
     COIN: "coin",
     KEY: "key",
+    MUSHROOM: "mushroom",
+    BUTTON: "button",
   },
   character_names: {
     PRODUCE:  "high priestess produce",
@@ -286,6 +288,13 @@ var Config = {
           label: Labels.items.KEY,
           map_loc: new MapLocation(622, 15, 11),
           graphic: "resources/images/items/key.png"
+        }
+      ),
+    new Item(
+        {
+          label: Labels.items.MUSHROOM,
+          map_loc: new MapLocation(620, 3, 2),
+          graphic: "resources/images/items/mushroom.png"
         }
       )
   ],

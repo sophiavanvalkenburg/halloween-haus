@@ -3,7 +3,10 @@ var StoryStates = {
     RECIEVED_COIN: "recieved-coin",
     PLACED_COIN_ON_ALTAR: "placed-coin-on-altar",
     RETURNED_TO_LIVING:   "returned-to-living",
-    RECEIVED_KEY: "received-key"
+    RECEIVED_KEY: "received-key",
+    RECEIVED_MUSHROOM: "received-mushroom",
+    GAVE_MUSHROOM_TO_TESS: "gave-mushroom-to-tess",
+    RECEIVED_BUTTON: "received-button"
 }
 
 var Story = function(){
@@ -101,6 +104,71 @@ Story.prototype.setupStoryModes = function(){
         }
       )
   );
+
+  var mushroom_item = the_story.controller.haus.getItemWithLabel(Labels.items.MUSHROOM);
+  mushroom_item.addMode(
+      StoryStates.INIT,
+      TextDialogMode.createFactory(
+        "What a beautiful looking " + Renderer.objectName("mushroom") + "! Maybe one of your friends would like it.",
+        function(){
+          the_story.addPlayedState(StoryStates.RECEIVED_MUSHROOM);
+        }
+      )
+  );
+
+  var tess_after_player_received_mushroom = this.controller.haus.getCharacterWithLabel(Labels.characters.TESS);
+  tess_after_player_received_mushroom.addModes(
+      [
+        {
+          state: StoryStates.RECEIVED_MUSHROOM,
+          modes: [
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.TESS,
+              "Oh wow, what a beautiful mushroom!!",
+              function(){}
+            ),
+            ChoiceDialogMode.createFactory(
+              [ "Yes", "No" ],
+              Renderer.characterName(Labels.characters.TESS) + ": Can I have it for my collection?",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "Yes"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.TESS,
+                      "Thank you so much for the mushroom! Here, let me give you this " + Renderer.objectName("button") + " in exchange!",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_MUSHROOM_TO_TESS);
+                        the_story.addPlayedState(StoryStates.RECEIVED_BUTTON);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.TESS,
+                      "Aww... ok... Well let me know if you change your mind.",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+          ]
+        }
+      ]
+  );
+
+  var tess_after_received_mushroom = this.controller.haus.getCharacterWithLabel(Labels.characters.TESS);
+  tess_after_received_mushroom.addMode(
+      StoryStates.GAVE_MUSHROOM_TO_TESS,
+      TextDialogMode.createCharacterTextFactory(
+          Labels.characters.TESS,
+          "Thank you for the mushroom!"
+      )
+  );
 }
 Story.prototype.addItemToInventory = function(item){
   this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
@@ -108,6 +176,10 @@ Story.prototype.addItemToInventory = function(item){
   player.addToInventory(item);
   this.controller.haus.removeItemFromMap(item);
   this.controller.updateRenderer();
+}
+Story.prototype.removeItemFromInventory = function(item){
+  var player = this.controller.haus.getPlayer();
+  player.removeFromInventory(item);
 }
 Story.prototype.triggerStoryEvent = function(state){
   switch(state){
@@ -134,6 +206,15 @@ Story.prototype.triggerStoryEvent = function(state){
         locked_door_portal_tile = this.controller.haus.getTileWithLabel(Labels.tiles.LOCKED_DOOR_PORTAL);
         locked_door_tile.is_accessible = true;
         locked_door_portal_tile.is_accessible = true;
+        break;
+    case StoryStates.RECEIVED_MUSHROOM:
+        this.addItemToInventory(Labels.items.MUSHROOM);
+        break;
+    case StoryStates.GAVE_MUSHROOM_TO_TESS:
+        this.removeItemFromInventory(Labels.items.MUSHROOM);
+        break;
+    case StoryStates.RECEIVED_BUTTON:
+        this.addItemToInventory(Labels.items.BUTTON);
         break;
   }
 }
