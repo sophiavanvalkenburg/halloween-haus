@@ -132,6 +132,8 @@ Story.prototype.triggerStoryEvent = function(state){
         this.addItemToInventory(Labels.items.KEY);
         locked_door_tile = this.controller.haus.getTileWithLabel(Labels.tiles.LOCKED_DOOR);
         locked_door_portal_tile = this.controller.haus.getTileWithLabel(Labels.tiles.LOCKED_DOOR_PORTAL);
+        locked_door_tile.is_accessible = true;
+        locked_door_portal_tile.is_accessible = true;
         break;
   }
 }
