@@ -1017,7 +1017,7 @@ var Config = {
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.TORI,
-              "... My throat hurts from all this yelling!"
+              "... I thought you were a ghost!"
               ) ]
           }
         ],

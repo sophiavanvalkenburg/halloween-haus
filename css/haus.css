@@ -103,7 +103,7 @@ body {
 .dialog-text{
     font-family: monospace;
     font-stretch: expanded;
-    color: lightgrey;
+    color: grey;
     padding: 5px;
 }
 
@@ -120,9 +120,9 @@ body {
 
 .footer-btn{
     float: right;
-    border: 1px solid lightgrey;
+    border: 1px solid grey;
     background-color: #000000;
-    color: lightgrey;
+    color: grey;
     margin: 2px;
     border-radius: 12px;
     font-family: monospace;
