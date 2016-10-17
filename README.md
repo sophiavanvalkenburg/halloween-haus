@@ -13,9 +13,9 @@ $ http-server .
 ### Programming To-Do
   
 ### Nice-To-Haves
+- ability to add sound to tile when walking over it
 - bug: need a way to get out if player is trapped by an npc
-- game borders & dialog art
-- pixel art for ghost map
+- special pixel art for ghost map
 - character orientation sprites
 - tile animation
 - music/tile pre-loading
