@@ -31,6 +31,8 @@ var Labels = {
     BUTTON: "button",
     BONES: "bones",
     CREEPY_DOLL: "creepy doll",
+    MAP: "map",
+    LOCK_OF_HAIR: "lock of hair",
   },
   character_names: {
     PRODUCE:  "high priestess produce",
@@ -114,7 +116,7 @@ var Labels = {
     GHOST_36: "ghost_36",
     GHOST_37: "ghost_37",
     GHOST_38: "ghost_38",
-    GHOST_38: "ghost_39",
+    GHOST_39: "ghost_39",
   }
 }
 
@@ -1744,7 +1746,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "They took me out of my room, and now I can't find my way back..."
+            "They took me out of my room, and now I can't find my way back...If only I had something to guide me."
           )]
         }
       ],
@@ -1920,7 +1922,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "HELP ME!"
+            "HELP! Have you seen my " + Renderer.objectName("dolly") + "?"
           )]
         }
       ],

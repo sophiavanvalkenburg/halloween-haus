@@ -10,6 +10,10 @@ var StoryStates = {
     RECEIVED_BONES: "received-bones",
     GAVE_BONES_TO_PRODUCE: "gave-bones-to-produce",
     RECEIVED_CREEPY_DOLL: "received-creepy-doll",
+    GAVE_DOLLY_TO_GHOST_38: "gave-dolly-to-ghost-38",
+    RECEIVED_MAP: "received-map",
+    GAVE_MAP_TO_GHOST_30: "gave-map-to-ghost-30",
+    RECEIVED_LOCK_OF_HAIR: "received-lock-of-hair",
 }
 
 var Story = function(){
@@ -260,6 +264,116 @@ Story.prototype.setupStoryModes = function(){
       "It's best not to disturb the " + Renderer.objectName("bones") + " any more."
     )
   );
+
+  var ghost_38 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_38);
+  ghost_38.addModes([
+    {
+      state: StoryStates.RECEIVED_CREEPY_DOLL,
+      modes:[
+        TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "OMG! That's MY " + Renderer.objectName("dolly") + "!",
+            function(){}
+        ),
+        ChoiceDialogMode.createFactory(
+              [ "Sure!", "Suck it." ],
+              Renderer.characterName(Labels.character_names.GHOST) + ": Will you give it back?",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "Sure!"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "Thank you so much!!! Here, I found this old " + Renderer.objectName("map") + " lying around, perhaps it will help you.",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_DOLLY_TO_GHOST_38);
+                        the_story.addPlayedState(StoryStates.RECEIVED_MAP);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "WAAAAH SO MEAN!!!",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+      ]
+    },
+    {
+      state: StoryStates.GAVE_DOLLY_TO_GHOST_38,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I'm happy now that I have my " + Renderer.objectName("dolly")+ "!"
+        )
+      ]
+    }
+  ])
+
+  var ghost_30 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_30);
+  ghost_30.addModes([
+    {
+      state: StoryStates.RECEIVED_MAP,
+      modes:[
+        TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "Is that a map? Maybe it will help me find my way back!",
+            function(){}
+        ),
+        ChoiceDialogMode.createFactory(
+              [ "Sure!", "Too bad." ],
+              Renderer.characterName(Labels.character_names.GHOST) + ": Can I use it?",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "Sure!"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "Thanks!! Hmm... I don't have anything to give you in return...",
+                      function(){}
+                    ),
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "Well, here's a " + Renderer.objectName("lock of hair") + " from when I was alive...",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_MAP_TO_GHOST_30);
+                        the_story.addPlayedState(StoryStates.RECEIVED_LOCK_OF_HAIR);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "You should know better than to mock the dead. I know where you sleep.",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+      ]
+    },
+    {
+      state: StoryStates.GAVE_MAP_TO_GHOST_30,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "I can find my way home now..."
+        )
+      ]
+    }
+  ])
+
 }
 Story.prototype.addItemToInventory = function(item){
   this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
@@ -315,6 +429,18 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_CREEPY_DOLL:
         this.addItemToInventory(Labels.items.CREEPY_DOLL);
+        break;
+    case StoryStates.GAVE_DOLLY_TO_GHOST_38:
+        this.removeItemFromInventory(Labels.items.CREEPY_DOLL);
+        break;
+    case StoryStates.RECEIVED_MAP:
+        this.addItemToInventory(Labels.items.MAP);
+        break;
+    case StoryStates.GAVE_MAP_TO_GHOST_30:
+        this.removeItemFromInventory(Labels.items.MAP);
+        break;
+    case StoryStates.RECEIVED_LOCK_OF_HAIR:
+        this.addItemToInventory(Labels.items.LOCK_OF_HAIR);
         break;
   }
 }
