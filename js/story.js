@@ -14,6 +14,18 @@ var StoryStates = {
     RECEIVED_MAP: "received-map",
     GAVE_MAP_TO_GHOST_30: "gave-map-to-ghost-30",
     RECEIVED_LOCK_OF_HAIR: "received-lock-of-hair",
+    GAVE_LOCK_OF_HAIR_TO_MARTHA: "gave-lock-of-hair-to-martha",
+    RECEIVED_WINE: "received-wine",
+    GAVE_WINE_TO_ALICE: "gave-wine-to-alice",
+    RECEIVED_ANTIQUE_RING: "received-antique-ring",
+    RECEIVED_LIFE_PRESERVER: "received-life-preserver",
+    GAVE_LIFE_PRESERVER_TO_GHOST_14: "gave-life-preserver-to-ghost-14",
+    RECEIVED_WEDDING_RING: "received-wedding-ring",
+    GAVE_WEDDING_RING_TO_COUPLE: "gave-wedding-ring-to-couple",
+    RECEIVED_CORSAGE: "received-corsage",
+    GAVE_CORSAGE_TO_SHERI: "gave-corsage-to-sheri",
+    RECEIVED_THIMBLE: "received-thimble",
+    RECEIVED_FORTUNE_BADGE: "received-fortune-badge"
 }
 
 var Story = function(){
