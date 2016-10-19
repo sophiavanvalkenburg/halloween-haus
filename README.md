@@ -30,4 +30,5 @@ $ http-server .
   - play state buttons
   - etc
 - Testing!
+- refactor with standard game engine practices (e.g. Entity Component Model)
 
