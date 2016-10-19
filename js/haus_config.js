@@ -33,6 +33,13 @@ var Labels = {
     CREEPY_DOLL: "creepy doll",
     MAP: "map",
     LOCK_OF_HAIR: "lock of hair",
+    WINE: "wine",
+    ANTIQUE_RING: "antique ring",
+    LIFE_PRESERVER: "life preserver",
+    WEDDING_RING: "wedding ring",
+    CORSAGE: "corsage",
+    THIMBLE: "thimble",
+    FORTUNE_BADGE: "fortune badge"
   },
   character_names: {
     PRODUCE:  "high priestess produce",
@@ -925,7 +932,12 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.SHERI, 
-              "I'm trying my best to be gothic for halloween, but I can't resist a little pink!"
+              "I'm trying my best to be gothic for halloween, but I can't resist a little pink!",
+              function(){}
+              ),
+              TextDialogMode.createCharacterTextFactory(
+                Labels.characters.SHERI,
+                "I love all things PINK!"
               )]
           }
         ],
@@ -1419,7 +1431,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.BRIDE,
-            "It was an unforgettable day..."
+            "Unfortunately I lost the " + Renderer.objectName("wedding ring") + ". Can you help me find it?"
           )]
         }
       ],

@@ -328,7 +328,7 @@ Story.prototype.setupStoryModes = function(){
       ]
     }
   ])
-
+  
   var ghost_30 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_30);
   ghost_30.addModes([
     {
@@ -386,6 +386,275 @@ Story.prototype.setupStoryModes = function(){
     }
   ])
 
+  var martha = this.controller.haus.getCharacterWithLabel(Labels.characters.MARTHA);
+  martha.addModes([
+    {
+      state: StoryStates.RECEIVED_LOCK_OF_HAIR,
+      modes:[
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.MARTHA,
+            "Oooh... what a mysterious " + Renderer.objectName("lock of hair") + "...",
+            function(){}
+        ),
+        ChoiceDialogMode.createFactory(
+              [ "Sure!", "No thanks" ],
+              Renderer.characterName(Labels.characters.MARTHA) + ": I would like to use it to make some Moss Marchen jewelry. Is that OK?",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "Sure!"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.MARTHA,
+                      "Thank you! Here, take some " + Renderer.objectName("wine") + ".",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_LOCK_OF_HAIR_TO_MARTHA);
+                        the_story.addPlayedState(StoryStates.RECEIVED_WINE);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.GHOST,
+                      "Ah, OK!",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+      ]
+    },
+    {
+      state: StoryStates.GAVE_LOCK_OF_HAIR_TO_MARTHA,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.MARTHA,
+            "Let me know when you find the rest of the fortunes!"
+        )
+      ]
+    }
+  ])
+
+  var alice = this.controller.haus.getCharacterWithLabel(Labels.characters.ALICE);
+  alice.addModes([
+    {
+      state: StoryStates.RECEIVED_WINE,
+      modes:[
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.ALICE,
+            "Ahhh, you have a glass of " + Renderer.objectName("wine") + "!!!",
+            function(){}
+        ),
+        ChoiceDialogMode.createFactory(
+              [ "Have some", "It's mine" ],
+              Renderer.characterName(Labels.characters.ALICE) + ": I could really use a drink right now ...", 
+              function(controller, target_obj, selected_item){
+                if (selected_item === "Have some"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.ALICE,
+                      "OMG, you're the best!!",
+                      function(){}
+                    ),
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.ALICE,
+                      "I found this " + Renderer.objectName("antique ring") + " upstairs! I was going to use it for my coord but you can have it instead~",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_WINE_TO_ALICE);
+                        the_story.addPlayedState(StoryStates.RECEIVED_ANTIQUE_RING);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.ALICE,
+                      "Jeeeeez so greedy!!!",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+      ]
+    },
+    {
+      state: StoryStates.GAVE_WINE_TO_ALICE,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.ALICE,
+            "Is there any more alcohol??"
+        )
+      ]
+    }
+  ])
+
+  var ghost_14 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_14);
+  ghost_14.addModes([
+    {
+      state: StoryStates.RECEIVED_LIFE_PRESERVER,
+      modes:[
+        ChoiceDialogMode.createFactory(
+              [ "OK!", "You're dead" ],
+              Renderer.characterName(Labels.character_names.GHOST) + ": HELP! I'm drowning! Throw me that " + Renderer.objectName("life preserver") + "!!",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "OK!"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "YAY! You saved me from drowning!!",
+                      function(){}
+                    ),
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "What can I give to repay you ... Oh, I found this " + Renderer.objectName("wedding ring") + " at the bottom of the pool.",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_LIFE_PRESERVER_TO_GHOST);
+                        the_story.addPlayedState(StoryStates.RECEIVED_WEDDING_RING);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.GHOST,
+                      "Gahhh....",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+      ]
+    },
+    {
+      state: StoryStates.GAVE_LIFE_PRESERVER_TO_GHOST,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "You're my hero!"
+        )
+      ]
+    }
+  ])
+
+  var ghost_13 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_13);
+  ghost_13.addModes([
+    {
+      state: StoryStates.RECEIVED_WEDDING_RING,
+      modes:[
+        TextDialogMode.createCharacterTextFactory(
+          Labels.character_names.BRIDE,
+          "Oh! That's my " + Renderer.objectName("wedding ring") + "!",
+          function(){}
+        ),
+        ChoiceDialogMode.createFactory(
+              [ "Sure!", "It's mine" ],
+              Renderer.characterName(Labels.character_names.BRIDE) + ": May I have it back?",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "Sure!"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.BRIDE,
+                      "Bless your heart~",
+                      function(){}
+                    ),
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.BRIDE,
+                      "Here, take my pink " + Renderer.objectName("corsage") + " as a token of my gratitude.",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_WEDDING_RING_TO_COUPLE);
+                        the_story.addPlayedState(StoryStates.RECEIVED_CORSAGE);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.character_names.BRIDE,
+                      "Please, it's the one thing that will let me rest in peace...",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+      ]
+    },
+    {
+      state: StoryStates.GAVE_WEDDING_RING_TO_COUPLE,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.BRIDE,
+            "Now that I have my " + Renderer.objectName("wedding ring") + " back, I can be at ease."
+        )
+      ]
+    }
+  ])
+    
+  var sheri = this.controller.haus.getCharacterWithLabel(Labels.characters.SHERI);
+  sheri.addModes([
+    {
+      state: StoryStates.RECEIVED_CORSAGE,
+      modes:[
+        TextDialogMode.createCharacterTextFactory(
+          Labels.characters.SHERI,
+          "Oh my, what an adorable pink " + Renderer.objectName("corsage") + ".",
+          function(){}
+        ),
+        ChoiceDialogMode.createFactory(
+              [ "Sure!", "Nope" ],
+              Renderer.characterName(Labels.characters.SHERI) + ": Can I wear it today?",
+              function(controller, target_obj, selected_item){
+                if (selected_item === "Sure!"){
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.SHERI,
+                      "Thanks so much! Let me give you this " + Renderer.objectName("thimble") + ".",
+                      function(){
+                        the_story.addPlayedState(StoryStates.GAVE_CORSAGE_TO_SHERI);
+                        the_story.addPlayedState(StoryStates.RECEIVED_THIMBLE);
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                }else{
+                  controller.mode_manager.addModes([
+                    TextDialogMode.createCharacterTextFactory(
+                      Labels.characters.SHERI,
+                      "OK, I understand.",
+                      function(){ 
+                        target_obj.endInteracting();
+                      }
+                    )
+                  ])
+                } 
+              }
+            )
+      ]
+    },
+    {
+      state: StoryStates.GAVE_CORSAGE_TO_SHERI,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.SHERI,
+            "This " + Renderer.objectName("corsage") + " matches my outfit so well!"
+        )
+      ]
+    }
+  ])
 }
 Story.prototype.addItemToInventory = function(item){
   this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
@@ -453,6 +722,36 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_LOCK_OF_HAIR:
         this.addItemToInventory(Labels.items.LOCK_OF_HAIR);
+        break;
+    case StoryStates.GAVE_LOCK_OF_HAIR_TO_MARTHA:
+        this.removeItemFromInventory(Labels.items.LOCK_OF_HAIR);
+        break;
+    case StoryStates.RECEIVED_WINE:
+        this.addItemToInventory(Labels.items.WINE);
+        break;
+    case StoryStates.GAVE_WINE_TO_ALICE:
+        this.removeItemFromInventory(Labels.items.WINE);
+        break;
+    case StoryStates.RECEIVED_ANTIQUE_RING:
+        this.addItemToInventory(Labels.items.ANTIQUE_RING);
+        break;
+    case StoryStates.GAVE_LIFE_PRESERVER_TO_GHOST:
+        this.removeItemFromInventory(Labels.items.LIFE_PRESERVER);
+        break;
+    case StoryStates.RECEIVED_WEDDING_RING:
+        this.addItemToInventory(Labels.items.WEDDING_RING);
+        break;
+    case StoryStates.GAVE_WEDDING_RING_TO_COUPLE:
+        this.removeItemFromInventory(Labels.items.WEDDING_RING);
+        break;
+    case StoryStates.RECEIVED_CORSAGE:
+        this.addItemToInventory(Labels.items.CORSAGE);
+        break;
+    case StoryStates.GAVE_CORSAGE_TO_SHERI:
+        this.removeItemFromInventory(Labels.items.CORSAGE);
+        break;
+    case StoryStates.RECEIVED_THIMBLE:
+        this.addItemToInventory(Labels.items.THIMBLE);
         break;
   }
 }
