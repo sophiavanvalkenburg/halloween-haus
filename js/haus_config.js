@@ -23,6 +23,7 @@ var Labels = {
     LOCKED_DOOR: "locked-door",
     LOCKED_DOOR_PORTAL: "locked-door-portal",
     BONES: "bones",
+    HIDDEN_PORTAL: "hidden-portal",
   },
   items: {
     COIN: "coin",

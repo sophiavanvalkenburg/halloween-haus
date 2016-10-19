@@ -165,6 +165,18 @@ Story.prototype.setupStoryModes = function(){
       )
   );
 
+  var hidden_portal_tile = the_story.controller.haus.getTileWithLabel(Labels.tiles.HIDDEN_PORTAL);
+  hidden_portal_tile.addMode(
+      StoryStates.INIT,
+      TextDialogMode.createFactory(
+        "GO BACK FROM WHENCE YOU CAME!",
+        function(controller, target_obj, selected_item){
+            the_story.addPlayedState(StoryStates.RETURNED_TO_LIVING);
+          } 
+      )
+  );
+
+
   var key_item = the_story.controller.haus.getItemWithLabel(Labels.items.KEY);
   key_item.addMode(
       StoryStates.INIT,
