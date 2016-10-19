@@ -415,7 +415,7 @@ Story.prototype.setupStoryModes = function(){
                 }else{
                   controller.mode_manager.addModes([
                     TextDialogMode.createCharacterTextFactory(
-                      Labels.characters.GHOST,
+                      Labels.characters.MARTHA,
                       "Ah, OK!",
                       function(){ 
                         target_obj.endInteracting();
@@ -494,6 +494,17 @@ Story.prototype.setupStoryModes = function(){
       ]
     }
   ])
+
+  var life_preserver_item = the_story.controller.haus.getItemWithLabel(Labels.items.LIFE_PRESERVER);
+  life_preserver_item.addMode(
+      StoryStates.INIT,
+      TextDialogMode.createFactory(
+        "A " + Renderer.objectName("life preserver") + ", how useful!",
+        function(){
+          the_story.addPlayedState(StoryStates.RECEIVED_LIFE_PRESERVER);
+        }
+      )
+  );
 
   var ghost_14 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_14);
   ghost_14.addModes([
@@ -734,6 +745,9 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_ANTIQUE_RING:
         this.addItemToInventory(Labels.items.ANTIQUE_RING);
+        break;
+    case StoryStates.RECEIVED_LIFE_PRESERVER:
+        this.addItemToInventory(Labels.items.LIFE_PRESERVER);
         break;
     case StoryStates.GAVE_LIFE_PRESERVER_TO_GHOST:
         this.removeItemFromInventory(Labels.items.LIFE_PRESERVER);

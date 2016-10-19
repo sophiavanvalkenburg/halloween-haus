@@ -30,15 +30,23 @@ var Labels = {
     MUSHROOM: "mushroom",
     BUTTON: "button",
     BONES: "bones",
-    CREEPY_DOLL: "creepy doll",
+    CREEPY_DOLL: "creepy-doll",
     MAP: "map",
-    LOCK_OF_HAIR: "lock of hair",
+    LOCK_OF_HAIR: "lock-of-hair",
     WINE: "wine",
+    ANTIQUE_RING: "antique-ring",
+    LIFE_PRESERVER: "life-preserver",
+    WEDDING_RING: "wedding-ring",
+    CORSAGE: "corsage",
+    THIMBLE: "thimble",
+    FORTUNE_BADGE: "fortune-badge"
+  },
+  item_names: {
+    CREEPY_DOLL: "creepy doll",
+    LOCK_OF_HAIR: "lock of hair",
     ANTIQUE_RING: "antique ring",
     LIFE_PRESERVER: "life preserver",
     WEDDING_RING: "wedding ring",
-    CORSAGE: "corsage",
-    THIMBLE: "thimble",
     FORTUNE_BADGE: "fortune badge"
   },
   character_names: {
@@ -298,6 +306,7 @@ var Config = {
     new Item(
         {
           label: Labels.items.KEY,
+          name: Labels.items.KEY,
           map_loc: new MapLocation(622, 15, 11),
           graphic: "resources/images/items/key.png"
         }
@@ -305,10 +314,97 @@ var Config = {
     new Item(
         {
           label: Labels.items.MUSHROOM,
-          map_loc: new MapLocation(620, 3, 2),
+          name: Labels.items.MUSHROOM,
+          map_loc: new MapLocation(620, 13, 14),
           graphic: "resources/images/items/mushroom.png"
         }
-      )
+      ),
+    new Item(
+        {
+          label: Labels.items.LIFE_PRESERVER,
+          name: Labels.item_names.LIFE_PRESERVER,
+          map_loc: new MapLocation(68, 3, 6),
+          graphic: "resources/images/items/life-preserver.png"
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.COIN,
+          name: Labels.items.COIN
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.BUTTON,
+          name: Labels.items.BUTTON
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.BONES,
+          name: Labels.items.BONES
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.CREEPY_DOLL,
+          name: Labels.item_names.CREEPY_DOLL
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.FORTUNE_BADGE,
+          name: Labels.item_names.FORTUNE_BADGE
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.THIMBLE,
+          name: Labels.items.THIMBLE
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.CORSAGE,
+          name: Labels.items.CORSAGE
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.WEDDING_RING,
+          name: Labels.item_names.WEDDING_RING
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.LIFE_PRESERVER,
+          name: Labels.item_names.LIFE_PRESERVER
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.ANTIQUE_RING,
+          name: Labels.item_names.ANTIQUE_RING
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.WINE,
+          name: Labels.items.WINE
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.LOCK_OF_HAIR,
+          name: Labels.item_names.LOCK_OF_HAIR
+        }
+    ),
+    new Item(
+        {
+          label: Labels.items.MAP,
+          name: Labels.items.MAP
+        }
+    )
   ],
   player: new Character(
       {

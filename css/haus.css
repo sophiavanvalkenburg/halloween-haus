@@ -7,7 +7,7 @@ body {
     border-image: url(../resources/images/icons/border-skull.png) 33% repeat;
     display: inline-block;
     height: 480px;
-    width: 400px;
+    width: 480px;
     background-color: black;
     margin-left: 50%;
     #transform-origin: 0 0;
@@ -84,11 +84,10 @@ body {
 #haus-choice-dialog {
     min-height: 50px;
     max-height: 75px;
-    margin-left: 10px;
     margin-right: 20px;
     font-family: monospace;
     overflow: hidden;
-    float: left;
+    float: right;
     position: relative;
 }
 
