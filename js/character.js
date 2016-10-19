@@ -134,15 +134,23 @@ Character.prototype.getName = function(){
 Character.prototype.addToInventory = function(item){
   this.inventory.push(item);
 };
-Character.prototype.removeFromInventory = function(item){
-  if (this.hasItem(item)){
-    ind = this.inventory.indexOf(item);
+Character.prototype.removeFromInventory = function(item_name){
+  var ind = this.indexOfItemInInventory(item_name);
+  if (ind >= 0){
     this.inventory.splice(ind, 1);
     return true;
   }
   return false;
 };
-Character.prototype.hasItem = function(item){
-  return this.inventory.indexOf(item) >= 0;
+Character.prototype.indexOfItemInInventory = function(item_name){
+  for (var i=0; i < this.inventory.length; i++){
+    if (item_name == this.inventory[i].getName()){
+      return i;
+    }
+  }
+  return -1;
+}
+Character.prototype.hasItem = function(item_name){
+  return this.indexOfItemInInventory(item_name) >= 0;
 };
 

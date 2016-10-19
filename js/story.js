@@ -682,7 +682,8 @@ Story.prototype.setupStoryModes = function(){
 Story.prototype.addItemToInventory = function(item){
   this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
   var player = this.controller.haus.getPlayer();
-  player.addToInventory(item);
+  item_obj = this.controller.haus.getItemWithLabel(item);
+  player.addToInventory(item_obj);
   this.controller.haus.removeItemFromMap(item);
   this.controller.updateRenderer();
 }

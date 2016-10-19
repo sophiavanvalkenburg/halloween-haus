@@ -91,9 +91,13 @@ MapObject.prototype.endInteracting = function(controller){}
 
 var Item = function(obj){
   MapObject.call(this, obj.label, obj.map_loc, false, obj.graphic, obj.modes);
+  this.name = obj.name;
 };
 Item.prototype = new MapObject();
 Item.prototype.constructor = Item;
+Item.prototype.getName = function(){
+  return this.name;
+}
 
 var Tile = function(label, map_loc, portal_loc, is_accessible, graphic, modes, is_ghost_tile){
   MapObject.call(this, label, map_loc, is_accessible, graphic, modes);

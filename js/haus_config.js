@@ -378,12 +378,6 @@ var Config = {
     ),
     new Item(
         {
-          label: Labels.items.LIFE_PRESERVER,
-          name: Labels.item_names.LIFE_PRESERVER
-        }
-    ),
-    new Item(
-        {
           label: Labels.items.ANTIQUE_RING,
           name: Labels.item_names.ANTIQUE_RING
         }
