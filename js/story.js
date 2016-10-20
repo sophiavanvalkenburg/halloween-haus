@@ -18,6 +18,7 @@ var StoryStates = {
     RECEIVED_WINE: "received-wine",
     GAVE_WINE_TO_ALICE: "gave-wine-to-alice",
     RECEIVED_ANTIQUE_RING: "received-antique-ring",
+    PORTAL_TO_GHOST_POOL: "portal-to-ghost-pool",
     RECEIVED_LIFE_PRESERVER: "received-life-preserver",
     GAVE_LIFE_PRESERVER_TO_GHOST_14: "gave-life-preserver-to-ghost-14",
     RECEIVED_WEDDING_RING: "received-wedding-ring",
@@ -176,6 +177,30 @@ Story.prototype.setupStoryModes = function(){
       )
   );
 
+  var ghost_fountain_tile = the_story.controller.haus.getTileWithLabel(Labels.tiles.GHOST_FOUNTAIN);
+  ghost_fountain_tile.addMode(
+      StoryStates.INIT,
+      TextDialogMode.createFactory(
+        "You peer into the still pool of smokey white water resting in the fountain.",
+        function(){}
+      )
+  );
+  ghost_fountain_tile.addMode(
+      StoryStates.INIT,
+      TextDialogMode.createFactory(
+        "You lean forward until you almost touch noses with your reflection, when all of the sudden...",
+        function(){}
+      )
+  );
+  ghost_fountain_tile.addMode(
+      StoryStates.INIT,
+      TextDialogMode.createFactory(
+        "...Your reflection grabs you by the collar and pulls you in!",
+        function(controller, target_obj, selected_item){
+            the_story.addPlayedState(StoryStates.PORTAL_TO_GHOST_POOL);
+        } 
+      )
+  );
 
   var key_item = the_story.controller.haus.getItemWithLabel(Labels.items.KEY);
   key_item.addMode(
@@ -758,6 +783,12 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_ANTIQUE_RING:
         this.addItemToInventory(Labels.items.ANTIQUE_RING);
+        break;
+    case StoryStates.PORTAL_TO_GHOST_POOL:
+        var player = this.controller.haus.getPlayer();
+        var next_tile = this.controller.haus.getTileWithLabel(Labels.tiles.GHOST_POOL_LANDING);
+        this.controller.movePlayer(player, next_tile.getLocation());
+        this.controller.sound_manager.playSoundEffect(Labels.sounds.ENTER_GHOST_MODE);
         break;
     case StoryStates.RECEIVED_LIFE_PRESERVER:
         this.addItemToInventory(Labels.items.LIFE_PRESERVER);
