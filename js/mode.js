@@ -12,6 +12,7 @@ Mode.UP = 38;
 Mode.RIGHT = 39;
 Mode.DOWN = 40;
 Mode.SELECT = 90;
+Mode.MENU = 16;
 Mode.createFactory = function(){
   return function(target_obj) { return new Mode(target_obj); };
 }
@@ -20,6 +21,7 @@ Mode.prototype.rightArrowButtonHandler = function(){};
 Mode.prototype.downArrowButtonHandler = function(){};
 Mode.prototype.upArrowButtonHandler = function(){};
 Mode.prototype.selectButtonHandler = function(){};
+Mode.prototype.menuButtonHandler = function(){};
 Mode.prototype.defaultHandler = function(){};
 Mode.prototype.clear = function(){};
 Mode.prototype.initialize = function(){};
@@ -42,6 +44,9 @@ Mode.prototype.eventHandler = function(key_code, controller){
       break;
     case Mode.SELECT:
       this.selectButtonHandler(controller);
+      break;
+    case Mode.MENU:
+      this.menuButtonHandler(controller);
       break;
     default:
       this.defaultHandler(controller);
@@ -102,14 +107,16 @@ TextDialogMode.textArrayToModes = function(text_array){
 TextDialogMode.prototype = new Mode();
 TextDialogMode.prototype.constructor = TextDialogMode;
 TextDialogMode.prototype.downArrowButtonHandler = function(controller){
-  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
   this.gotoNextMessage(controller);
 };
 TextDialogMode.prototype.selectButtonHandler = function(controller){
-  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
   this.gotoNextMessage(controller);
 };
+TextDialogMode.prototype.menuButtonHandler = function(controller){
+  this.gotoNextMessage(controller);
+}
 TextDialogMode.prototype.gotoNextMessage = function(controller){
+  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
   if (!this.shouldEndMode()){
     this.messages = this.messages.slice(1);
     this.initialize(controller);
@@ -216,6 +223,20 @@ MapMode.prototype.selectButtonHandler = function(controller){
   }
   this.handled = true;
 };
+MapMode.prototype.menuButtonHandler = function(controller){
+  var player = controller.haus.getPlayer();
+  var items = player.getFormattedInventory();
+  var text_array = ["~Inventory~"];
+  if (items.length > 0){
+    text_array = text_array.concat(items);
+  }else{
+    text_array.push("No items.");
+  }
+  dialog_modes = TextDialogMode.textArrayToModes(text_array);
+  controller.sound_manager.playSoundEffect(Labels.sounds.MENU_NAV);
+  controller.mode_manager.addModes(dialog_modes);
+  this.handled = true;
+}
 MapMode.prototype.shouldEndMode = function(){
   return this.handled === true;
 }

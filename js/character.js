@@ -153,4 +153,19 @@ Character.prototype.indexOfItemInInventory = function(item_name){
 Character.prototype.hasItem = function(item_name){
   return this.indexOfItemInInventory(item_name) >= 0;
 };
+Character.prototype.getFormattedInventory = function(){
+  var lines = [];
+  for (var i=0; i<this.inventory.length; i+=6){
+    var item_str = "";
+    var last_item_index = Math.min(this.inventory.length, i+6);
+    for (var j=i; j<last_item_index; j++){
+      item_str += Renderer.objectName(this.inventory[j].getName());
+      if (j < last_item_index-1){
+        item_str += ", "
+      }
+    }
+    lines.push(item_str);
+  }
+  return lines;
+}
 
