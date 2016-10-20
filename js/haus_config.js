@@ -4,11 +4,13 @@ var Labels = {
     OPENING: "opening",
     MAIN: "main",
     GHOST: "ghost",
+    /******** EFFECTS **************/
     GET_ITEM: "get_item",
     MENU_NAV: "menu_nav",
     MENU_SELECT: "menu_select",
     ENTER_GHOST_MODE: "enter_ghost_mode",
-    EXIT_GHOST_MODE: "exit_ghost_mode"
+    EXIT_GHOST_MODE: "exit_ghost_mode",
+    RECEIVED_FORTUNE_BADGE: "received-fortune-badge",
   },
   channels: {
     MUSIC: "music",
@@ -210,6 +212,11 @@ var Config = {
       {
         label: Labels.sounds.EXIT_GHOST_MODE,
         src: "resources/sounds/effects/LA_GreatFairy_Vanish.mp3",
+        loop: false
+      },
+      {
+        label: Labels.sounds.RECEIVED_FORTUNE_BADGE,
+        src: "resources/sounds/effects/Jingle_Achievement_01.mp3",
         loop: false
       }
     ]

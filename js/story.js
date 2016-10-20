@@ -497,6 +497,15 @@ Story.prototype.setupStoryModes = function(){
             }
         )
       ]
+    },
+    {
+      state: StoryStates.GAVE_FORTUNES_TO_MARTHA,
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.MARTHA,
+            "Thank you for coming to this year's Halloween Haus. I hope you've had a spooky time! Come again next year~"
+        )
+      ]
     }
   ])
 
@@ -736,8 +745,10 @@ Story.prototype.checkEndState = function(){
       && player.hasItem(Labels.items.ANTIQUE_RING)
       && player.hasItem(Labels.items.THIMBLE)
       && player.hasItem(Labels.items.BUTTON)
+      // need this to prevent infinite loop
+      && !this.played_states.includes(StoryStates.FOUND_ALL_FORTUNES)
      ){
-    this.addPlayedState(StoryState.FOUND_ALL_FORTUNES);
+    this.addPlayedState(StoryStates.FOUND_ALL_FORTUNES);
   }
 }
 Story.prototype.addItemToInventory = function(item){
@@ -856,7 +867,8 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_FORTUNE_BADGE:
         this.addItemToInventory(Labels.items.FORTUNE_BADGE);
+        this.controller.sound_manager.playSoundEffect(Labels.sounds.RECEIVED_FORTUNE_BADGE);
         break;
-    this.checkEndState();
   }
+  this.checkEndState();
 }
