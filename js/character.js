@@ -142,16 +142,16 @@ Character.prototype.removeFromInventory = function(item_name){
   }
   return false;
 };
-Character.prototype.indexOfItemInInventory = function(item_name){
+Character.prototype.indexOfItemInInventory = function(item_label){
   for (var i=0; i < this.inventory.length; i++){
-    if (item_name == this.inventory[i].getLabel()){
+    if (item_label == this.inventory[i].getLabel()){
       return i;
     }
   }
   return -1;
 }
-Character.prototype.hasItem = function(item_name){
-  return this.indexOfItemInInventory(item_name) >= 0;
+Character.prototype.hasItem = function(item_label){
+  return this.indexOfItemInInventory(item_label) >= 0;
 };
 Character.prototype.getFormattedInventory = function(){
   var lines = [];

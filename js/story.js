@@ -26,6 +26,7 @@ var StoryStates = {
     RECEIVED_CORSAGE: "received-corsage",
     GAVE_CORSAGE_TO_SHERI: "gave-corsage-to-sheri",
     RECEIVED_THIMBLE: "received-thimble",
+    GAVE_FORTUNES_TO_MARTHA: "gave-fortunes-to-martha",
     RECEIVED_FORTUNE_BADGE: "received-fortune-badge"
 }
 
@@ -472,6 +473,41 @@ Story.prototype.setupStoryModes = function(){
             "Let me know when you find the rest of the fortunes!"
         )
       ]
+    },
+    {
+      state: StoryStates.INIT,
+      condition: function(played_states){
+        var player = the_story.controller.haus.getPlayer();
+        if ( player.hasItem(Labels.items.COIN)
+            && player.hasItem(Labels.items.KEY)
+            && player.hasItem(Labels.items.ANTIQUE_RING)
+            && player.hasItem(Labels.items.THIMBLE)
+            && player.hasItem(Labels.items.BUTTON)
+           ){
+          return true;
+        }
+        return false;
+      },
+      modes: [
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.MARTHA,
+            "How spectacular! You found all 5 " + Renderer.objectName("fortunes") + "!",
+            function(){}
+        ),
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.MARTHA,
+            "I made you something for all your hard effort. Here is a one-of-a-kind " + Renderer.objectName("moss marchen fortune badge") + "!",
+            function(){}
+        ),
+        TextDialogMode.createCharacterTextFactory(
+            Labels.characters.MARTHA,
+            "Thank you for coming to this year's Halloween Haus. I hope you've had a spooky time! Come again next year~",
+            function(){
+              the_story.addPlayedState(StoryStates.GAVE_FORTUNES_TO_MARTHA);
+              the_story.addPlayedState(StoryStates.RECEIVED_FORTUNE_BADGE);
+            }
+        )
+      ]
     }
   ])
 
@@ -810,6 +846,16 @@ Story.prototype.triggerStoryEvent = function(state){
         break;
     case StoryStates.RECEIVED_THIMBLE:
         this.addItemToInventory(Labels.items.THIMBLE);
+        break;
+    case StoryStates.GAVE_FORTUNES_TO_MARTHA:
+        this.removeItemFromInventory(Labels.items.COIN);
+        this.removeItemFromInventory(Labels.items.ANTIQUE_RING);
+        this.removeItemFromInventory(Labels.items.THIMBLE);
+        this.removeItemFromInventory(Labels.items.BUTTON);
+        this.removeItemFromInventory(Labels.items.KEY);
+        break;
+    case StoryStates.RECEIVED_FORTUNE_BADGE:
+        this.addItemToInventory(Labels.items.FORTUNE_BADGE);
         break;
   }
 }

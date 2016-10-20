@@ -50,7 +50,7 @@ var Labels = {
     ANTIQUE_RING: "antique ring",
     LIFE_PRESERVER: "life preserver",
     WEDDING_RING: "wedding ring",
-    FORTUNE_BADGE: "fortune badge"
+    FORTUNE_BADGE: "moss marchen fortune badge"
   },
   character_names: {
     PRODUCE:  "high priestess produce",
