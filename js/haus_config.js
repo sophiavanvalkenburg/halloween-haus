@@ -154,6 +154,7 @@ var Config = {
     "This game is best played on Google Chrome.",
     "Movement: Arrow Buttons",
     "Select / Object Interaction: `Z` Button",
+    "Inventory: `Shift` Button",
     "This is an exploration game. Talk to characters and objects to see if you can uncover the dark secrets of the Haus!"
   ],
   sounds: {
