@@ -26,6 +26,7 @@ var StoryStates = {
     RECEIVED_CORSAGE: "received-corsage",
     GAVE_CORSAGE_TO_SHERI: "gave-corsage-to-sheri",
     RECEIVED_THIMBLE: "received-thimble",
+    FOUND_ALL_FORTUNES: "found-all-fortunes",
     GAVE_FORTUNES_TO_MARTHA: "gave-fortunes-to-martha",
     RECEIVED_FORTUNE_BADGE: "received-fortune-badge"
 }
@@ -475,19 +476,7 @@ Story.prototype.setupStoryModes = function(){
       ]
     },
     {
-      state: StoryStates.INIT,
-      condition: function(played_states){
-        var player = the_story.controller.haus.getPlayer();
-        if ( player.hasItem(Labels.items.COIN)
-            && player.hasItem(Labels.items.KEY)
-            && player.hasItem(Labels.items.ANTIQUE_RING)
-            && player.hasItem(Labels.items.THIMBLE)
-            && player.hasItem(Labels.items.BUTTON)
-           ){
-          return true;
-        }
-        return false;
-      },
+      state: StoryStates.FOUND_ALL_FORTUNES,
       modes: [
         TextDialogMode.createCharacterTextFactory(
             Labels.characters.MARTHA,
@@ -740,6 +729,17 @@ Story.prototype.setupStoryModes = function(){
     }
   ])
 }
+Story.prototype.checkEndState = function(){
+  var player = this.controller.haus.getPlayer();
+  if ( player.hasItem(Labels.items.COIN)
+      && player.hasItem(Labels.items.KEY)
+      && player.hasItem(Labels.items.ANTIQUE_RING)
+      && player.hasItem(Labels.items.THIMBLE)
+      && player.hasItem(Labels.items.BUTTON)
+     ){
+    this.addPlayedState(StoryState.FOUND_ALL_FORTUNES);
+  }
+}
 Story.prototype.addItemToInventory = function(item){
   this.controller.sound_manager.playSoundEffect(Labels.sounds.GET_ITEM);
   var player = this.controller.haus.getPlayer();
@@ -857,5 +857,6 @@ Story.prototype.triggerStoryEvent = function(state){
     case StoryStates.RECEIVED_FORTUNE_BADGE:
         this.addItemToInventory(Labels.items.FORTUNE_BADGE);
         break;
+    this.checkEndState();
   }
 }
