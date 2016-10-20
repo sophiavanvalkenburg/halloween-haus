@@ -144,7 +144,7 @@ Character.prototype.removeFromInventory = function(item_name){
 };
 Character.prototype.indexOfItemInInventory = function(item_name){
   for (var i=0; i < this.inventory.length; i++){
-    if (item_name == this.inventory[i].getName()){
+    if (item_name == this.inventory[i].getLabel()){
       return i;
     }
   }
