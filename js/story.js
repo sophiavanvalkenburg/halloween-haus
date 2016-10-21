@@ -93,7 +93,7 @@ Story.prototype.setupStoryModes = function(){
             ),
             ChoiceDialogMode.createFactory(
               [ "OK", "Nope" ],
-              Renderer.characterName(Labels.character_names.PRODUCE) + ": Let's place them on the table for our ritual.",
+              Renderer.characterName(Labels.character_names.PRODUCE) + ": \"Let's place them on the table for our ritual.\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "OK"){
                   controller.mode_manager.addModes([
@@ -239,7 +239,7 @@ Story.prototype.setupStoryModes = function(){
             ),
             ChoiceDialogMode.createFactory(
               [ "Yes", "No" ],
-              Renderer.characterName(Labels.characters.TESS) + ": Can I have it for my collection?",
+              Renderer.characterName(Labels.characters.TESS) + ": \"Can I have it for my collection?\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "Yes"){
                   controller.mode_manager.addModes([
@@ -328,7 +328,7 @@ Story.prototype.setupStoryModes = function(){
         ),
         ChoiceDialogMode.createFactory(
               [ "Sure!", "Suck it." ],
-              Renderer.characterName(Labels.character_names.GHOST) + ": Will you give it back?",
+              Renderer.characterName(Labels.character_names.GHOST) + ": \"Will you give it back?\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "Sure!"){
                   controller.mode_manager.addModes([
@@ -375,12 +375,12 @@ Story.prototype.setupStoryModes = function(){
       modes:[
         TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "Is that a map? Maybe it will help me find my way back!",
+            "Is that a " + Renderer.objectName("map") + "? Maybe it will help me find my way back!",
             function(){}
         ),
         ChoiceDialogMode.createFactory(
               [ "Sure!", "Too bad." ],
-              Renderer.characterName(Labels.character_names.GHOST) + ": Can I use it?",
+              Renderer.characterName(Labels.character_names.GHOST) + ": \"Can I use it?\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "Sure!"){
                   controller.mode_manager.addModes([
@@ -437,7 +437,7 @@ Story.prototype.setupStoryModes = function(){
         ),
         ChoiceDialogMode.createFactory(
               [ "Sure!", "No thanks" ],
-              Renderer.characterName(Labels.characters.MARTHA) + ": I would like to use it to make some Moss Marchen jewelry. Is that OK?",
+              Renderer.characterName(Labels.characters.MARTHA) + ": \"I would like to use it to make some Moss Marchen jewelry. Is that OK?\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "Sure!"){
                   controller.mode_manager.addModes([
@@ -491,9 +491,10 @@ Story.prototype.setupStoryModes = function(){
         TextDialogMode.createCharacterTextFactory(
             Labels.characters.MARTHA,
             "Thank you for coming to this year's Halloween Haus. I hope you've had a spooky time! Come again next year~",
-            function(){
+            function(obj){
               the_story.addPlayedState(StoryStates.GAVE_FORTUNES_TO_MARTHA);
               the_story.addPlayedState(StoryStates.RECEIVED_FORTUNE_BADGE);
+              obj.endInteracting();
             }
         )
       ]
@@ -521,7 +522,7 @@ Story.prototype.setupStoryModes = function(){
         ),
         ChoiceDialogMode.createFactory(
               [ "Have some", "It's mine" ],
-              Renderer.characterName(Labels.characters.ALICE) + ": I could really use a drink right now ...", 
+              Renderer.characterName(Labels.characters.ALICE) + ": \"I could really use a drink right now ...\"", 
               function(controller, target_obj, selected_item){
                 if (selected_item === "Have some"){
                   controller.mode_manager.addModes([
@@ -584,7 +585,7 @@ Story.prototype.setupStoryModes = function(){
       modes:[
         ChoiceDialogMode.createFactory(
               [ "OK!", "You're dead" ],
-              Renderer.characterName(Labels.character_names.GHOST) + ": HELP! I'm drowning! Throw me that " + Renderer.objectName("life preserver") + "!!",
+              Renderer.characterName(Labels.character_names.GHOST) + ": \"HELP! I'm drowning! Throw me that " + Renderer.objectName("life preserver") + "!!\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "OK!"){
                   controller.mode_manager.addModes([
@@ -641,7 +642,7 @@ Story.prototype.setupStoryModes = function(){
         ),
         ChoiceDialogMode.createFactory(
               [ "Sure!", "It's mine" ],
-              Renderer.characterName(Labels.character_names.BRIDE) + ": May I have it back?",
+              Renderer.characterName(Labels.character_names.BRIDE) + ": \"May I have it back?\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "Sure!"){
                   controller.mode_manager.addModes([
@@ -698,7 +699,7 @@ Story.prototype.setupStoryModes = function(){
         ),
         ChoiceDialogMode.createFactory(
               [ "Sure!", "Nope" ],
-              Renderer.characterName(Labels.characters.SHERI) + ": Can I wear it today?",
+              Renderer.characterName(Labels.characters.SHERI) + ": \"Can I wear it today?\"",
               function(controller, target_obj, selected_item){
                 if (selected_item === "Sure!"){
                   controller.mode_manager.addModes([

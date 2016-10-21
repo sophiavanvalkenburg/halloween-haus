@@ -137,6 +137,7 @@ var Labels = {
     GHOST_37: "ghost_37",
     GHOST_38: "ghost_38",
     GHOST_39: "ghost_39",
+    GHOST_40: "ghost_40",
   }
 }
 
@@ -151,7 +152,9 @@ var Config = {
     "~Music~",
     "\"Pokemon Tower Theme\" - Pokemon",
     "\"This Is Halloween\" -  Nightmare Before Christmas (Gunday Monday Chiptune Version)",
-    "\"Lavender Town Theme\" - Pokemon"
+    "\"Lavender Town Theme\" - Pokemon",
+    "~Sound Effects~",
+    "LittleRobotSoundFactory (freesound.org)"
   ], 
   HOW_TO: [
     "~~How To Play~~",
@@ -165,11 +168,11 @@ var Config = {
     channels: {
       MUSIC: { 
         label: Labels.channels.MUSIC,
-        volume: 0.5,
+        volume: 0.75,
       },
       EFFECTS: {
         label: Labels.channels.EFFECTS,
-        volume: 0.2
+        volume: 0.4
       }
     },
     files: [
@@ -563,8 +566,12 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.ALICE, 
-              "Noooo don't tell me any more spooky stories !!!"
-              )]
+              "Noooo don't tell me any more spooky stories !!!",
+              function(){}
+              ), TextDialogMode.createCharacterTextFactory(
+                  Labels.characters.ALICE,
+                  "I could really use another drink right now ..."
+                )]
           }
         ]
  }),
@@ -956,7 +963,22 @@ var Config = {
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.MARTHA,
-              "Be sure to try the Fortune Cake ... you might find something special."
+              "Did you see the " + Renderer.objectName("fortune cake") + " in the dining room?",
+              function(){}
+              ),
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.MARTHA,
+              "Unfortunately I'm missing the 5 " + Renderer.objectName("fortunes") + " that belong in the cake.",
+              function(){}
+              ),
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.MARTHA,
+              "The 5 items are a " + Renderer.objectName("coin") + ", a " + Renderer.objectName("key") + ", a " + Renderer.objectName("button") + ", a " + Renderer.objectName("thimble") + ", and an " + Renderer.objectName("antique ring") + ".",
+              function(){}
+            ),
+            TextDialogMode.createCharacterTextFactory(
+              Labels.characters.MARTHA,
+              "If you can help me find them I will give you a small gift!"
               )]
           }
         ]
@@ -970,7 +992,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.MIRI, 
-              "I'm glad I'm not sleeping in the living room after what happened last year!"
+              "I'm glad I'm not sleeping in the living room after what happened last time!"
               )]
           }
         ],
@@ -1018,7 +1040,11 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.character_names.PRODUCE, 
-              "Come attend the ritual after dinner tonight!"
+              "Come attend the ritual after dinner tonight!",
+              function(){}
+              ), TextDialogMode.createCharacterTextFactory(
+                Labels.character_names.PRODUCE,
+                "Let me know if you find anything you want to add to the table."
               )]
           }
         ],
@@ -1103,8 +1129,12 @@ var Config = {
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
-              Labels.characters.TESS, 
-              "Dinner will be ready soon~"
+                Labels.characters.TESS, 
+                "Dinner will be ready soon~",
+                function(){}
+              ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.TESS,
+                "The mushrooms are my favorite!"
               )]
           }
         ],
@@ -1239,7 +1269,7 @@ var Config = {
             function(){}
             ), TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "I blew open the windows last year."
+            "I blew open the living room windows last time."
             )]
         }
       ],
@@ -2055,6 +2085,22 @@ var Config = {
           ), TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
             "You are not allowed down there."
+          )]
+        }
+      ],
+      interacts_with_player:  false
+}),
+  new Character( {
+      label: Labels.characters.GHOST_40,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(6104, 4, 11),
+      graphic: "resources/images/characters/ghost-happy.gif",
+      modes: [
+        {
+          state: StoryStates.INIT,
+          modes: [TextDialogMode.createCharacterTextFactory(
+            Labels.character_names.GHOST,
+            "You found me! Now it's your turn to hide."
           )]
         }
       ],
