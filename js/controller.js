@@ -47,16 +47,20 @@ Controller.prototype.handleHowToButtonClickEvent = function(){
     this.mode_manager.addModes([Mode.createFactory()]);
     var instructions = TextDialogMode.textArrayToModes(Config.HOW_TO);
     this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, instructions);
-    this.updateRenderer();
+  }else{
+    this.mode_manager.handleKeyEvent(Mode.SELECT, this);
   }
+  this.updateRenderer();
 }
 Controller.prototype.handleCreditsButtonClickEvent = function(){
   if (this.mode_manager.modeQueueIsEmpty()){
     this.mode_manager.addModes([Mode.createFactory()]);
     var credits = TextDialogMode.textArrayToModes(Config.CREDITS);
     this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, credits);
-    this.updateRenderer();
+  }else{
+    this.mode_manager.handleKeyEvent(Mode.SELECT, this);
   }
+  this.updateRenderer();
 }
 Controller.prototype.handleMuteButtonClickEvent = function(){
   this.sound_manager.toggleMute();
