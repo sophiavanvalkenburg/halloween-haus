@@ -98,6 +98,9 @@ var Labels = {
     XIAOWEN:  "xiaowen",
     XIAOYU:   "xiaoyu",
 
+    SARAH:   "sarah",
+    KRISTA:   "krista",
+
     GHOST_01: "ghost_01",
     GHOST_02: "ghost_02",
     GHOST_03: "ghost_03",
@@ -314,7 +317,7 @@ var Config = {
     "resources/maps/ghost/map18.json",
     "resources/maps/ghost/map19.json",
     "resources/maps/ghost/map20.json",
-
+    "resources/maps/ghost/map13.json",
   ],
   items: [
     new Item(
@@ -2106,9 +2109,81 @@ var Config = {
       ],
       interacts_with_player:  false
 }),
-
-
-
-
+  new Character( {
+      label:	Labels.characters.SARAH,
+      map_loc:	new MapLocation(613, 8, 9), 
+      graphic: "resources/images/characters/sarah-move.gif",
+      modes:	[
+          {
+            state: StoryStates.INIT, 
+            modes: [TextDialogMode.createCharacterTextFactory(
+              Labels.characters.SARAH, 
+              "She used to place her pretty arms about my neck, draw me to her...",
+              function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.SARAH,
+                "...and laying her cheek to mine, murmur with her lips near my ear...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.SARAH,
+                "'Dearest, your little heart is wounded...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.SARAH,
+                "...think me not cruel because I obey the irresistible law of my strength and weakness...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.SARAH,
+                "...if your dear heart is wounded, my wild heart bleeds with yours...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.SARAH,
+                "In the rapture of my enormous humiliation I live in your warm life...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.SARAH,
+                "...and you shall die--die, sweetly die--into mine.'"
+            )]
+          }
+        ],
+ }),
+  new Character( {
+      label:	Labels.characters.KRISTA,
+      map_loc:	new MapLocation(613, 9, 9), 
+      graphic: "resources/images/characters/krista-move.gif",
+      modes:	[
+          {
+            state: StoryStates.INIT, 
+            modes: [TextDialogMode.createCharacterTextFactory(
+              Labels.characters.KRISTA, 
+              "She used to place her pretty arms about my neck, draw me to her...",
+              function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.KRISTA,
+                "...and laying her cheek to mine, murmur with her lips near my ear...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.KRISTA,
+                "'Dearest, your little heart is wounded...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.KRISTA,
+                "...think me not cruel because I obey the irresistible law of my strength and weakness...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.KRISTA,
+                "...if your dear heart is wounded, my wild heart bleeds with yours...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.KRISTA,
+                "In the rapture of my enormous humiliation I live in your warm life...",
+                function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.characters.KRISTA,
+                "...and you shall die--die, sweetly die--into mine.'"
+            )]
+          }
+      ],
+ }),
   ]
 }
