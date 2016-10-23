@@ -1138,7 +1138,7 @@ var Config = {
                 function(){}
               ), TextDialogMode.createCharacterTextFactory(
                 Labels.characters.TESS,
-                "The mushrooms are my favorite!"
+                "The obj(MUSHROOMS) are my favorite!"
               )]
           }
         ],
