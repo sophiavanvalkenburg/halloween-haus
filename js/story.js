@@ -159,7 +159,7 @@ Story.prototype.setupStoryModes = function(){
       StoryStates.INIT,
       ChoiceDialogMode.createFactory(
         [ "Yes", "No" ],
-        "Return to the land of the living?",
+        "Return to the land of the living? You can always come back to the land of the dead.",
         function(controller, target_obj, selected_item){
           if (selected_item === "Yes"){
             the_story.addPlayedState(StoryStates.RETURNED_TO_LIVING);
