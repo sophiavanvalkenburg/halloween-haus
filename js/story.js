@@ -208,7 +208,7 @@ Story.prototype.setupStoryModes = function(){
   key_item.addMode(
       StoryStates.INIT,
       TextDialogMode.createFactory(
-        "It's an old rusty " + Renderer.objectName("key") + ". Looks like it hasn't been used in a very long time ...",
+        "It's an old rusty " + Renderer.objectName("key") + ". What does it open?", 
         function(){
           the_story.addPlayedState(StoryStates.RECEIVED_KEY);
         }
