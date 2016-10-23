@@ -52,7 +52,8 @@ var Labels = {
     ANTIQUE_RING: "antique ring",
     LIFE_PRESERVER: "life preserver",
     WEDDING_RING: "wedding ring",
-    FORTUNE_BADGE: "moss marchen fortune badge"
+    FORTUNE_BADGE: "moss marchen fortune badge",
+    CORSAGE: "pink corsage"
   },
   character_names: {
     PRODUCE:  "high priestess produce",
@@ -384,7 +385,7 @@ var Config = {
     new Item(
         {
           label: Labels.items.CORSAGE,
-          name: Labels.items.CORSAGE
+          name: Labels.item_names.CORSAGE
         }
     ),
     new Item(
@@ -1048,7 +1049,11 @@ var Config = {
               function(){}
               ), TextDialogMode.createCharacterTextFactory(
                 Labels.character_names.PRODUCE,
-                "Let me know if you find anything you want to add to the table."
+                "There are lots of spooky things in the woods.",
+                function(){}
+              ), TextDialogMode.createCharacterTextFactory(
+                Labels.character_names.PRODUCE,
+                "If you find anything there, you can bring it to me and put it on the table!"
               )]
           }
         ],
@@ -1083,8 +1088,9 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.SKYLAR, 
-              "I'm excited for Sunday Nunday tomorrow!"
-              )]
+              "Did you know ch(MARTHA) makes necklaces out of obj(LOCKS OF HAIR)?"
+              )
+            ]
           }
         ],
         initial_orientation: MapState.LEFT
@@ -1893,7 +1899,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "They took me out of my room, and now I can't find my way back...If only I had something to guide me."
+            "They took me out of my room, and now I can't find my way back...If only I had a obj(MAP) to guide me."
           )]
         }
       ],

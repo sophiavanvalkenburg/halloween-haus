@@ -79,8 +79,16 @@ Story.prototype.setupStoryModes = function(){
         modes: [
             TextDialogMode.createCharacterTextFactory(
               Labels.character_names.PRODUCE,
-              "Oh! I can't take the " + Renderer.objectName("coin") + ". Place it at the altar of the dead as an offering."
-            )
+              "Oh! I can't take the " + Renderer.objectName("coin") + ". Place it at the altar of the dead as an offering.",
+              function(){}
+            ), TextDialogMode.createCharacterTextFactory(
+                Labels.character_names.PRODUCE,
+                "There are lots of spooky things in the woods.",
+                function(){}
+              ), TextDialogMode.createCharacterTextFactory(
+                Labels.character_names.PRODUCE,
+                "If you find anything there, you can bring it to me and put it on the table!"
+              )
         ]
     },
     {
@@ -285,7 +293,7 @@ Story.prototype.setupStoryModes = function(){
     StoryStates.INIT,
     ChoiceDialogMode.createFactory(
       ["Yes", "No"], 
-      "Should you take some as a souvenir?",
+      "Should you take some for the ritual tonight?",
       function(controller, target_obj, selected_item){
         if (selected_item === "Yes"){
             controller.mode_manager.addModes([ 
@@ -653,7 +661,7 @@ Story.prototype.setupStoryModes = function(){
                     ),
                     TextDialogMode.createCharacterTextFactory(
                       Labels.character_names.BRIDE,
-                      "Here, take my pink " + Renderer.objectName("corsage") + " as a token of my gratitude.",
+                      "Here, take my " + Renderer.objectName("pink corsage") + " as a token of my gratitude.",
                       function(){
                         the_story.addPlayedState(StoryStates.GAVE_WEDDING_RING_TO_COUPLE);
                         the_story.addPlayedState(StoryStates.RECEIVED_CORSAGE);
