@@ -14,6 +14,7 @@ Mode.DOWN = 40;
 Mode.SELECT = 90;
 Mode.ENTER = 13;
 Mode.MENU = 16;
+Mode.INVENTORY = 73;
 Mode.createFactory = function(){
   return function(target_obj) { return new Mode(target_obj); };
 }
@@ -50,6 +51,9 @@ Mode.prototype.eventHandler = function(key_code, controller){
       this.selectButtonHandler(controller);
       break;
     case Mode.MENU:
+      this.menuButtonHandler(controller);
+      break;
+    case Mode.INVENTORY:
       this.menuButtonHandler(controller);
       break;
     default:
