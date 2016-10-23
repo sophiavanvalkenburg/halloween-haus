@@ -69,6 +69,9 @@ Renderer.prototype.drawMap = function(haus){
   this.current_map_index = map.getId();
   this.clearMap();
   var $table = $("<table class='centered'>");
+  if (map.isGhostMap()){
+    $table.addClass("ghost-mode");
+  }
   for (var y=0; y<=map.getMaxY(); y++){
     var $row = $("<tr>");
     for (var x=0; x<=map.getMaxX(); x++){
@@ -87,9 +90,6 @@ Renderer.prototype.drawTile = function(tile){
     graphic_loc = "resources/images/tiles/tile-black.png";
   }else{
     graphic_loc = tile.getGraphic();
-  }
-  if (tile.isGhostTile()){
-    $div.addClass("ghost-mode");
   }
   $div.append(Renderer.createImage(graphic_loc));
   return $div;

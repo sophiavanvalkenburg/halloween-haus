@@ -52,7 +52,7 @@ body {
     background-color: lightgray;
 }
 
-#haus-map .ghost-mode img {
+#haus-map .ghost-mode .tile img{
     -webkit-filter: sepia(100%);
 }
 

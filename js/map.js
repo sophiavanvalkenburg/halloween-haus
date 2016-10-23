@@ -16,13 +16,14 @@ MapLocation.prototype.copy = function(){
   return new MapLocation(this.mapIndex(), this.X(), this.Y());
 }
 
-var MapState = function(id, tiles){
+var MapState = function(id, tiles, is_ghost_map){
   this.id = id;
   this.tile_grid = [];
   this.labeled_tiles = {};
   var res = this.mapTilesToGrid(tiles);
   this.max_x = res[0];
   this.max_y = res[1];
+  this.is_ghost_map = is_ghost_map ? true : false;
 }; 
 MapState.UP = "up";
 MapState.DOWN = "down";
@@ -71,4 +72,7 @@ MapState.prototype.getMaxX = function(){
 };
 MapState.prototype.getTileWithLabel = function(label){
   return this.labeled_tiles[label];
+}
+MapState.prototype.isGhostMap = function(){
+  return this.is_ghost_map;
 }

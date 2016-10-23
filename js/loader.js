@@ -70,12 +70,12 @@ GameLoader.prototype.makeTileModes = function(tile_data){
     return [];
   }
 }
-GameLoader.prototype.parseTileData = function(tile_data, is_ghost_map){
+GameLoader.prototype.parseTileData = function(tile_data){
   var loc = this.makeMapLocation(tile_data.loc);
   var portal = this.makeMapLocation(tile_data.portal);
   var img_src = this.makeTileImageSrc(tile_data.graphic);
   var modes = this.makeTileModes(tile_data);
-  return new Tile(tile_data.label, loc, portal, tile_data.is_accessible, img_src, modes, is_ghost_map);
+  return new Tile(tile_data.label, loc, portal, tile_data.is_accessible, img_src, modes);
 }
 GameLoader.prototype.loadMap = function(data){
   var meta = this.parseMetaData(data);
@@ -84,10 +84,10 @@ GameLoader.prototype.loadMap = function(data){
   }
   var tiles = [];
   for (var i=0; i<data.tiles.length; i++){
-    tiles.push(this.parseTileData(data.tiles[i], meta.is_ghost_map));
+    tiles.push(this.parseTileData(data.tiles[i]));
   }
   //this.preloadMapObjects(tiles);
-  this.haus.addMap( new MapState(meta.map_id, tiles));
+  this.haus.addMap( new MapState(meta.map_id, tiles, meta.is_ghost_map));
 }
 GameLoader.prototype.preloadMapObjects = function(objs){
   for (var i=0; i<objs.length; i++){
