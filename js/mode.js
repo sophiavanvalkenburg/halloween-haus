@@ -12,6 +12,7 @@ Mode.UP = 38;
 Mode.RIGHT = 39;
 Mode.DOWN = 40;
 Mode.SELECT = 90;
+Mode.ENTER = 13;
 Mode.MENU = 16;
 Mode.createFactory = function(){
   return function(target_obj) { return new Mode(target_obj); };
@@ -43,6 +44,9 @@ Mode.prototype.eventHandler = function(key_code, controller){
       this.downArrowButtonHandler(controller);
       break;
     case Mode.SELECT:
+      this.selectButtonHandler(controller);
+      break;
+    case Mode.ENTER:
       this.selectButtonHandler(controller);
       break;
     case Mode.MENU:
@@ -174,6 +178,9 @@ ChoiceDialogMode.prototype.upArrowButtonHandler = function(controller){
   this.selected = this.selected === 0 ? 0 : this.selected - 1;
   controller.choiceDialogSelectItem(this.selected);
 };
+ChoiceDialogMode.prototype.rightArrowButtonHandler = function(controller){
+  this.selectButtonHandler(controller);
+}
 ChoiceDialogMode.prototype.selectButtonHandler = function(controller){
   controller.sound_manager.playSoundEffect(Labels.sounds.MENU_SELECT);
   this.select_fn(controller, this.target_obj, this.choices[this.selected])
