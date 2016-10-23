@@ -3,7 +3,7 @@ body {
 }
 
 #haus-container {
-    border: 10px;
+    border: 10px solid transparent;
     border-image: url(../resources/images/icons/border-skull.png) 33% repeat;
     display: inline-block;
     height: 480px;
