@@ -759,7 +759,7 @@ var Config = {
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createFactory(
-              "A cute doll that is some combination of jack o'lantern, devil, and ghost.",
+              "ch(BUDDY), a cute doll that is some combination of jack o'lantern, devil, and ghost.",
               function(){}
               ),
             TextDialogMode.createFactory(
