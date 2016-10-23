@@ -165,6 +165,7 @@ var Config = {
     "Movement: Arrow Buttons",
     "Select / Object Interaction: `Enter` Button or `Z` Button",
     "Inventory: `Shift` Button",
+    "Item pickup: The game will prompt you to pick up items.",
     "This is an exploration game. Talk to characters and objects to see if you can uncover the dark secrets of the Haus!"
   ],
   sounds: {
