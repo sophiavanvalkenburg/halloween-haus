@@ -968,7 +968,7 @@ var Config = {
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.MARTHA,
-              "Did you see the " + Renderer.objectName("fortune cake") + " in the dining room?",
+              "Did you try the " + Renderer.objectName("fortune cake") + " in the dining room?",
               function(){}
               ),
             TextDialogMode.createCharacterTextFactory(
