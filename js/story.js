@@ -324,6 +324,27 @@ Story.prototype.setupStoryModes = function(){
     )
   );
 
+  var ghost_41 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_41);
+  ghost_41.addModes([
+    {
+        state: StoryStates.INIT,
+        modes: [TextDialogMode.createCharacterTextFactory(
+          Labels.character_names.GHOST,
+          "...",
+          function(){
+            the_story.controller.sound_manager.playMusic(Labels.sounds.MYSTERY, false);
+          }
+        ), TextDialogMode.createCharacterTextFactory(
+          Labels.character_names.GHOST,
+          "it is a mystery",
+          function(target_obj){
+            the_story.controller.sound_manager.playMusic(Labels.sounds.GHOST);
+            target_obj.endInteracting();
+          }
+        )]
+    }
+  ])
+
   var ghost_38 = this.controller.haus.getCharacterWithLabel(Labels.characters.GHOST_38);
   ghost_38.addModes([
     {

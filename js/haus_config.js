@@ -4,6 +4,7 @@ var Labels = {
     OPENING: "opening",
     MAIN: "main",
     GHOST: "ghost",
+    MYSTERY: "mystery",
     /******** EFFECTS **************/
     GET_ITEM: "get_item",
     MENU_NAV: "menu_nav",
@@ -142,6 +143,7 @@ var Labels = {
     GHOST_38: "ghost_38",
     GHOST_39: "ghost_39",
     GHOST_40: "ghost_40",
+    GHOST_41: "ghost_41",
   }
 }
 
@@ -197,6 +199,12 @@ var Config = {
         src: "resources/sounds/music/131-lavender-town-s-theme.mp3",
         loop: true
       },
+      {
+        label: Labels.sounds.MYSTERY,
+        src: "resources/sounds/music/it-is-a-mystery.mp3",
+        loop: true
+      },
+      /********** EFFECTS ***********/
       {
         label: Labels.sounds.GET_ITEM,
         src: "resources/sounds/effects/Collect_Point_00.mp3",
@@ -2114,6 +2122,14 @@ var Config = {
           )]
         }
       ],
+      interacts_with_player:  false
+}),
+  new Character( {
+      label: Labels.characters.GHOST_41,
+      name: Labels.character_names.GHOST,
+      map_loc: new MapLocation(62, 8, 11),
+      graphic: "resources/images/characters/ghost-mystery.gif",
+      modes: [],
       interacts_with_player:  false
 }),
   new Character( {

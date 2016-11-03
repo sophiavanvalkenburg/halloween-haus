@@ -23,17 +23,24 @@ SoundManager.prototype.toggleMute = function(){
   this.channels[Labels.channels.MUSIC].toggleMute();
   this.channels[Labels.channels.EFFECTS].toggleMute();
 }
-SoundManager.prototype.playMusic = function(label){
-  this.playSound(label, Labels.channels.MUSIC);
+SoundManager.prototype.playMusic = function(label, fadeout){
+  if (fadeout === undefined){
+    fadeout = true;
+  }
+  this.playSound(label, Labels.channels.MUSIC, fadeout);
 }
 SoundManager.prototype.playSoundEffect = function(label){
   this.playSound(label, Labels.channels.EFFECTS);
 }
-SoundManager.prototype.playSound = function(label, channel){
+SoundManager.prototype.playSound = function(label, channel, fadeout){
   var sound = this.sounds[label];
   var channel = this.channels[channel];
   if (sound !== undefined && channel !== undefined){
-    channel.fadeOutAndPlay(sound);
+    if (fadeout){
+      channel.fadeOutAndPlay(sound);
+    } else {
+      channel.load(sound);
+    }
   }
 }
 
