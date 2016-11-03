@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
+.start-screen-display {
+    display: none;
+}
+
 #haus-container {
     border: 10px solid transparent;
     border-image: url(../resources/images/icons/border-skull.png) 33% repeat;
@@ -20,12 +24,23 @@ body {
     margin-left: auto;
 }
 
+.v-centered {
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+}
+
+
 #start-screen {
     height: 350px;
     width: 364px;
 }
 
 #start-screen img {
+    display: block;
+}
+
+#loading-img img {
     display: block;
 }
 

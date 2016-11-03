@@ -203,6 +203,12 @@ Renderer.prototype.updateChoiceDialog = function(choice_dialog){
 Renderer.prototype.hideStartScreen = function(){
   $("#start-screen").css("display", "none");
 }
+Renderer.prototype.showStartScreen = function(){
+  $(".start-screen-display").css("display", "block");
+}
+Renderer.prototype.hideLoadingImage = function(){
+  $("#loading-img").css("display", "none");
+}
 Renderer.prototype.showMap = function(){
   $("#haus-map").css("display", "block");
 }
