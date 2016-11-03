@@ -159,6 +159,7 @@ var Config = {
     "\"Pokemon Tower Theme\" - Pokemon",
     "\"This Is Halloween\" -  Nightmare Before Christmas (Gunday Monday Chiptune Version)",
     "\"Lavender Town Theme\" - Pokemon",
+    "\"Happy H Christmas\" - Drax",
     "~Sound Effects~",
     "LittleRobotSoundFactory (freesound.org)"
   ], 
