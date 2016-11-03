@@ -268,7 +268,8 @@ var StartScreenMode = function(){
       controller.mode_manager.addModes([StartScreenMode.createFactory()]);
     }
   }
-  ChoiceDialogMode.call(this, undefined, choices, undefined, select_fn); 
+  var message = Config.START_SCREEN_CHOICE_MESSAGE;
+  ChoiceDialogMode.call(this, undefined, choices, message, select_fn); 
   this.type = Mode.START_SCREEN;
 }
 StartScreenMode.createFactory = function(){

@@ -9,10 +9,14 @@ var Controller = function(haus, renderer, mode_manager, the_story, sound_manager
 Controller.prototype.setup = function(){
   this.setUpEventListeners();
   this.haus.setCurrentMap(Config.INITIAL_MAP);
+  start_screen_modes = [Mode.createFactory()].concat(
+    TextDialogMode.textArrayToModes(Config.START_SCREEN_TEXT_DESCRIPTION)
+  );
+  start_screen_modes.push(StartScreenMode.createFactory());
   this.mode_manager.addModesAndHandleEvent(
       this,
       undefined, 
-      [Mode.createFactory(), StartScreenMode.createFactory()]
+      start_screen_modes
   );
   this.updateRenderer();
 }

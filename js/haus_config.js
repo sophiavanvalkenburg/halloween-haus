@@ -152,6 +152,12 @@ var Config = {
   TIME_COUNTER: 1000,
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.OPENING,
+  START_SCREEN_TEXT_DESCRIPTION: [
+    "Many moons ago, 28 souls gathered at a haunted haus on all hallow's eve ...",
+    "unaware of the dark secrets lurking in their midst ... ",
+    "Based on true events!",
+  ],
+  START_SCREEN_CHOICE_MESSAGE: "Do you join them on their day of spooky revelry? Play now, if you dare ... ",
   CREDITS: [
     "~~Credits~~",
     "Programming and graphics by Sophia", 
