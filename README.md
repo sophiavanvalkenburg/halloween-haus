@@ -2,6 +2,9 @@
 
 Basic 2D exploration game w/tiled maps + character interaction
 
+<img src="https://github.com/sophiavanvalkenburg/halloween-haus/raw/master/resources/images/start-screen.png" height="200" /> <img src="https://github.com/sophiavanvalkenburg/halloween-haus/raw/master/resources/images/screenshot01.png" height="200" /> <img src="https://github.com/sophiavanvalkenburg/halloween-haus/raw/master/resources/images/screenshot02.png" height="200" /> <img src="https://github.com/sophiavanvalkenburg/halloween-haus/raw/master/resources/images/screenshot03.png" height="200" />
+<a href="https://www.sophiaceleste.com/halloween-haus" target="_blank">Link</a>
+
 ### How to Run
 ```bash
 $ npm install http-server -g
