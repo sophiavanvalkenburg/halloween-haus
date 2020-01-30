@@ -51,8 +51,6 @@ Controller.prototype.handleHowToButtonClickEvent = function(){
     this.mode_manager.addModes([Mode.createFactory()]);
     var instructions = TextDialogMode.textArrayToModes(Config.HOW_TO);
     this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, instructions);
-  }else{
-    this.mode_manager.handleKeyEvent(Mode.SELECT, this);
   }
   this.updateRenderer();
 }
@@ -61,8 +59,6 @@ Controller.prototype.handleCreditsButtonClickEvent = function(){
     this.mode_manager.addModes([Mode.createFactory()]);
     var credits = TextDialogMode.textArrayToModes(Config.CREDITS);
     this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, credits);
-  }else{
-    this.mode_manager.handleKeyEvent(Mode.SELECT, this);
   }
   this.updateRenderer();
 }
