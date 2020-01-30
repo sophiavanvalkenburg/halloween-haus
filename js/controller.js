@@ -15,7 +15,7 @@ Controller.prototype.setup = function(){
   start_screen_modes.push(StartScreenMode.createFactory());
   this.mode_manager.addModesAndHandleEvent(
       this,
-      undefined, 
+      Mode.NULL_INPUT, 
       start_screen_modes
   );
   this.updateRenderer();

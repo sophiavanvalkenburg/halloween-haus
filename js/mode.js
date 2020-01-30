@@ -7,6 +7,8 @@ Mode.TEXT_DIALOG = "text_dialog";
 Mode.CHOICE_DIALOG = "choice_dialog";
 Mode.MAP = "map";
 Mode.START_SCREEN = "start_screen";
+
+Mode.NULL_INPUT = -1; // sometimes need to handle event that doesn't have an associated id
 Mode.LEFT = 37;
 Mode.UP = 38;
 Mode.RIGHT = 39;
@@ -17,6 +19,7 @@ Mode.MENU = 16;
 Mode.INVENTORY = 73;
 
 Mode.VALID_INPUTS = [
+  Mode.NULL_INPUT,
   Mode.LEFT,
   Mode.UP,
   Mode.RIGHT,
