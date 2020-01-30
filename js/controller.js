@@ -32,17 +32,21 @@ Controller.prototype.setUpEventListeners = function(){
   window.addEventListener("keydown", function(e){
     controller.mode_manager.handleKeyEvent(e.which, controller);
     controller.updateRenderer();
+    e.stopPropagation();
   });
   window.addEventListener("tick", function(e){
     controller.handleTimeTickEvent();
   });
   $("#mute-btn").on("click", function(){
+    $(this).blur();
     controller.handleMuteButtonClickEvent();
   });
   $("#credits-btn").on("click", function(){
+    $(this).blur();
     controller.handleCreditsButtonClickEvent();
   });
   $("#how-to-btn").on("click", function(){
+    $(this).blur();
     controller.handleHowToButtonClickEvent();
   });
 };
