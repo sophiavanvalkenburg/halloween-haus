@@ -15,6 +15,7 @@ $ http-server .
 ### Programming To-Do
   
 ### Nice-To-Haves
+- how to play screen instead of dialog box (would be easier to understand)
 - ability to add sound to tile when walking over it (customize in map editor)
 - add css class to tile / whole map (customize in map editor)
 - bug: need a way to get out if player is trapped by an npc
