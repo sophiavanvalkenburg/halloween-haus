@@ -153,15 +153,15 @@ var Config = {
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.OPENING,
   START_SCREEN_TEXT_DESCRIPTION: [
-    "~~Welcome to Halloween Haus~~ (Press `Enter` to continue)",
+    "~~Welcome to Halloween Haus~~ (Press `enter` to continue)",
     "Many moons ago, 28 souls gathered at a haunted haus on all hallow's eve ...",
     "unaware of the dark secrets lurking in their midst ... ",
     "Based on true events!",
     "Do you join them on their day of spooky revelry? Play now, if you dare ... "
   ],
-  START_SCREEN_CHOICE_MESSAGE: "Click `Enter` to play or use arrow buttons to select a different option.",
+  START_SCREEN_CHOICE_MESSAGE: "Click `enter` to play or use arrow buttons to select a different option.",
   CREDITS: [
-    "~~Credits~~ (Press `Enter` to continue)",
+    "~~Credits~~ (Press `enter` to continue)",
     "Programming and graphics by Sophia", 
     "~Music~",
     "\"Pokemon Tower Theme\" - Pokemon",
@@ -172,12 +172,13 @@ var Config = {
     "LittleRobotSoundFactory (freesound.org)"
   ], 
   HOW_TO: [
-    "~~How To Play~~ (Press `Enter` to continue)",
+    "~~How To Play~~ (Press `enter` to continue)",
     "This game is best played on Google Chrome.",
-    "Movement: Arrow Buttons",
-    "Select / Object Interaction: `Enter` Button or `Z` Button",
-    "Inventory: `Shift` Button or `I` Button",
-    "Item pickup: The game will prompt you to pick up items.",
+    "Move Player: Arrow Buttons or Keys",
+    "Talk: `enter` Button, `ENTER` Key, or `Z` Key",
+    "View Inventory: '`inventory` Button, `Shift` Key, or `I` Key",
+    "Inspect Object: `enter` Button, `ENTER` Key, or `Z` Key",
+    "Select Menu Option: `enter` Button, `ENTER` Key, or `Z` Key",
     "This is an exploration game. Talk to characters and objects to see if you can uncover the dark secrets of the Haus!"
   ],
   sounds: {
