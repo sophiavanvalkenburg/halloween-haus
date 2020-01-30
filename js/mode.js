@@ -15,6 +15,18 @@ Mode.SELECT = 90;
 Mode.ENTER = 13;
 Mode.MENU = 16;
 Mode.INVENTORY = 73;
+
+Mode.VALID_INPUTS = [
+  Mode.LEFT,
+  Mode.UP,
+  Mode.RIGHT,
+  Mode.DOWN,
+  Mode.SELECT,
+  Mode.ENTER,
+  Mode.MENU,
+  Mode.INVENTORY
+];
+
 Mode.createFactory = function(){
   return function(target_obj) { return new Mode(target_obj); };
 }
@@ -305,6 +317,7 @@ InputModeManager.prototype.modeQueueIsEmpty = function(){
   return this.mode_queue.length === 0;
 };
 InputModeManager.prototype.handleKeyEvent = function(key_code, controller){
+  if (!Mode.VALID_INPUTS.includes(key_code)) return;
   if (this.modeQueueIsEmpty()){
     this.addModes([MapMode.createFactory()]);
   }
