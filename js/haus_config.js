@@ -153,13 +153,15 @@ var Config = {
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.OPENING,
   START_SCREEN_TEXT_DESCRIPTION: [
+    "~~Welcome to Halloween Haus~~ (Press `Enter` to continue)",
     "Many moons ago, 28 souls gathered at a haunted haus on all hallow's eve ...",
     "unaware of the dark secrets lurking in their midst ... ",
     "Based on true events!",
+    "Do you join them on their day of spooky revelry? Play now, if you dare ... "
   ],
-  START_SCREEN_CHOICE_MESSAGE: "Do you join them on their day of spooky revelry? Play now, if you dare ... ",
+  START_SCREEN_CHOICE_MESSAGE: "Click `Enter` to play or use arrow buttons to select a different option.",
   CREDITS: [
-    "~~Credits~~",
+    "~~Credits~~ (Press `Enter` to continue)",
     "Programming and graphics by Sophia", 
     "~Music~",
     "\"Pokemon Tower Theme\" - Pokemon",
@@ -170,7 +172,7 @@ var Config = {
     "LittleRobotSoundFactory (freesound.org)"
   ], 
   HOW_TO: [
-    "~~How To Play~~",
+    "~~How To Play~~ (Press `Enter` to continue)",
     "This game is best played on Google Chrome.",
     "Movement: Arrow Buttons",
     "Select / Object Interaction: `Enter` Button or `Z` Button",
