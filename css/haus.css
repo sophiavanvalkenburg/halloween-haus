@@ -141,8 +141,20 @@ body {
     margin-top: 25px;
 }
 
-.footer-btn{
+.arrow-btn {
+    height: 20px;
+    width: 27px;
+}
+
+.footer-btn-right {
     float: right;
+}
+
+.footer-btn-left {
+    float: left;
+}
+
+.footer-btn{
     border: 1px solid grey;
     background-color: #000000;
     color: grey;
