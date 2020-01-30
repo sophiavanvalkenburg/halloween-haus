@@ -27,6 +27,11 @@ Controller.prototype.updateRenderer = function(){
   this.renderer.updateTextDialog(this.haus.getTextDialog());
   this.renderer.updateChoiceDialog(this.haus.getChoiceDialog());
 };
+Controller.prototype.uiButtonHandlerWrapper = function(buttonElem, handler){
+  $(buttonElem).blur();
+  handler.call(this);
+  this.updateRenderer();
+};
 Controller.prototype.setUpEventListeners = function(){
   var controller = this; 
   window.addEventListener("keydown", function(e){
@@ -37,17 +42,44 @@ Controller.prototype.setUpEventListeners = function(){
   window.addEventListener("tick", function(e){
     controller.handleTimeTickEvent();
   });
+  $("#up-btn").on("click", function(){
+    controller.uiButtonHandlerWrapper(this, function(){
+      controller.mode_manager.handleKeyEvent(Mode.UP, controller);
+    });
+  });
+  $("#down-btn").on("click", function(){
+    controller.uiButtonHandlerWrapper(this, function(){
+      controller.mode_manager.handleKeyEvent(Mode.DOWN, controller);
+    });
+  })
+  $("#left-btn").on("click", function(){
+    controller.uiButtonHandlerWrapper(this, function(){
+      controller.mode_manager.handleKeyEvent(Mode.LEFT, controller);
+    });
+  })
+  $("#right-btn").on("click", function(){
+    controller.uiButtonHandlerWrapper(this, function(){
+      controller.mode_manager.handleKeyEvent(Mode.RIGHT, controller);
+    });
+  })
+  $("#select-btn").on("click", function(){
+    controller.uiButtonHandlerWrapper(this, function(){
+      controller.mode_manager.handleKeyEvent(Mode.SELECT, controller);
+    });
+  })
+  $("#inventory-btn").on("click", function(){
+    controller.uiButtonHandlerWrapper(this, function(){
+      controller.mode_manager.handleKeyEvent(Mode.INVENTORY, controller);
+    });
+  })
   $("#mute-btn").on("click", function(){
-    $(this).blur();
-    controller.handleMuteButtonClickEvent();
+    controller.uiButtonHandlerWrapper(this, controller.handleMuteButtonClickEvent);
   });
   $("#credits-btn").on("click", function(){
-    $(this).blur();
-    controller.handleCreditsButtonClickEvent();
+    controller.uiButtonHandlerWrapper(this, controller.handleCreditsButtonClickEvent);
   });
   $("#how-to-btn").on("click", function(){
-    $(this).blur();
-    controller.handleHowToButtonClickEvent();
+    controller.uiButtonHandlerWrapper(this, controller.handleHowToButtonClickEvent);
   });
 };
 Controller.prototype.handleHowToButtonClickEvent = function(){
@@ -56,7 +88,6 @@ Controller.prototype.handleHowToButtonClickEvent = function(){
     var instructions = TextDialogMode.textArrayToModes(Config.HOW_TO);
     this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, instructions);
   }
-  this.updateRenderer();
 }
 Controller.prototype.handleCreditsButtonClickEvent = function(){
   if (this.mode_manager.modeQueueIsEmpty()){
@@ -64,7 +95,6 @@ Controller.prototype.handleCreditsButtonClickEvent = function(){
     var credits = TextDialogMode.textArrayToModes(Config.CREDITS);
     this.mode_manager.addModesAndHandleEvent(this, Mode.SELECT, credits);
   }
-  this.updateRenderer();
 }
 Controller.prototype.handleMuteButtonClickEvent = function(){
   this.sound_manager.toggleMute();
