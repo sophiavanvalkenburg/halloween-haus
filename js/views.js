@@ -205,6 +205,7 @@ Renderer.prototype.hideStartScreen = function(){
 }
 Renderer.prototype.showStartScreen = function(){
   $(".start-screen-display").css("display", "block");
+  $("#footer-container").css("display", "flex");
 }
 Renderer.prototype.hideLoadingImage = function(){
   $("#loading-img").css("display", "none");

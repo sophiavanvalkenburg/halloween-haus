@@ -10,7 +10,6 @@ body {
     border: 10px solid transparent;
     border-image: url(../resources/images/icons/border-skull.png) 33% repeat;
     display: inline-block;
-    height: 480px;
     width: 480px;
     background-color: black;
     margin-left: 50%;
@@ -137,9 +136,16 @@ body {
 }
 
 #footer-container{
-    margin-right: 1px;
     margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+#extra-controls {
+    margin-top: 3px;
+}
+
 
 .arrow-btn {
     height: 20px;
