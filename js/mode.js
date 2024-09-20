@@ -8,15 +8,15 @@ Mode.CHOICE_DIALOG = "choice_dialog";
 Mode.MAP = "map";
 Mode.START_SCREEN = "start_screen";
 
-Mode.NULL_INPUT = -1; // sometimes need to handle event that doesn't have an associated id
-Mode.LEFT = 37;
-Mode.UP = 38;
-Mode.RIGHT = 39;
-Mode.DOWN = 40;
-Mode.SELECT = 90;
-Mode.ENTER = 13;
-Mode.MENU = 16;
-Mode.INVENTORY = 73;
+Mode.NULL_INPUT = "Null"; // sometimes need to handle event that doesn't have an associated id
+Mode.LEFT = "ArrowLeft";
+Mode.UP = "ArrowUp";
+Mode.RIGHT = "ArrowRight";
+Mode.DOWN = "ArrowDown";
+Mode.SELECT = "z";
+Mode.ENTER = "Enter";
+Mode.MENU = "Shift";
+Mode.INVENTORY = "i";
 
 Mode.VALID_INPUTS = [
   Mode.NULL_INPUT,

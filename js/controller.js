@@ -35,7 +35,7 @@ Controller.prototype.uiButtonHandlerWrapper = function(buttonElem, handler){
 Controller.prototype.setUpEventListeners = function(){
   var controller = this; 
   window.addEventListener("keydown", function(e){
-    controller.mode_manager.handleKeyEvent(e.which, controller);
+    controller.mode_manager.handleKeyEvent(e.key, controller);
     controller.updateRenderer();
     e.stopPropagation();
   });
