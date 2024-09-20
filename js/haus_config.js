@@ -152,8 +152,8 @@ var Config = {
   TIME_COUNTER: 1000,
   INITIAL_MAP: 0,
   INITIAL_MUSIC: Labels.sounds.OPENING,
+  START_SCREEN_WELCOME_TEXT: "~~Welcome to Halloween Haus~~ (Press `enter` to continue)",
   START_SCREEN_TEXT_DESCRIPTION: [
-    "~~Welcome to Halloween Haus~~ (Press `enter` to continue)",
     "Many moons ago, 28 souls gathered at a haunted haus on all hallow's eve ...",
     "unaware of the dark secrets lurking in their midst ... ",
     "Based on true events!",

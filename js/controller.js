@@ -7,9 +7,16 @@ var Controller = function(haus, renderer, mode_manager, the_story, sound_manager
   this.time_manager = time_manager;
 };
 Controller.prototype.setup = function(){
+  var controller = this;
   this.setUpEventListeners();
   this.haus.setCurrentMap(Config.INITIAL_MAP);
-  start_screen_modes = [Mode.createFactory()].concat(
+  start_screen_modes = [
+    Mode.createFactory(), 
+    TextDialogMode.createFactory(Config.START_SCREEN_WELCOME_TEXT, function(){
+      controller.sound_manager.playMusic(Config.INITIAL_MUSIC);
+    })
+  ]
+  start_screen_modes = start_screen_modes.concat(
     TextDialogMode.textArrayToModes(Config.START_SCREEN_TEXT_DESCRIPTION)
   );
   start_screen_modes.push(StartScreenMode.createFactory());
@@ -189,7 +196,6 @@ $(function(){
     renderer.showStartScreen();
     controller.setup();
     the_story.setup(controller);
-    sound_manager.playMusic(Config.INITIAL_MUSIC);
   }); 
 });
 
