@@ -59,6 +59,7 @@ class Animation {
     if (this.#next_instruction == 0){
       return undefined;
     }
+    let last_instruction;
     if (this.#next_instruction < 0 || this.#next_instruction >= this.#queue.length){
       last_instruction = this.#queue.length - 1;
     }else{
