@@ -9,14 +9,14 @@ var Renderer = function(){
 Renderer.TEXT_DIALOG_CHAR_LIMIT = 115; 
 Renderer.createImage = function(filename){
   if (filename !== undefined){
-    return $("<img src='"+filename+"'/>");
+    return $(`<img src='${filename}'/>`);
   }
 };
 Renderer.specialName = function(name, marker){
   var words = name.split(" ");
   return words.map(
     function(w){ 
-        return marker+"("+w.toUpperCase()+")";
+        return `${marker}(${w.toUpperCase()})`;
     }
   ).join(" ");
 }
@@ -41,10 +41,10 @@ Renderer.replaceObjectNamesWithHtml = function(str){
   return str.replace( /obj\(([^\)]+)\)\B/g , '<span class=object-name>$1</span>'); 
 }
 Renderer.newCell = function(x, y){
-  return $("<td data-x='"+x+"' data-y='"+y+"'>");
+  return $(`<td data-x='${x}' data-y='${y}'>`);
 }
 Renderer.findCell = function(x, y){
-  return $("td[data-x='"+x+"'][data-y='"+y+"']");
+  return $(`td[data-x='${x}'][data-y='${y}']`);
 }
 Renderer.prototype.drawMapCell = function(haus, map, map_loc){
   var x = map_loc.X();
@@ -117,7 +117,7 @@ Renderer.prototype.drawCharacter = function(character){
   if (character === undefined){
     return;
   }
-  var $div = $("<div id='"+character.getLabel()+"' class='map-object character'>"); 
+  var $div = $(`<div id='${character.getLabel()}' class='map-object character'>`); 
   var image = Renderer.createImage(character.getGraphic());
   $div.append(image);
   this.orientObject(character, $div);
@@ -127,7 +127,7 @@ Renderer.prototype.drawItem = function(item){
   if (item == undefined){
     return;
   }
-  var $div = $("<div id='"+item.getLabel()+"' class='map-object item'>");
+  var $div = $(`<div id='${item.getLabel()}' class='map-object item'>`);
   var image = Renderer.createImage(item.getGraphic());
   $div.append(image);
   return $div;
@@ -136,7 +136,7 @@ Renderer.prototype.updateCharacter = function(character){
   if (character === undefined){
     return;
   }
-  var $div = $("#"+character.getLabel());
+  var $div = $(`#${character.getLabel()}`);
   var new_x = character.X();
   var new_y = character.Y();
   var $new_td = Renderer.findCell(new_x, new_y);
@@ -184,7 +184,7 @@ Renderer.prototype.drawChoiceList = function(choice_labels, selected_label){
     var label = choice_labels[i];
     $icon = label === selected_label ? $selected_icon : undefined;
     $choice_row.append($("<td>").append($icon));
-    $choice_row.append($("<td><span class='dialog-text'>"+label+"</span></td>"));
+    $choice_row.append($(`<td><span class='dialog-text'>${label}</span></td>`));
     $table.append($choice_row);
   }
   this.$choice_dialog.html("");

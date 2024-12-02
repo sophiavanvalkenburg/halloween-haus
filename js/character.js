@@ -114,15 +114,6 @@ var Character = function(obj){
   this.inventory = [];
   this.is_npc = obj.is_player === undefined ? true : !obj.is_player;
 }
-Character.makeMessages = function(name, messages){
-  if (messages !== undefined){
-    return messages.map(
-      function(m){ 
-        return Renderer.characterName(name+':') + ' "' + m + '"';
-      }
-    );
-  }
-}
 Character.prototype = new MoveableObject();
 Character.prototype.constructor = Character;
 Character.prototype.isNPC = function(){

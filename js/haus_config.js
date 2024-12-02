@@ -537,7 +537,7 @@ var Config = {
                 state: StoryStates.INIT, 
                 modes: [TextDialogMode.createCharacterTextFactory(
                   Labels.characters.ADEL, 
-                  "Check out the spooky details on this vest that ch(SHERI) made for me!"
+                  `Check out the spooky details on this vest that ${Renderer.characterName("Sheri")} made for me!`
                   )]
               }
             ],
@@ -779,7 +779,7 @@ var Config = {
           {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createFactory(
-              "ch(BUDDY), a cute doll that is some combination of jack o'lantern, devil, and ghost.",
+              `${Renderer.characterName("Buddy")}, a cute doll that is some combination of jack o'lantern, devil, and ghost.`,
               function(){}
               ),
             TextDialogMode.createFactory(
@@ -787,7 +787,7 @@ var Config = {
               function(){}
               ),
             TextDialogMode.createFactory(
-              "It's odd, but you can't help feeling like ch(BUDDY) is listening to every word you say..."
+              `It's odd, but you can't help feeling like ${Renderer.characterName("Buddy")} is listening to every word you say...`
               )]
           }
         ], 
@@ -828,7 +828,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.JAE, 
-              "Hi, I'm ch(JAE) from konbanwa."
+              `Hi, I'm ${Renderer.characterName("Jae")} from konbanwa.`
               )]
           }
         ],
@@ -986,22 +986,22 @@ var Config = {
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.MARTHA,
-              "Did you try the " + Renderer.objectName("fortune cake") + " in the dining room?",
+              `Did you try the ${Renderer.objectName("fortune cake")} in the dining room?`,
               function(){}
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.MARTHA,
-              "Unfortunately I'm missing the 5 " + Renderer.objectName("fortunes") + " that belong in the cake.",
+              `Unfortunately I'm missing the 5 ${Renderer.objectName("fortunes")} that belong in the cake.`,
               function(){}
               ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.MARTHA,
-              "The 5 items are a " + Renderer.objectName("coin") + ", a " + Renderer.objectName("key") + ", a " + Renderer.objectName("button") + ", a " + Renderer.objectName("thimble") + ", and an " + Renderer.objectName("antique ring") + ".",
+              `The 5 items are a ${Renderer.objectName("coin")}, a ${Renderer.objectName("key")}, a ${Renderer.objectName("button")}, a ${Renderer.objectName("thimble")}, and an ${Renderer.objectName("antique ring")}.`,
               function(){}
             ),
             TextDialogMode.createCharacterTextFactory(
               Labels.characters.MARTHA,
-              "If you can help me find them I will give you a small gift!"
+              `If you can help me find them I will give you a small gift!`
               )]
           }
         ]
@@ -1106,7 +1106,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.SKYLAR, 
-              "Did you know ch(MARTHA) makes necklaces out of obj(LOCKS OF HAIR)?"
+              `Did you know ${Renderer.characterName("Martha")} makes necklaces out of ${Renderer.objectName("locks of hair")}?`
               )
             ]
           }
@@ -1162,7 +1162,7 @@ var Config = {
                 function(){}
               ), TextDialogMode.createCharacterTextFactory(
                 Labels.characters.TESS,
-                "The obj(MUSHROOMS) are my favorite!"
+                `The ${Renderer.objectName("mushrooms")} are my favorite!`
               )]
           }
         ],
@@ -1197,7 +1197,7 @@ var Config = {
             state: StoryStates.INIT, 
             modes: [TextDialogMode.createCharacterTextFactory(
               Labels.characters.TOLA, 
-              "Meet my new friend ch(BUDDY)! He's a little spooky."
+              `Meet my new friend ${Renderer.characterName("Buddy")}! He's a little spooky.`
               )]
           }
         ],
@@ -1590,7 +1590,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.BRIDE,
-            "Unfortunately I lost the " + Renderer.objectName("wedding ring") + ". Can you help me find it?"
+            `Unfortunately I lost the ${Renderer.objectName("wedding ring")}. Can you help me find it?`
           )]
         }
       ],
@@ -1917,7 +1917,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "They took me out of my room, and now I can't find my way back...If only I had a obj(MAP) to guide me."
+            `They took me out of my room, and now I can't find my way back...If only I had a ${Renderer.objectName("map")} to guide me.`
           )]
         }
       ],
@@ -2093,7 +2093,7 @@ var Config = {
           state: StoryStates.INIT,
           modes: [TextDialogMode.createCharacterTextFactory(
             Labels.character_names.GHOST,
-            "HELP! Have you seen my " + Renderer.objectName("dolly") + "?"
+            `HELP! Have you seen my ${Renderer.objectName("dolly")}?`
           )]
         }
       ],
