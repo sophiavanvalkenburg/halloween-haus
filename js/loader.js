@@ -2,10 +2,11 @@ class GameLoader{
   
   #haus;
   #preloaded_graphics;
+  #load_jobs;
 
   constructor(haus){
     this.#haus = haus;
-    this.load_jobs = 0;
+    this.#load_jobs = 0;
     this.#preloaded_graphics = [];
   }
 
@@ -73,12 +74,11 @@ class GameLoader{
     } 
   }
   startLoadMap(file, callback){
-    this.load_jobs++;
-    const the_loader = this;
+    this.#load_jobs++;
     $.getJSON(file, (json) => {
-      the_loader.loadMap(json);
-      the_loader.load_jobs--;
-      if (the_loader.load_jobs === 0){
+      this.loadMap(json);
+      this.#load_jobs--;
+      if (this.#load_jobs === 0){
         callback();
       }
     });
