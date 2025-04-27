@@ -2,11 +2,9 @@ class GameLoader{
   
   #haus;
   #preloaded_graphics;
-  #load_jobs;
 
   constructor(haus){
     this.#haus = haus;
-    this.#load_jobs = 0;
     this.#preloaded_graphics = [];
   }
 
@@ -66,21 +64,26 @@ class GameLoader{
     return {resolution: res, num_columns: cols, num_rows: rows, map_id: map, is_ghost_map: data.meta.is_ghost_map};
   }
 
-  loadGame(callback){
+  async loadGame(){
     this.preloadGraphicsFromList();
     this.preloadMapObjects(Config.characters);
-    for (let mapfile of Config.mapfiles){
-      this.startLoadMap(mapfile, callback);
-    } 
+    const mapLoaders = [];
+    for (let mapfile of Config.mapfiles) {
+      mapLoaders.push(this.startLoadMap(mapfile));
+    }
+    await Promise.all(mapLoaders);
   }
-  startLoadMap(file, callback){
-    this.#load_jobs++;
-    $.getJSON(file, (json) => {
-      this.loadMap(json);
-      this.#load_jobs--;
-      if (this.#load_jobs === 0){
-        callback();
-      }
+  startLoadMap(file){
+    return new Promise((resolve, reject) => {
+      fetch(file)
+        .then(res => res.json())
+        .then((json) => {
+          this.loadMap(json);
+          resolve(json);
+        })
+        .catch(err => {
+          reject(err);
+        });
     });
   }
   loadMap(data){

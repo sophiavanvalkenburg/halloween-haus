@@ -191,7 +191,7 @@ $(function(){
   var sound_manager = new SoundManager();
   var time_manager = new TimeManager()
   var controller = new Controller(the_haus, renderer, mode_manager, the_story, sound_manager, time_manager);
-  game_loader.loadGame(function(){
+  game_loader.loadGame().then(() => {
     renderer.hideLoadingImage();
     renderer.showStartScreen();
     controller.setup();
